@@ -1,0 +1,46 @@
+.splide__slide img {
+    height: 500px;
+    object-fit: cover;
+}
+
+.tpover {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 30px;
+    width: 100%;
+    bottom: 0;
+    z-index: 1;
+}
+
+.is-live-render {
+    position: absolute;
+    background-color: #121212;
+    right: 5%;
+    bottom: 10%;
+    border: 0;
+    font-size: 2rem;
+    cursor: default;
+    border-radius: 15px;
+    z-index: 1;
+    font-weight: 500;
+    padding-inline: 10px;
+}
+
+.carasoul {
+    position: relative;
+}
+
+.carasoul button {
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.splide__pagination__page:focus,
+.splide__arrow:focus {
+    outline: 3px solid rgba(255, 0, 34, 0.5) !important;
+    transition: outline 0.3s ease;
+}
+
+.carasoul button:hover {
+    box-shadow: rgba(255, 0, 34, 0.5) 0px 0px 15px;
+}

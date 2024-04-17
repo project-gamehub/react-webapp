@@ -1,0 +1,52 @@
+[
+    {
+        "rank": 1,
+        "username": "Player1",
+        "score": 1500
+    },
+    {
+        "rank": 2,
+        "username": "Player2",
+        "score": 1200
+    },
+    {
+        "rank": 3,
+        "username": "Player3",
+        "score": 1000
+    },
+    {
+        "rank": 4,
+        "username": "Player4",
+        "score": 980
+    },
+    {
+        "rank": 5,
+        "username": "Player5",
+        "score": 900
+    },
+    {
+        "rank": 6,
+        "username": "Player6",
+        "score": 850
+    },
+    {
+        "rank": 7,
+        "username": "Player7",
+        "score": 800
+    },
+    {
+        "rank": 8,
+        "username": "Player8",
+        "score": 780
+    },
+    {
+        "rank": 9,
+        "username": "Player9",
+        "score": 750
+    },
+    {
+        "rank": 10,
+        "username": "Player10",
+        "score": 580
+    }
+]

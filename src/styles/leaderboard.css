@@ -1,0 +1,29 @@
+.leaderboard table,
+.leaderboard td,
+.leaderboard th {
+    text-align: center;
+}
+
+.leaderboard td,
+.leaderboard th {
+    padding: 3px 30px;
+}
+
+.leaderboard {
+    padding-bottom: 20px;
+}
+
+.current-users-score,
+.leaderboard .lb-header {
+    background-color: #1b1b1b;
+    border: 1px solid rgb(107, 107, 107);
+    border-radius: 10%;
+}
+
+.leaderboard table {
+    border-collapse: collapse;
+}
+
+.loding-lb-div {
+    height: 55vh;
+}
