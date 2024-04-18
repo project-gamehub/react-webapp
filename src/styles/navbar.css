@@ -1,5 +1,3 @@
-/* Logo Section And Full Header */
-
 .logo {
     height: 70px;
 
@@ -50,7 +48,7 @@
     }
 }
 
-.material-symbols-rounded {
+.header-container .material-symbols-rounded {
     font-size: 34px !important;
     font-variation-settings:
         "wght" 400,

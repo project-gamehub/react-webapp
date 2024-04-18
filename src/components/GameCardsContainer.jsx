@@ -19,19 +19,17 @@ const GameCardsContainer = () => {
             <div className="game-cards-container">
                 {loading ? (
                     <>
-                        <GameCard loading={loading} />
-                        <GameCard loading={loading} />
-                        <GameCard loading={loading} />
-                        <GameCard loading={loading} />
+                        <GameCard loading={true} />
+                        <GameCard loading={true} />
+                        <GameCard loading={true} />
+                        <GameCard loading={true} />
                     </>
                 ) : error ? (
                     "Error"
-                ) : data ? (
+                ) : (
                     data.map((games) => (
                         <GameCard data={games} key={games._id} />
                     ))
-                ) : (
-                    ""
                 )}
             </div>
         </>
