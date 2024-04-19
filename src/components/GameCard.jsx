@@ -1,25 +1,14 @@
 import { Link } from "react-router-dom";
 import "../styles/gamecard.css";
-import Shimmer from "./Shimmer";
 
-const GameCard = ({ data, loading }) => {
+const GameCard = ({ data }) => {
     return (
-        <>
-            {loading ? (
-                <div className="game-card-loader">
-                    <Shimmer />
-                </div>
-            ) : (
                 <Link to={"game/" + data?.gameSlug} className="game-card">
-                    {data.comingSoon ? (
-                        <>
+                    {data.comingSoon && 
                             <div className="coming-soon-capsule">
                                 Coming Soon
                             </div>
-                        </>
-                    ) : (
-                        <></>
-                    )}
+                    }
 
                     <div className="image-container">
                         <img
@@ -34,8 +23,6 @@ const GameCard = ({ data, loading }) => {
 
                     <h1 className="game-name-container">{data.gameName}</h1>
                 </Link>
-            )}
-        </>
     );
 };
 

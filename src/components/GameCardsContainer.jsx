@@ -1,4 +1,5 @@
 import GameCard from "./GameCard";
+import GameCardLoader from "./GameCardLoader";
 import "../styles/gamecardcontainer.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -19,13 +20,13 @@ const GameCardsContainer = () => {
             <div className="game-cards-container">
                 {loading ? (
                     <>
-                        <GameCard loading={true} />
-                        <GameCard loading={true} />
-                        <GameCard loading={true} />
-                        <GameCard loading={true} />
+                        <GameCardLoader/>
+                        <GameCardLoader/>
+                        <GameCardLoader/>
+                        <GameCardLoader/>
                     </>
                 ) : error ? (
-                    "Error"
+                    "Error while getting games"
                 ) : (
                     data.map((games) => (
                         <GameCard data={games} key={games._id} />
