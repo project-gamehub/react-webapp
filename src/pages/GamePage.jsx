@@ -16,9 +16,9 @@ const GamePage = () => {
     const [gameData, setGameData] = useState(undefined);
 
     useEffect(() => {
-        if(!gamesData){
+        if (!gamesData) {
             dispatch(fetchGamesData());
-        }else{
+        } else {
             setGameData(gamesData.find((item) => item.gameSlug === gameslug));
         }
     }, [dispatch, gamesData, gameslug]);

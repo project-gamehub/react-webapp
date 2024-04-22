@@ -4,39 +4,32 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGamesData } from "../config/gamesDataSlice";
 import { fetchLeaderboardData } from "../config/leaderboardsDataSlice";
+import DisplayUsername from "./DisplayUsername";
 
 const Leaderboard = () => {
     const [leaderboardData, setLeaderboardData] = useState(null);
-    const {gameslug} = useParams();
+    const { gameslug } = useParams();
 
-    const { gamesData } = useSelector(
-        (state) => state.gamesDataSlice
-    );
+    const { gamesData } = useSelector((state) => state.gamesDataSlice);
 
-    const {leaderboardsData, leaderboardsDataLoading, leaderboardsDataError } = useSelector(
-        (state) => state.leaderboardsDataSlice
-    );
+    const { leaderboardsData, leaderboardsDataLoading, leaderboardsDataError } =
+        useSelector((state) => state.leaderboardsDataSlice);
 
     const dispatch = useDispatch();
-    
+
     useEffect(() => {
-            if(!gamesData){
-                dispatch(fetchGamesData());
-            }
-            else {
-                const gameId = gamesData.find( (gameData) => 
-                gameslug === gameData.gameSlug
-            )
+        if (!gamesData) {
+            dispatch(fetchGamesData());
+        } else {
+            const gameId = gamesData.find(
+                (gameData) => gameslug === gameData.gameSlug
+            );
             dispatch(fetchLeaderboardData(gameId._id));
-            if(leaderboardsData && !leaderboardsDataLoading){
-                setLeaderboardData(leaderboardsData[gameId._id])
+            if (leaderboardsData && !leaderboardsDataLoading) {
+                setLeaderboardData(leaderboardsData[gameId._id]);
             }
         }
-    }, [gameslug, gamesData, dispatch, leaderboardsData ]);
-
-    // convert userId to userName and display leaderboard
-
-    console.log(leaderboardData);
+    }, [gameslug, gamesData, dispatch, leaderboardsData]);
 
     return (
         <div className="leaderboard-container">
@@ -45,64 +38,45 @@ const Leaderboard = () => {
             <div className="leaderboard">
                 <table>
                     <thead>
-                        <tr className="current-users-score">
+                        <tr className="leaderboard-header">
                             <th> Rank </th>
                             <th> Username </th>
                             <th> Score </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {leaderboardData?.data
-                            ? 
+                        {leaderboardData?.data ? (
                             leaderboardData.data.map((singlePerson, idx) => (
-                                  <tr key={idx + 1}>
-                                      <td> {idx + 1} </td>
-                                      <td> {singlePerson.username} </td>
-                                      <td> {singlePerson.score} </td>
-                                  </tr>
-                              ))
-                        //    <>"Hi"</>
-                            : 
+                                <tr key={idx + 1}>
+                                    <td> {idx + 1} </td>
+                                    <td>
+                                        {" "}
+                                        <DisplayUsername
+                                            userId={singlePerson.userId}
+                                        />{" "}
+                                    </td>
+                                    <td> {singlePerson.score} </td>
+                                </tr>
+                            ))
+                        ) : (
+                            // Todo make shimmer
                             <>
-                                <tr className="leaderboard-loader">
-                                    <td colSpan={3}></td>
-                                </tr>
-                                <tr className="leaderboard-loader">
-                                    <td colSpan={3}></td>
-                                </tr>
-                                <tr className="leaderboard-loader">
-                                    <td colSpan={3}></td>
-                                </tr>
-                                <tr className="leaderboard-loader">
-                                    <td colSpan={3}></td>
-                                </tr>
-                                <tr className="leaderboard-loader">
-                                    <td colSpan={3}></td>
-                                </tr>
-                                <tr className="leaderboard-loader">
-                                    <td colSpan={3}></td>
-                                </tr>
-                                <tr className="leaderboard-loader">
-                                    <td colSpan={3}></td>
-                                </tr>
-                                <tr className="leaderboard-loader">
-                                    <td colSpan={3}></td>
-                                </tr>
-                                <tr className="leaderboard-loader">
-                                    <td colSpan={3}></td>
-                                </tr>
-                                <tr className="leaderboard-loader">
-                                    <td colSpan={3}></td>
-                                </tr>
-                                
-                               
+                                {[...Array(10)].map((_, idx) => (
+                                    <tr
+                                        key={idx}
+                                        className="leaderboard-loader"
+                                    >
+                                        <td colSpan={3}></td>
+                                    </tr>
+                                ))}
                             </>
-                        }
+                        )}
                     </tbody>
                     <tfoot>
                         <tr className="current-users-score">
-                            <td> 0 </td>
-                            <td> Name </td>
+                            {/* TODO- Make this dynamic after implementing user service */}
+                            <td> </td>
+                            <td>aaaaaa </td>
                             <td> NULL </td>
                         </tr>
                     </tfoot>

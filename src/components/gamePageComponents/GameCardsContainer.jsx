@@ -12,7 +12,7 @@ const GameCardsContainer = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(!gamesData){
+        if (!gamesData) {
             dispatch(fetchGamesData());
         }
     }, [dispatch, gamesData]);
