@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/carousel.css";
+import { NO_BANNER_FOUND_URL } from "../utils/constant";
 
 // Splide
 import { Splide, SplideSlide } from "@splidejs/react-splide";
@@ -7,18 +8,18 @@ import "@splidejs/react-splide/css";
 import { Link } from "react-router-dom";
 
 const Carousel = ({ data }) => {
-    console.log(data);
     return (
         <div className="carasoul">
             <div className="tpover"></div>
-            {data.isLive ? (
-                <Link to={data.gameLink}>
-                    <button className="is-live-render"> Play Now </button>
-                </Link>
+            {data.comingSoon ? (
+                <h2 className="play-button"> Coming Soon </h2>
             ) : (
-                <h2 className="is-live-render"> Coming Soon </h2>
+                <button type="button" className="play-button">
+                    <Link className="play-button-link" to={data.gameLink}>
+                        Play Now
+                    </Link>
+                </button>
             )}
-            <div className="play-game-btn"></div>
             <Splide
                 options={{
                     rewind: true,
@@ -26,15 +27,25 @@ const Carousel = ({ data }) => {
                 }}
                 className="spl"
             >
-                <SplideSlide>
-                    <img src={`https://picsum.photos/1000/500`} alt="mage 1" />
-                </SplideSlide>
-                <SplideSlide>
-                    <img src="https://picsum.photos/1001/500" alt="mage 2" />
-                </SplideSlide>
-                <SplideSlide>
-                    <img src="https://picsum.photos/999/500" alt="mage 3" />
-                </SplideSlide>
+                {data.banners && data.banners.length > 0 ? (
+                    data.banners.map((bannerLink, idx) => {
+                        <SplideSlide>
+                            <img
+                                className="banner"
+                                src={bannerLink}
+                                alt={`image ${idx}`}
+                            />
+                        </SplideSlide>;
+                    })
+                ) : (
+                    <SplideSlide>
+                        <img
+                            className="banner"
+                            src={NO_BANNER_FOUND_URL}
+                            alt={`No banner found`}
+                        />
+                    </SplideSlide>
+                )}
             </Splide>
         </div>
     );

@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 const Profile = () => {
     const userData = useSelector((state) => state.userDataSlice.value);
-    console.log(userData);
 
     return (
         <div>

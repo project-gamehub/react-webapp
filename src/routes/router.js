@@ -25,7 +25,7 @@ const router = createBrowserRouter(
                 <Route path="explore" element={<Explore />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="login" element={<Login />} />
-                <Route path=":gameslug" element={<GamePage />} />
+                <Route path="game/:gameslug" element={<GamePage />} />
             </Route>
         </>
     )

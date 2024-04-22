@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import gameData from "./gameDataSlice";
+import gamesData from "./gamesDataSlice";
 import userData from "./userDataSlice";
+import leaderboardsData from "./leaderboardsDataSlice";
 
 export const store = configureStore({
     reducer: {
-        gameDataSlice: gameData,
-        userDataSlice: userData
+        gamesDataSlice: gamesData,
+        userDataSlice: userData,
+        leaderboardsDataSlice: leaderboardsData
     }
 });

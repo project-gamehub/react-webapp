@@ -1,34 +1,36 @@
 import GameCard from "./GameCard";
 import GameCardLoader from "./GameCardLoader";
-import "../styles/gamecardcontainer.css";
+import "../../styles/gamePageStyles/gameCardContainer.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchGameData } from "../config/gameDataSlice";
+import { fetchGamesData } from "../../config/gamesDataSlice";
 
 const GameCardsContainer = () => {
-    const { data, error, loading } = useSelector(
-        (state) => state.gameDataSlice
+    const { gamesData, gamesDataError, gamesDataLoading } = useSelector(
+        (state) => state.gamesDataSlice
     );
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchGameData());
-    }, [dispatch]);
+        if(!gamesData){
+            dispatch(fetchGamesData());
+        }
+    }, [dispatch, gamesData]);
 
     return (
         <>
             <div className="game-cards-container">
-                {loading ? (
+                {gamesDataLoading ? (
                     <>
-                        <GameCardLoader/>
-                        <GameCardLoader/>
-                        <GameCardLoader/>
-                        <GameCardLoader/>
+                        <GameCardLoader />
+                        <GameCardLoader />
+                        <GameCardLoader />
+                        <GameCardLoader />
                     </>
-                ) : error ? (
+                ) : gamesDataError ? (
                     "Error while getting games"
                 ) : (
-                    data.map((games) => (
+                    gamesData.map((games) => (
                         <GameCard data={games} key={games._id} />
                     ))
                 )}

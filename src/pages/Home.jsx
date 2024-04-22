@@ -1,4 +1,4 @@
-import GameCardContainer from "../components/GameCardsContainer";
+import GameCardContainer from "../components/gamePageComponents/GameCardsContainer";
 
 export default function Home() {
     return (

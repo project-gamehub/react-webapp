@@ -1,33 +1,48 @@
-// import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import GamePageCard from "../components/GamePageCard";
+import { useDispatch, useSelector } from "react-redux";
+import GamePageCard from "../components/gamePageComponents/GamePageCard";
 import Leaderboard from "../components/Leaderboard";
-import "../styles/game-page.css";
+import "../styles/gamePageStyles/gamePage.css";
+import { useEffect, useState } from "react";
+import { fetchGamesData } from "../config/gamesDataSlice";
 
 const GamePage = () => {
     const { gameslug } = useParams();
-
-    const gameData = useSelector((state) => state.gameDataSlice.value)?.find(
-        (item) => item.slug === gameslug
+    const { gamesData, gamesDataLoading } = useSelector(
+        (state) => state.gamesDataSlice
     );
+    const dispatch = useDispatch();
 
-    if (gameData === undefined) {
+    const [gameData, setGameData] = useState(undefined);
+
+    useEffect(() => {
+        if(!gamesData){
+            dispatch(fetchGamesData());
+        }else{
+            setGameData(gamesData.find((item) => item.gameSlug === gameslug));
+        }
+    }, [dispatch, gamesData, gameslug]);
+
+    if (gamesDataLoading) {
         return (
             <>
-                {" "}
-                <h1>Game Not Found!</h1>{" "}
+                <h1>Loading</h1>
+            </>
+        );
+    }
+
+    if (!gameData) {
+        return (
+            <>
+                <h1>Game Not Found!</h1>
             </>
         );
     }
 
     return (
         <div className="game-page-container">
-            {gameData ? <GamePageCard data={gameData} /> : ""}
-            <div className="lb-container">
-                <h2>Leaderboard</h2>
-                <Leaderboard />
-            </div>
+            <GamePageCard data={gameData} />
+            <Leaderboard />
         </div>
     );
 };

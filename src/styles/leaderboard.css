@@ -1,4 +1,41 @@
-.leaderboard table,
+.leaderboard-container {
+    width: 100%;
+    margin-left: 20px;
+    padding: 15px;
+    background: #1e1f20;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.leaderboard,
+.leaderboard table {
+    width: 100%;
+}
+
+.leaderboard table {
+    border-spacing: 0px 10px;
+}
+
+.leaderboard td {
+    height: 34px;
+    margin-block: 15px;
+}
+
+tbody td {
+    border-radius: 10px;
+}
+
+tbody tr:nth-child(even) td {
+    background: #00ff1e;
+}
+
+tbody tr:nth-child(odd) td {
+    background: #e6ff04;
+}
+
+/* .leaderboard table,
 .leaderboard td,
 .leaderboard th {
     text-align: center;
@@ -14,7 +51,7 @@
 }
 
 .current-users-score,
-.leaderboard .lb-header {
+.leaderboard .leaderboard-header {
     background-color: #1b1b1b;
     border: 1px solid rgb(107, 107, 107);
     border-radius: 10%;
@@ -26,4 +63,4 @@
 
 .loding-lb-div {
     height: 55vh;
-}
+} */
