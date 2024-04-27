@@ -6,3 +6,6 @@ export const LOGO_URL = "https://i.postimg.cc/SQVJXt7K/logo.png";
 
 export const NO_BANNER_FOUND_URL =
     "https://image.pngaaa.com/13/1887013-middle.png";
+
+export const GOOGLE_CLIENT_ID =
+    "99839884324-eps1tje234akps84633996ch9r5l7kne.apps.googleusercontent.com";

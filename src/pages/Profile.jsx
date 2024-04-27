@@ -16,7 +16,7 @@ const Profile = () => {
                             <div className="profile-data">
                                 {" "}
                                 {userData.username}
-                                <span class="material-symbols-rounded">
+                                <span className="material-symbols-rounded">
                                     edit
                                 </span>
                             </div>
@@ -33,11 +33,11 @@ const Profile = () => {
                             <div className="profile-data">
                                 {userData.discordusername}
                                 {userData.discordusername ? (
-                                    <span class="material-symbols-rounded">
+                                    <span className="material-symbols-rounded">
                                         link_off
                                     </span>
                                 ) : (
-                                    <span class="material-symbols-rounded">
+                                    <span className="material-symbols-rounded">
                                         link
                                     </span>
                                 )}

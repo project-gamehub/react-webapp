@@ -20,15 +20,15 @@ const Header = () => {
 
                 <div className="navbar-links-container">
                     <NavLink className="navbar-link" to="/">
-                        <span class="material-symbols-rounded">home</span>
+                        <span className="material-symbols-rounded">home</span>
                         Home
                     </NavLink>
                     <NavLink className="navbar-link" to="/reels">
-                        <span class="material-symbols-rounded">movie</span>
+                        <span className="material-symbols-rounded">movie</span>
                         Reels
                     </NavLink>
                     <NavLink className="navbar-link" to="/explore">
-                        <span class="material-symbols-rounded">public</span>
+                        <span className="material-symbols-rounded">public</span>
                         Near me
                     </NavLink>
                 </div>
@@ -36,12 +36,14 @@ const Header = () => {
                 <div className="profile-container">
                     {isLogin ? (
                         <NavLink className="navbar-link" to="/profile">
-                            <span class="material-symbols-rounded">person</span>
+                            <span className="material-symbols-rounded">
+                                person
+                            </span>
                             {userData ? userData?.username : "username"}
                         </NavLink>
                     ) : (
                         <NavLink className="navbar-link" to="/login">
-                            <span class="material-symbols-rounded explore-btn">
+                            <span className="material-symbols-rounded explore-btn">
                                 login
                             </span>
                             Login
