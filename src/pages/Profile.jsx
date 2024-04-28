@@ -14,7 +14,6 @@ const Profile = () => {
                         <div className="data-label-container">
                             <div className="profile-label"> Username </div>
                             <div className="profile-data">
-                                {" "}
                                 {userData.username}
                                 <span className="material-symbols-rounded">
                                     edit
@@ -23,10 +22,7 @@ const Profile = () => {
                         </div>
                         <div className="data-label-container">
                             <div className="profile-label"> Email </div>
-                            <div className="profile-data">
-                                {" "}
-                                {userData.email}{" "}
-                            </div>
+                            <div className="profile-data">{userData.email}</div>
                         </div>
                         <div className="data-label-container">
                             <div className="profile-label"> Discord </div>

@@ -9,3 +9,5 @@ export const NO_BANNER_FOUND_URL =
 
 export const GOOGLE_CLIENT_ID =
     "99839884324-eps1tje234akps84633996ch9r5l7kne.apps.googleusercontent.com";
+
+export const LOGIN_PAGE_BANNER_URL = "./assets/login-banner.jpg";

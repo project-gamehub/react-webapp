@@ -50,10 +50,9 @@ const Leaderboard = () => {
                                 <tr key={idx + 1}>
                                     <td> {idx + 1} </td>
                                     <td>
-                                        {" "}
                                         <DisplayUsername
                                             userId={singlePerson.userId}
-                                        />{" "}
+                                        />
                                     </td>
                                     <td> {singlePerson.score} </td>
                                 </tr>

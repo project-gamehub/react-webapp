@@ -1,0 +1,68 @@
+.login-page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-components-container {
+    border-radius: 50px;
+    overflow: hidden;
+    margin-top: 25px;
+    position: relative;
+    width: 80vw;
+    height: 75vh;
+}
+
+.login-page-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.components-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transition: left 0.25s linear;
+}
+
+.abs-pos-right {
+    left: 50%;
+}
+
+.abs-pos-left {
+    left: 0;
+}
+
+.glass-effect {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.toggle-login-register-btn {
+    all: unset;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.line-container {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    /* margin: 20px 0; */
+}
+
+.line {
+    flex-grow: 1;
+    border-top: 3px solid rgb(255, 255, 255);
+}
+
+.or-text {
+    margin: 0 10px;
+    /* font-weight: bold; */
+}
