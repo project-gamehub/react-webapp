@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     width: 80%;
-    height: 60%;
+    height: 68%;
 }
 
 .input-field {
@@ -39,6 +39,10 @@
     cursor: pointer;
     font-weight: bold;
     color: black;
+
+    &:hover {
+        background: rgb(196, 196, 196);
+    }
 }
 
 .input-container {

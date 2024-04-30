@@ -41,11 +41,11 @@ const Login = () => {
                     >
                         {wantsToRegister ? (
                             <>
-                                Already have an account? <u>Click to Login</u>
+                                Already have an account? <span>Click to Login</span>
                             </>
                         ) : (
                             <>
-                                Don't have an account? <u>Click to Register</u>
+                                Don't have an account? <span>Click to Register</span>
                             </>
                         )}
                     </button>

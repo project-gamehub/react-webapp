@@ -48,13 +48,25 @@
     all: unset;
     cursor: pointer;
     margin-top: 20px;
+
+    &:hover {
+        color: rgb(196, 196, 196);
+
+        & span {
+            color: rgb(196, 196, 196);
+        }
+    }
+
+    & span {
+        text-decoration: underline;
+    }
 }
 
 .line-container {
     display: flex;
     align-items: center;
     width: 60%;
-    /* margin: 20px 0; */
+    margin: 0 0 10px 0;
 }
 
 .line {

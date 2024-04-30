@@ -63,6 +63,22 @@ const RegistrationForm = () => {
                     onChange={handleChange}
                 />
             </div>
+            {/* TODO - Add show/Hide password feature */}
+            <div className="input-container">
+                <div className="label-icon-container">
+                    <span className="material-symbols-rounded label-icon">
+                        lock
+                    </span>
+                </div>
+                <input
+                    placeholder="Confirm password"
+                    className="input-field"
+                    type="password"
+                    name="confirmPassword"
+                    value={inputs.confirmPassword || ""}
+                    onChange={handleChange}
+                />
+            </div>
             <button className="submit-btn" type="submit">
                 Register
             </button>
