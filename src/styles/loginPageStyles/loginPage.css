@@ -66,7 +66,7 @@
     display: flex;
     align-items: center;
     width: 60%;
-    margin: 0 0 10px 0;
+    margin-block: 3px 5px;
 }
 
 .line {
@@ -76,5 +76,22 @@
 
 .or-text {
     margin: 0 10px;
-    /* font-weight: bold; */
+}
+
+.forgot-pass-btn-container {
+    margin-block: 10px 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.forgot-pass-btn {
+    font-size: 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+
+    &:hover {
+        color: rgb(196, 196, 196);
+    }
 }

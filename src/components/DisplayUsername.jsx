@@ -8,7 +8,7 @@ const DisplayUsername = ({ userId }) => {
     useEffect(() => {
         async function fetchUsername() {
             const usernameData = await axios.get(
-                USER_SERVICE_URL + "get-username-by-id/" + userId
+                USER_SERVICE_URL + "/get-username-by-id/" + userId
             );
             setUsername(usernameData.data.data.username);
         }

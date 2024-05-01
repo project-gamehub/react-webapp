@@ -4,11 +4,14 @@ import { LOGIN_PAGE_BANNER_URL } from "../utils/constant";
 import "../styles/loginPageStyles/loginPage.css";
 import RegistrationForm from "../components/loginPageComponents/RegistrationForm";
 import LoginForm from "../components/loginPageComponents/LoginForm";
+import ResetPass from "../components/loginPageComponents/ResetPass";
 
 // TODO find for {" "} and replace with nothing
 
 const Login = () => {
     const [wantsToRegister, setWantsToRegister] = useState(false);
+    const [showResetPassword, setShowResetPassword] = useState(false);
+
     return (
         <div className="login-page-container">
             <div className="login-components-container">
@@ -23,14 +26,36 @@ const Login = () => {
                         (wantsToRegister ? "abs-pos-left" : "abs-pos-right")
                     }
                 >
-                    <h1>{wantsToRegister ? "Register" : "Login"}</h1>
+                    {wantsToRegister ? (
+                        <RegistrationForm />
+                    ) : (
+                        <>
+                            {showResetPassword ? <ResetPass /> : <LoginForm />}
 
-                    {wantsToRegister ? <RegistrationForm /> : <LoginForm />}
+                            <div className="forgot-pass-btn-container">
+                                <button
+                                    className="forgot-pass-btn"
+                                    type="button"
+                                    onClick={() => {
+                                        setShowResetPassword(
+                                            !showResetPassword
+                                        );
+                                    }}
+                                >
+                                    {showResetPassword ? (
+                                        <>Back to login</>
+                                    ) : (
+                                        <>Forgot Password?</>
+                                    )}
+                                </button>
+                            </div>
+                        </>
+                    )}
 
-                    <div class="line-container">
-                        <div class="line"></div>
-                        <div class="or-text">OR</div>
-                        <div class="line"></div>
+                    <div className="line-container">
+                        <div className="line"></div>
+                        <div className="or-text">OR</div>
+                        <div className="line"></div>
                     </div>
 
                     <GoogleLoginComponent />
@@ -41,11 +66,13 @@ const Login = () => {
                     >
                         {wantsToRegister ? (
                             <>
-                                Already have an account? <span>Click to Login</span>
+                                Already have an account?&nbsp;
+                                <span>Click to Login</span>
                             </>
                         ) : (
                             <>
-                                Don't have an account? <span>Click to Register</span>
+                                Don't have an account?&nbsp;
+                                <span>Click to Register</span>
                             </>
                         )}
                     </button>

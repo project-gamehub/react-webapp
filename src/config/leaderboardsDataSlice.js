@@ -17,7 +17,7 @@ export const fetchLeaderboardData = createAsyncThunk(
             return false;
         }
         const response = await axios.get(
-            GAMES_SERVICE_URL + "leaderboard/" + gameId
+            GAMES_SERVICE_URL + "/leaderboard/" + gameId
         );
         return { gameId, data: response?.data?.data };
     }

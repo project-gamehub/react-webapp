@@ -15,7 +15,7 @@ export const fetchGamesData = createAsyncThunk(
         if (gamesData) {
             return gamesData;
         } else {
-            const response = await axios.get(GAMES_SERVICE_URL + "games");
+            const response = await axios.get(GAMES_SERVICE_URL + "/games");
             return response?.data?.data;
         }
     }

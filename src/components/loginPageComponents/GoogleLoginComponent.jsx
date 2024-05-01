@@ -3,7 +3,7 @@ import "../../styles/loginPageStyles/googleLoginComponent.css";
 
 const GoogleLoginComponent = () => {
     const googleAuth = () => {
-        window.open(`${USER_SERVICE_URL}google-login`, "_self");
+        window.open(`${USER_SERVICE_URL}/google-web-login/`, "_self");
     };
 
     return (
