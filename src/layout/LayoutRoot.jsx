@@ -1,11 +1,24 @@
 import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Navbar from "../components/navbarComponents/Navbar";
 import { Outlet } from "react-router-dom";
 
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserData } from "../config/userDataSlice";
+import { useEffect } from "react";
+
 const LayoutRoot = () => {
+    const userData = useSelector((state) => state.userDataSlice);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (!userData.userProfileDetails) {
+            dispatch(fetchUserData());
+        }
+    }, [userData]);
+
     return (
         <>
-            <Header />
+            <Navbar />
             <Outlet />
             <Footer />
         </>

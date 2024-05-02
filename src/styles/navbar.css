@@ -6,7 +6,7 @@
     }
 }
 
-.header-container {
+.navbar-container {
     background: #1e1f20;
     display: flex;
     justify-content: space-around;
@@ -47,7 +47,15 @@
     }
 }
 
-.header-container .material-symbols-rounded {
+.nav-label {
+    height: 27.2px;
+    min-width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.navbar-container .material-symbols-rounded {
     font-size: 34px !important;
     font-variation-settings:
         "wght" 400,
