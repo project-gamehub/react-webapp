@@ -32,6 +32,12 @@ export const fetchUserData = createAsyncThunk(
 const userDataSlice = createSlice({
     name: "userData",
     initialState,
+    reducers: {
+        updateUserAccessToken: (state, action) => {
+            state.accessToken = action.payload;
+            state.isLogin = true;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchUserData.pending, (state) => {
@@ -51,5 +57,7 @@ const userDataSlice = createSlice({
             });
     }
 });
+
+export const { updateUserAccessToken } = userDataSlice.actions
 
 export default userDataSlice.reducer;

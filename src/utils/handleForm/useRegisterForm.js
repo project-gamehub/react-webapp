@@ -8,9 +8,14 @@ import axios from "axios";
 import { USER_SERVICE_URL } from "../constant.js";
 import handleAccessToken from "../handleAccessToken.js";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateUserAccessToken } from "../../config/userDataSlice.js";
 
 const useRegisterForm = () => {
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+
     const handleRegisterFormSubmit = async (event, inputs) => {
         try {
             event.preventDefault();
@@ -49,14 +54,15 @@ const useRegisterForm = () => {
             handleAccessToken(res.data.data["access-token"]);
 
             // TODO - Set isLogin true
+            dispatch(updateUserAccessToken(res.data.data["access-token"]));
 
             toast.success("Registered successfully");
             navigate("/");
         } catch (error) {
             toast.error(
                 error?.response?.data?.message ||
-                    error?.message ||
-                    "Something went wrong"
+                error?.message ||
+                "Something went wrong"
             );
         }
     };
