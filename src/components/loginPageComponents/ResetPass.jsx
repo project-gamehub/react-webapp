@@ -55,15 +55,15 @@ const ResetPass = () => {
             );
             return;
         }
-        if(!isValidEmail(inputs.email)){
+        if (!isValidEmail(inputs.email)) {
             toast.error("Email is not valid");
             return;
         }
-        if(inputs.password !== inputs.confirmPassword){
+        if (inputs.password !== inputs.confirmPassword) {
             toast.error("Passwords don't match");
             return;
         }
-        const passwordErr = isValidPassword(inputs.password)
+        const passwordErr = isValidPassword(inputs.password);
         if (passwordErr) {
             toast.error(passwordErr);
             return;

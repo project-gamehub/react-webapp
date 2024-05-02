@@ -1,19 +1,9 @@
 import { useState } from "react";
 import "../../styles/loginPageStyles/loginAndRegistrationForm.css";
-import { toast } from "react-toastify";
-import {
-    isValidPassword,
-    isValidEmail
-} from "../../utils/validators/validatorIndex.js";
-import axios from "axios";
-import { USER_SERVICE_URL } from "../../utils/constant.js";
-import handleAccessToken from "../../utils/handleAccessToken.js";
-import { useNavigate } from "react-router-dom";
+import useLoginForm from "../../utils/handleForm/useLoginForm";
 
 const LoginForm = () => {
     const [inputs, setInputs] = useState({});
-
-    const navigate = useNavigate();
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -21,46 +11,15 @@ const LoginForm = () => {
         setInputs((values) => ({ ...values, [name]: value }));
     };
 
-    const handleLoginSubmit = async (event) => {
-        event.preventDefault();
-        if (!isValidEmail(inputs.email)) {
-            toast.error("Email is not valid");
-            return;
-        }
-        const passwordErr = isValidPassword(inputs.password)
-        if (passwordErr) {
-            toast.error(passwordErr);
-            return;
-        }
-
-        try {
-            const res = await axios.post(USER_SERVICE_URL + "/login", {
-                email: inputs.email,
-                password: inputs.password
-            });
-
-            if (!res?.data?.data["access-token"]) {
-                throw new Error("Something went wrong at server side");
-            }
-            handleAccessToken(res.data.data["access-token"]);
-            
-            // TODO - Set isLogin true
-
-            toast.success("Logged in successfully");
-            navigate("/");
-        } catch (error) {
-            toast.error(
-                error?.response?.data?.message ||
-                    error?.message ||
-                    "Something went wrong"
-            );
-        }
-    };
+    const handleLoginSubmit = useLoginForm();
 
     return (
         <>
-            <h1> Login</h1>
-            <form onSubmit={handleLoginSubmit} className="form-container">
+            <h1>Login</h1>
+            <form
+                className="form-container"
+                onSubmit={(e) => handleLoginSubmit(e, inputs)}
+            >
                 <div className="input-container">
                     <div className="label-icon-container">
                         <span className="material-symbols-rounded label-icon">
