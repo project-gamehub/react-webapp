@@ -54,6 +54,9 @@ const RegistrationForm = () => {
                 throw new Error("Something went wrong at server side");
             }
             handleAccessToken(res.data.data["access-token"]);
+
+            // TODO - Set isLogin true
+
             toast.success("Registered successfully");
             navigate("/");
         } catch (error) {

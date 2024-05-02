@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
 import "../../styles/loginPageStyles/loginAndRegistrationForm.css";
+import {
+    isValidPassword,
+    isValidEmail
+} from "../../utils/validators/validatorIndex.js";
+import { toast } from "react-toastify";
 
 const ResetPass = () => {
     const [inputs, setInputs] = useState({});
@@ -50,10 +55,24 @@ const ResetPass = () => {
             );
             return;
         }
+        if(!isValidEmail(inputs.email)){
+            toast.error("Email is not valid");
+            return;
+        }
+        if(inputs.password !== inputs.confirmPassword){
+            toast.error("Passwords don't match");
+            return;
+        }
+        const passwordErr = isValidPassword(inputs.password)
+        if (passwordErr) {
+            toast.error(passwordErr);
+            return;
+        }
         setDisabledOtpResendTimeRemaining(60);
         setDisabledOtpResend(true);
         setOtpSent(true);
-        alert("Reset Submit");
+
+        // TODO Handle Submit OTP function
     };
 
     return (

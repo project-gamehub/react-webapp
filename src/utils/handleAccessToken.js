@@ -1,6 +1,5 @@
 const handleAccessToken = (token) => {
-    // TODO set this token in localstorage
-    console.log("handled token: ", token);
+    localStorage.setItem("access-token", token);
 };
 
 export default handleAccessToken;
