@@ -1,8 +1,19 @@
 import { useState } from "react";
 import "../../styles/loginPageStyles/loginAndRegistrationForm.css";
+import { toast } from "react-toastify";
+import {
+    isValidPassword,
+    isValidEmail
+} from "../../utils/validators/validatorIndex.js";
+import axios from "axios";
+import { USER_SERVICE_URL } from "../../utils/constant.js";
+import handleAccessToken from "../../utils/handleAccessToken.js";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
     const [inputs, setInputs] = useState({});
+
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -10,10 +21,37 @@ const LoginForm = () => {
         setInputs((values) => ({ ...values, [name]: value }));
     };
 
-    const handleLoginSubmit = (event) => {
-        // TODO handle login submit
+    const handleLoginSubmit = async (event) => {
         event.preventDefault();
-        alert("Login Submit");
+        if (!isValidEmail(inputs.email)) {
+            toast.error("Email is not valid");
+            return;
+        }
+        const passwordErr = isValidPassword(inputs.password)
+        if (passwordErr) {
+            toast.error(passwordErr);
+            return;
+        }
+
+        try {
+            const res = await axios.post(USER_SERVICE_URL + "/login", {
+                email: inputs.email,
+                password: inputs.password
+            });
+
+            if (!res?.data?.data["access-token"]) {
+                throw new Error("Something went wrong at server side");
+            }
+            handleAccessToken(res.data.data["access-token"]);
+            toast.success("Logged in successfully");
+            navigate("/");
+        } catch (error) {
+            toast.error(
+                error?.response?.data?.message ||
+                    error?.message ||
+                    "Something went wrong"
+            );
+        }
     };
 
     return (
@@ -29,7 +67,7 @@ const LoginForm = () => {
                     <input
                         placeholder="Email"
                         className="input-field"
-                        type="email"
+                        type="text"
                         name="email"
                         value={inputs.email || ""}
                         onChange={handleChange}

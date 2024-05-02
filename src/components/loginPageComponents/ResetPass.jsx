@@ -13,7 +13,7 @@ const ResetPass = () => {
         if (disabledOtpResend) {
             timer = setInterval(() => {
                 setDisabledOtpResendTimeRemaining((prevSeconds) => {
-                    if (prevSeconds == 1) {
+                    if (prevSeconds === 1) {
                         clearInterval(timer);
                         setDisabledOtpResend(false);
                         return 0;
@@ -21,7 +21,6 @@ const ResetPass = () => {
                         return prevSeconds - 1;
                     }
                 });
-                console.log(disabledOtpResendTimeRemaining);
             }, 1000);
         }
         return () => {

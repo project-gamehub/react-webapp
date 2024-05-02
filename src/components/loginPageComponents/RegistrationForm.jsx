@@ -1,8 +1,20 @@
 import React, { useState } from "react";
 import "../../styles/loginPageStyles/loginAndRegistrationForm.css";
+import {
+    isValidPassword,
+    isValidEmail,
+    isInvalidUsername
+} from "../../utils/validators/validatorIndex.js";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { USER_SERVICE_URL } from "../../utils/constant.js";
+import handleAccessToken from "../../utils/handleAccessToken.js";
+import { useNavigate } from "react-router-dom";
 
 const RegistrationForm = () => {
     const [inputs, setInputs] = useState({});
+
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -10,16 +22,53 @@ const RegistrationForm = () => {
         setInputs((values) => ({ ...values, [name]: value }));
     };
 
-    const handleSubmit = (event) => {
-        // TODO handle submit
+    // TODO - Implement debouncing for username
+
+    const handleRegisterFormSubmit = async (event) => {
         event.preventDefault();
-        alert(inputs);
+        if(!isValidEmail(inputs.email)){
+            toast.error("Email is not valid");
+            return;
+        }
+        const usernameError = isInvalidUsername(inputs.username);
+        if(usernameError){
+            toast.error(usernameError);
+            return;
+        }
+        if(inputs.password !== inputs.confirmPassword){
+            toast.error("Passwords don't match");
+            return;
+        }
+        const passwordErr = isValidPassword(inputs.password)
+        if (passwordErr) {
+            toast.error(passwordErr);
+            return;
+        }
+        try {
+            const res = await axios.post(USER_SERVICE_URL + "/signup", {
+                email: inputs.email,
+                password: inputs.password,
+                username: inputs.username
+            })
+            if(!res?.data?.data["access-token"]){
+                throw new Error("Something went wrong at server side");
+            }
+            handleAccessToken(res.data.data["access-token"]);
+            toast.success("Registered successfully");
+            navigate("/");
+        } catch (error) {
+            toast.error(
+                error?.response?.data?.message ||
+                    error?.message ||
+                    "Something went wrong"
+            )
+        }
     };
 
     return (
         <>
             <h1>Register</h1>
-            <form className="form-container" onSubmit={handleSubmit}>
+            <form className="form-container" onSubmit={handleRegisterFormSubmit}>
                 <div className="input-container">
                     <div className="label-icon-container">
                         <span className="material-symbols-rounded label-icon">
