@@ -63,3 +63,10 @@
         "opsz" 10,
         "FILL" 0;
 }
+
+.navbar-profile-pic {
+    height: 34px;
+    width: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+}

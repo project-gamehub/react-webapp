@@ -12,6 +12,6 @@ const getCookie = (cname) => {
         }
     }
     return "";
-}
+};
 
 export default getCookie;

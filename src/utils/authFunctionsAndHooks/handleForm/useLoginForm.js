@@ -1,5 +1,8 @@
 import { toast } from "react-toastify";
-import { isValidPassword, isValidEmail } from "../../authFunctionsAndHooks/validators/validatorIndex.js";
+import {
+    isValidPassword,
+    isValidEmail
+} from "../../authFunctionsAndHooks/validators/validatorIndex.js";
 import axios from "axios";
 import { USER_SERVICE_URL } from "../../constant.js";
 import handleAccessToken from "../../handleAccessToken.js";
@@ -44,8 +47,8 @@ const useLoginForm = () => {
         } catch (error) {
             toast.error(
                 error?.response?.data?.message ||
-                error?.message ||
-                "Something went wrong"
+                    error?.message ||
+                    "Something went wrong"
             );
         }
     };

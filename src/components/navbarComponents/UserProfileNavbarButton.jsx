@@ -16,6 +16,7 @@ const UserProfileNavbarButton = () => {
                     ) : (
                         // TODO - Handle this after implementing media
                         <img
+                            className="navbar-profile-pic"
                             src={userProfileDetails?.avatar}
                             alt="User Profile Pic"
                         />

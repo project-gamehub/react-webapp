@@ -59,8 +59,8 @@ const useRegisterForm = () => {
         } catch (error) {
             toast.error(
                 error?.response?.data?.message ||
-                error?.message ||
-                "Something went wrong"
+                    error?.message ||
+                    "Something went wrong"
             );
         }
     };
