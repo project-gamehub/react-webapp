@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../../styles/loginPageStyles/loginAndRegistrationForm.css";
-import useRegisterForm from "../../utils/handleForm/useRegisterForm";
+import useRegisterForm from "../../utils/authFunctionsAndHooks/handleForm/useRegisterForm";
 
 const RegistrationForm = () => {
     const [inputs, setInputs] = useState({});

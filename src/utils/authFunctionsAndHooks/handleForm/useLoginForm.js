@@ -1,49 +1,34 @@
-import {
-    isValidPassword,
-    isValidEmail,
-    isInvalidUsername
-} from "../validators/validatorIndex.js";
 import { toast } from "react-toastify";
+import { isValidPassword, isValidEmail } from "../../authFunctionsAndHooks/validators/validatorIndex.js";
 import axios from "axios";
-import { USER_SERVICE_URL } from "../constant.js";
-import handleAccessToken from "../handleAccessToken.js";
+import { USER_SERVICE_URL } from "../../constant.js";
+import handleAccessToken from "../../handleAccessToken.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { updateUserAccessToken } from "../../config/userDataSlice.js";
+import { updateUserAccessToken } from "../../../config/userDataSlice.js";
 
-const useRegisterForm = () => {
+const useLoginForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const handleRegisterFormSubmit = async (event, inputs) => {
+    const handleLoginSubmit = async (event, inputs) => {
         try {
             event.preventDefault();
             if (!isValidEmail(inputs.email)) {
                 return toast.error("Email is not valid");
             }
-
-            const usernameError = isInvalidUsername(inputs.username);
-            if (usernameError) {
-                return toast.error(usernameError);
-            }
-
-            if (inputs.password !== inputs.confirmPassword) {
-                return toast.error("Passwords don't match");
-            }
-
             const passwordErr = isValidPassword(inputs.password);
             if (passwordErr) {
                 return toast.error(passwordErr);
             }
 
             const res = await toast.promise(
-                axios.post(USER_SERVICE_URL + "/signup", {
+                axios.post(USER_SERVICE_URL + "/login", {
                     email: inputs.email,
-                    password: inputs.password,
-                    username: inputs.username
+                    password: inputs.password
                 }),
                 {
-                    pending: "Registering..."
+                    pending: "Logging In..."
                 }
             );
 
@@ -54,18 +39,17 @@ const useRegisterForm = () => {
             handleAccessToken(res.data.data["access-token"]);
             dispatch(updateUserAccessToken(res.data.data["access-token"]));
 
-            toast.success("Registered successfully");
+            toast.success("Logged in successfully");
             navigate("/");
         } catch (error) {
             toast.error(
                 error?.response?.data?.message ||
-                    error?.message ||
-                    "Something went wrong"
+                error?.message ||
+                "Something went wrong"
             );
         }
     };
-
-    return handleRegisterFormSubmit;
+    return handleLoginSubmit;
 };
 
-export default useRegisterForm;
+export default useLoginForm;

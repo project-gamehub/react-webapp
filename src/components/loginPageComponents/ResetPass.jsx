@@ -3,7 +3,7 @@ import "../../styles/loginPageStyles/loginAndRegistrationForm.css";
 import {
     isValidPassword,
     isValidEmail
-} from "../../utils/validators/validatorIndex.js";
+} from "../../utils/authFunctionsAndHooks/validators/validatorIndex.js";
 import { toast } from "react-toastify";
 
 const ResetPass = () => {
