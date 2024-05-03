@@ -11,6 +11,7 @@ const LayoutRoot = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        console.log("fetching");
         dispatch(fetchUserData());
     }, [accessToken]);
 

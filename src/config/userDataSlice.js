@@ -8,16 +8,19 @@ const initialState = {
     isLogin: token ? true : false,
     accessToken: token,
     userProfileDetails: null,
-    userDataLoading: true,
+    userDataLoading: false,
     userDataError: null
 };
 
 export const fetchUserData = createAsyncThunk(
     "fetchUserData",
     async (_, { getState }) => {
-        const userData = getState().userDataSlice;
+        const accessToken = getState().userDataSlice.accessToken;
+        if (!accessToken) {
+            throw new Error("User not logged in");
+        }
         const headers = {
-            "access-token": userData.accessToken
+            "access-token": accessToken
         };
         const response = await axios.get(USER_SERVICE_URL + "/get-my-details", {
             headers
@@ -34,7 +37,11 @@ const userDataSlice = createSlice({
         updateUserAccessToken: (state, action) => {
             state.accessToken = action.payload;
             state.isLogin = true;
-            console.log("Updating access token");
+        },
+        logout: (state) => {
+            state.isLogin = false;
+            state.accessToken = null;
+            state.userProfileDetails = null;
         }
     },
     extraReducers: (builder) => {
@@ -54,6 +61,6 @@ const userDataSlice = createSlice({
     }
 });
 
-export const { updateUserAccessToken } = userDataSlice.actions;
+export const { updateUserAccessToken, logout } = userDataSlice.actions;
 
 export default userDataSlice.reducer;
