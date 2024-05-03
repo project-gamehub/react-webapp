@@ -21,6 +21,7 @@ const RegistrationForm = () => {
             <form
                 className="form-container"
                 onSubmit={(e) => handleRegisterFormSubmit(e, inputs)}
+                noValidate
             >
                 <div className="input-container">
                     <div className="label-icon-container">

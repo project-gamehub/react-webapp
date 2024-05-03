@@ -19,6 +19,7 @@ const LoginForm = () => {
             <form
                 className="form-container"
                 onSubmit={(e) => handleLoginSubmit(e, inputs)}
+                noValidate
             >
                 <div className="input-container">
                     <div className="label-icon-container">
@@ -29,7 +30,7 @@ const LoginForm = () => {
                     <input
                         placeholder="Email"
                         className="input-field"
-                        type="text"
+                        type="email"
                         name="email"
                         value={inputs.email || ""}
                         onChange={handleChange}

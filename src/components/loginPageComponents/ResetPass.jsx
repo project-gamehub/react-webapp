@@ -43,6 +43,14 @@ const ResetPass = () => {
         // TODO Reset Pass submit
         // setOtpSent(true);
         event.preventDefault();
+        if (!inputs.otp) {
+            toast.error("Please enter OTP");
+            return;
+        }
+        if (inputs.otp < 1000 || inputs.otp > 9999) {
+            toast.error("Wrong OTP");
+            return;
+        }
         alert("Reset Submit");
     };
 
@@ -50,8 +58,8 @@ const ResetPass = () => {
         event.preventDefault();
         // TODO Reset Pass submit
         if (disabledOtpResend) {
-            alert(
-                `Can't resend now, Please wait ${disabledOtpResendTimeRemaining} seconds`
+            toast.error(
+                `Can't resend now, Please wait ${disabledOtpResendTimeRemaining} more seconds`
             );
             return;
         }
@@ -78,7 +86,11 @@ const ResetPass = () => {
     return (
         <>
             <h1> Reset Password</h1>
-            <form onSubmit={handleResetPassSubmit} className="form-container">
+            <form
+                onSubmit={handleResetPassSubmit}
+                className="form-container"
+                noValidate
+            >
                 {!otpSent ? (
                     <>
                         <div className="input-container">

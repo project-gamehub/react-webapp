@@ -13,7 +13,6 @@ import { updateUserAccessToken } from "../../config/userDataSlice.js";
 
 const useRegisterForm = () => {
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
 
     const handleRegisterFormSubmit = async (event, inputs) => {
@@ -51,9 +50,8 @@ const useRegisterForm = () => {
             if (!res?.data?.data["access-token"]) {
                 throw new Error("Something went wrong at server side");
             }
-            handleAccessToken(res.data.data["access-token"]);
 
-            // TODO - Set isLogin true
+            handleAccessToken(res.data.data["access-token"]);
             dispatch(updateUserAccessToken(res.data.data["access-token"]));
 
             toast.success("Registered successfully");
@@ -61,8 +59,8 @@ const useRegisterForm = () => {
         } catch (error) {
             toast.error(
                 error?.response?.data?.message ||
-                error?.message ||
-                "Something went wrong"
+                    error?.message ||
+                    "Something went wrong"
             );
         }
     };

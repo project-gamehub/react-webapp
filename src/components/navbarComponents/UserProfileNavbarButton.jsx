@@ -6,6 +6,7 @@ const UserProfileNavbarButton = () => {
     const { userProfileDetails, isLogin, userDataLoading } = useSelector(
         (state) => state.userDataSlice
     );
+
     return (
         <div className="profile-container">
             {isLogin ? (
@@ -23,7 +24,7 @@ const UserProfileNavbarButton = () => {
                         {userDataLoading ? (
                             <Shimmer />
                         ) : (
-                            userProfileDetails.username || "username"
+                            userProfileDetails?.username || "username"
                         )}
                     </div>
                 </NavLink>

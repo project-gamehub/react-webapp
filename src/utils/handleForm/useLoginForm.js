@@ -5,11 +5,10 @@ import { USER_SERVICE_URL } from "../constant.js";
 import handleAccessToken from "../handleAccessToken.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { updateUserAccessToken } from "../../config/userDataSlice.js"
+import { updateUserAccessToken } from "../../config/userDataSlice.js";
 
 const useLoginForm = () => {
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
 
     const handleLoginSubmit = async (event, inputs) => {
@@ -36,9 +35,8 @@ const useLoginForm = () => {
             if (!res?.data?.data["access-token"]) {
                 throw new Error("Something went wrong at server side");
             }
-            handleAccessToken(res.data.data["access-token"]);
 
-            // TODO - Set isLogin true
+            handleAccessToken(res.data.data["access-token"]);
             dispatch(updateUserAccessToken(res.data.data["access-token"]));
 
             toast.success("Logged in successfully");
@@ -46,8 +44,8 @@ const useLoginForm = () => {
         } catch (error) {
             toast.error(
                 error?.response?.data?.message ||
-                error?.message ||
-                "Something went wrong"
+                    error?.message ||
+                    "Something went wrong"
             );
         }
     };

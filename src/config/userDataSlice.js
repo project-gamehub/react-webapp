@@ -16,15 +16,13 @@ export const fetchUserData = createAsyncThunk(
     "fetchUserData",
     async (_, { getState }) => {
         const userData = getState().userDataSlice;
-        if (!userData.accessToken || userData.userProfileDetails) {
-            return false;
-        }
-
         const headers = {
             "access-token": userData.accessToken
-        }
-        const response = await axios.get(USER_SERVICE_URL + "/get-my-details", { headers });
-        const data = response?.data?.data
+        };
+        const response = await axios.get(USER_SERVICE_URL + "/get-my-details", {
+            headers
+        });
+        const data = response?.data?.data;
         return data;
     }
 );
@@ -36,6 +34,7 @@ const userDataSlice = createSlice({
         updateUserAccessToken: (state, action) => {
             state.accessToken = action.payload;
             state.isLogin = true;
+            console.log("Updating access token");
         }
     },
     extraReducers: (builder) => {
@@ -45,11 +44,8 @@ const userDataSlice = createSlice({
                 state.userDataError = null;
             })
             .addCase(fetchUserData.fulfilled, (state, action) => {
-                // TODO - Check whether there is need to check for this or not
-                if (action.payload !== false) {
-                    state.userDataLoading = false;
-                    state.userProfileDetails = action.payload;
-                }
+                state.userDataLoading = false;
+                state.userProfileDetails = action.payload;
             })
             .addCase(fetchUserData.rejected, (state, action) => {
                 state.userDataLoading = false;
@@ -58,6 +54,6 @@ const userDataSlice = createSlice({
     }
 });
 
-export const { updateUserAccessToken } = userDataSlice.actions
+export const { updateUserAccessToken } = userDataSlice.actions;
 
 export default userDataSlice.reducer;

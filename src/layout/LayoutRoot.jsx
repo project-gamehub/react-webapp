@@ -7,14 +7,12 @@ import { fetchUserData } from "../config/userDataSlice";
 import { useEffect } from "react";
 
 const LayoutRoot = () => {
-    const userData = useSelector((state) => state.userDataSlice);
+    const { accessToken } = useSelector((state) => state.userDataSlice);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (!userData.userProfileDetails) {
-            dispatch(fetchUserData());
-        }
-    }, [userData]);
+        dispatch(fetchUserData());
+    }, [accessToken]);
 
     return (
         <>
