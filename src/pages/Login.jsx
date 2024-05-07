@@ -4,7 +4,7 @@ import { LOGIN_PAGE_BANNER_URL } from "../utils/constant";
 import "../styles/loginPageStyles/loginPage.css";
 import RegistrationForm from "../components/loginPageComponents/RegistrationForm";
 import LoginForm from "../components/loginPageComponents/LoginForm";
-import ResetPass from "../components/loginPageComponents/ResetPass";
+import ResetPass from "../components/loginPageComponents/resetPass/ResetPass";
 
 // TODO find for {" "} and replace with nothing
 

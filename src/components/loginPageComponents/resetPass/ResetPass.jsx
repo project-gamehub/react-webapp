@@ -1,97 +1,27 @@
-import { useEffect, useState } from "react";
-import "../../styles/loginPageStyles/loginAndRegistrationForm.css";
-import {
-    isValidPassword,
-    isValidEmail
-} from "../../utils/authFunctionsAndHooks/validators/validatorIndex.js";
-import { toast } from "react-toastify";
+import "../../../styles/loginPageStyles/loginAndRegistrationForm.css";
+import useResetPass from "./useResetPass.js";
 
 const ResetPass = () => {
-    const [inputs, setInputs] = useState({});
-    const [otpSent, setOtpSent] = useState(false);
-    const [disabledOtpResend, setDisabledOtpResend] = useState(false);
-    const [disabledOtpResendTimeRemaining, setDisabledOtpResendTimeRemaining] =
-        useState(0);
-
-    useEffect(() => {
-        let timer;
-        if (disabledOtpResend) {
-            timer = setInterval(() => {
-                setDisabledOtpResendTimeRemaining((prevSeconds) => {
-                    if (prevSeconds === 1) {
-                        clearInterval(timer);
-                        setDisabledOtpResend(false);
-                        return 0;
-                    } else {
-                        return prevSeconds - 1;
-                    }
-                });
-            }, 1000);
-        }
-        return () => {
-            clearInterval(timer);
-        };
-    }, [disabledOtpResend]);
-
-    const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setInputs((values) => ({ ...values, [name]: value }));
-    };
-
-    const handleResetPassSubmit = (event) => {
-        // TODO Reset Pass submit
-        // setOtpSent(true);
-        event.preventDefault();
-        if (!inputs.otp) {
-            toast.error("Please enter OTP");
-            return;
-        }
-        if (inputs.otp < 1000 || inputs.otp > 9999) {
-            toast.error("Wrong OTP");
-            return;
-        }
-        alert("Reset Submit");
-    };
-
-    const sendOTP = (event) => {
-        event.preventDefault();
-        // TODO Reset Pass submit
-        if (disabledOtpResend) {
-            toast.error(
-                `Can't resend now, Please wait ${disabledOtpResendTimeRemaining} more seconds`
-            );
-            return;
-        }
-        if (!isValidEmail(inputs.email)) {
-            toast.error("Email is not valid");
-            return;
-        }
-        if (inputs.password !== inputs.confirmPassword) {
-            toast.error("Passwords don't match");
-            return;
-        }
-        const passwordErr = isValidPassword(inputs.password);
-        if (passwordErr) {
-            toast.error(passwordErr);
-            return;
-        }
-        setDisabledOtpResendTimeRemaining(60);
-        setDisabledOtpResend(true);
-        setOtpSent(true);
-
-        // TODO Handle Submit OTP function
-    };
+    const {
+        handleChange,
+        inputs,
+        submiteResetPassFormDetails,
+        requestOTP,
+        isOTPRequested,
+        setisOTPRequested,
+        disabledOtpResendTimeRemaining,
+        disabledOtpResend
+    } = useResetPass();
 
     return (
         <>
             <h1> Reset Password</h1>
             <form
-                onSubmit={handleResetPassSubmit}
+                onSubmit={submiteResetPassFormDetails}
                 className="form-container"
                 noValidate
             >
-                {!otpSent ? (
+                {!isOTPRequested ? (
                     <>
                         <div className="input-container">
                             <div className="label-icon-container">
@@ -141,7 +71,7 @@ const ResetPass = () => {
                         </div>
                         <button
                             className="submit-btn"
-                            onClick={sendOTP}
+                            onClick={requestOTP}
                             type="button"
                         >
                             Request OTP
@@ -157,7 +87,7 @@ const ResetPass = () => {
                                 className="change-email-button"
                                 type="button"
                                 onClick={() => {
-                                    setOtpSent(false);
+                                    setisOTPRequested(false);
                                 }}
                             >
                                 <span className="material-symbols-rounded">
@@ -185,7 +115,7 @@ const ResetPass = () => {
                                 disabled={disabledOtpResend}
                                 className="resend-otp-btn"
                                 type="button"
-                                onClick={sendOTP}
+                                onClick={requestOTP}
                             >
                                 Resend OTP&nbsp;
                                 {disabledOtpResend ? (
