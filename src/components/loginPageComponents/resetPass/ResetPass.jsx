@@ -5,7 +5,7 @@ const ResetPass = () => {
     const {
         handleChange,
         inputs,
-        submiteResetPassFormDetails,
+        submitResetPassFormDetails,
         requestOTP,
         isOTPRequested,
         setisOTPRequested,
@@ -17,7 +17,7 @@ const ResetPass = () => {
         <>
             <h1> Reset Password</h1>
             <form
-                onSubmit={submiteResetPassFormDetails}
+                onSubmit={submitResetPassFormDetails}
                 className="form-container"
                 noValidate
             >
@@ -81,7 +81,7 @@ const ResetPass = () => {
                     <>
                         <div className="change-email-container">
                             <span className="change-email-text">
-                                OTP sent successfully to <u> {inputs.email}</u>
+                                OTP sent successfully to <u>{inputs.email}</u>
                             </span>
                             <button
                                 className="change-email-button"

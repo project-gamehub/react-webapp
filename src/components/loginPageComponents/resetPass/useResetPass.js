@@ -4,6 +4,9 @@ import {
     isValidPassword,
     isValidEmail
 } from "../../../utils/authFunctionsAndHooks/validators/validatorIndex.js";
+import axios from "axios";
+import { USER_SERVICE_URL } from "../../../utils/constant.js";
+import { useNavigate } from "react-router-dom";
 
 const useResetPass = () => {
     const [inputs, setInputs] = useState({});
@@ -11,6 +14,7 @@ const useResetPass = () => {
     const [disabledOtpResend, setDisabledOtpResend] = useState(false);
     const [disabledOtpResendTimeRemaining, setDisabledOtpResendTimeRemaining] =
         useState(0);
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -18,19 +22,29 @@ const useResetPass = () => {
         setInputs((values) => ({ ...values, [name]: value }));
     };
 
-    const submiteResetPassFormDetails = (event) => {
+    const submitResetPassFormDetails = async (event) => {
         // TODO Reset Pass submit
         // setOtpSent(true);
         event.preventDefault();
         if (!inputs.otp) {
-            toast.error("Please enter OTP");
-            return;
+            return toast.error("Please enter OTP");
         }
         if (inputs.otp < 1000 || inputs.otp > 9999) {
-            toast.error("Wrong OTP");
-            return;
+            return toast.error("Wrong OTP");
         }
-        alert("Reset Submit");
+        try {
+            const res = await axios.patch(USER_SERVICE_URL + "/reset-password/submit-otp", {
+                email: inputs.email,
+                password: inputs.password,
+                otp: inputs.otp
+            });
+            toast.success(res?.data?.message || "Password updated successfully")
+        } catch (error) {
+            console.log(error);
+            return toast.error(error?.response?.data?.message || "Something went wrong");
+        }
+        // TODO 
+        // navigate("/login");
     };
 
     useEffect(() => {
@@ -53,39 +67,45 @@ const useResetPass = () => {
         };
     }, [disabledOtpResend]);
 
-    const requestOTP = (event) => {
+    const requestOTP = async (event) => {
         event.preventDefault();
         // TODO Reset Pass submit
         if (disabledOtpResend) {
-            toast.error(
+            return toast.error(
                 `Can't resend now, Please wait ${disabledOtpResendTimeRemaining} more seconds`
             );
-            return;
         }
         if (!isValidEmail(inputs.email)) {
-            toast.error("Email is not valid");
-            return;
+            return toast.error("Email is not valid");
         }
         if (inputs.password !== inputs.confirmPassword) {
-            toast.error("Passwords don't match");
-            return;
+            return toast.error("Passwords don't match");
         }
         const passwordErr = isValidPassword(inputs.password);
         if (passwordErr) {
-            toast.error(passwordErr);
-            return;
+            return toast.error(passwordErr);
         }
+        // TODO Handle Submit OTP function
+        try {
+            const res = await axios.patch(USER_SERVICE_URL + "/reset-password/request-otp", {
+                email: inputs.email,
+                password: inputs.password
+            });
+            toast.success(res?.data?.message || "OTP requested successfully")
+        } catch (error) {
+            console.log(error);
+            return toast.error(error?.response?.data?.message || "Requesting OTP failed!");
+        }
+
         setDisabledOtpResendTimeRemaining(60);
         setDisabledOtpResend(true);
         setisOTPRequested(true);
-
-        // TODO Handle Submit OTP function
     };
 
     return {
         handleChange,
         inputs,
-        submiteResetPassFormDetails,
+        submitResetPassFormDetails,
         requestOTP,
         isOTPRequested,
         setisOTPRequested,
