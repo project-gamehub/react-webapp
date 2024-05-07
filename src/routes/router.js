@@ -10,7 +10,7 @@ import About from "../pages/About";
 import Reels from "../pages/Reels";
 import Explore from "../pages/Explore";
 import Profile from "../pages/Profile";
-import Login from "../pages/Login";
+import Auth from "../pages/Auth";
 import GamePage from "../pages/GamePage";
 
 import Root from "../layout/LayoutRoot";
@@ -24,7 +24,7 @@ const router = createBrowserRouter(
                 <Route path="about" element={<About />} />
                 <Route path="explore" element={<Explore />} />
                 <Route path="profile" element={<Profile />} />
-                <Route path="login" element={<Login />} />
+                <Route path="auth/:purpose" element={<Auth />} />
                 <Route path="game/:gameslug" element={<GamePage />} />
             </Route>
         </>

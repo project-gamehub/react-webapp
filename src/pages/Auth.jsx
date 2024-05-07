@@ -1,16 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GoogleLoginComponent from "../components/loginPageComponents/GoogleLoginComponent";
 import { LOGIN_PAGE_BANNER_URL } from "../utils/constant";
 import "../styles/loginPageStyles/loginPage.css";
 import RegistrationForm from "../components/loginPageComponents/RegistrationForm";
 import LoginForm from "../components/loginPageComponents/LoginForm";
 import ResetPass from "../components/loginPageComponents/resetPass/ResetPass";
+import { useNavigate, useParams } from "react-router-dom";
 
 // TODO find for {" "} and replace with nothing
 
-const Login = () => {
+const Auth = () => {
     const [wantsToRegister, setWantsToRegister] = useState(false);
     const [showResetPassword, setShowResetPassword] = useState(false);
+
+    const { purpose } = useParams();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (purpose === "login") {
+            setWantsToRegister(false);
+            setShowResetPassword(false);
+        } else if (purpose === "register") {
+            setWantsToRegister(true);
+        } else if (purpose === "reset-pass") {
+            setWantsToRegister(false);
+            setShowResetPassword(true);
+        } else {
+            navigate("/auth/login");
+        }
+    }, [purpose]);
 
     return (
         <div className="login-page-container">
@@ -37,9 +55,11 @@ const Login = () => {
                                     className="forgot-pass-btn"
                                     type="button"
                                     onClick={() => {
-                                        setShowResetPassword(
-                                            !showResetPassword
-                                        );
+                                        if (showResetPassword) {
+                                            navigate("/auth/login");
+                                        } else {
+                                            navigate("/auth/reset-pass");
+                                        }
                                     }}
                                 >
                                     {showResetPassword ? (
@@ -62,7 +82,13 @@ const Login = () => {
                     <button
                         type="button"
                         className="toggle-login-register-btn"
-                        onClick={() => setWantsToRegister(!wantsToRegister)}
+                        onClick={() => {
+                            if (wantsToRegister) {
+                                navigate("/auth/login");
+                            } else {
+                                navigate("/auth/register");
+                            }
+                        }}
                     >
                         {wantsToRegister ? (
                             <>
@@ -82,4 +108,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Auth;

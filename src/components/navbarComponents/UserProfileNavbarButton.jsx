@@ -30,7 +30,7 @@ const UserProfileNavbarButton = () => {
                     </div>
                 </NavLink>
             ) : (
-                <NavLink className="navbar-link" to="/login">
+                <NavLink className="navbar-link" to="/auth/login">
                     <span className="material-symbols-rounded explore-btn">
                         login
                     </span>

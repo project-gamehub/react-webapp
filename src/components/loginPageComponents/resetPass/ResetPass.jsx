@@ -8,9 +8,10 @@ const ResetPass = () => {
         submitResetPassFormDetails,
         requestOTP,
         isOTPRequested,
-        setisOTPRequested,
+        setIsOTPRequested,
         disabledOtpResendTimeRemaining,
-        disabledOtpResend
+        disabledOtpResend,
+        resendOTP
     } = useResetPass();
 
     return (
@@ -87,7 +88,7 @@ const ResetPass = () => {
                                 className="change-email-button"
                                 type="button"
                                 onClick={() => {
-                                    setisOTPRequested(false);
+                                    setIsOTPRequested(false);
                                 }}
                             >
                                 <span className="material-symbols-rounded">
@@ -115,7 +116,7 @@ const ResetPass = () => {
                                 disabled={disabledOtpResend}
                                 className="resend-otp-btn"
                                 type="button"
-                                onClick={requestOTP}
+                                onClick={resendOTP}
                             >
                                 Resend OTP&nbsp;
                                 {disabledOtpResend ? (

@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const useResetPass = () => {
     const [inputs, setInputs] = useState({});
-    const [isOTPRequested, setisOTPRequested] = useState(false);
+    const [isOTPRequested, setIsOTPRequested] = useState(false);
     const [disabledOtpResend, setDisabledOtpResend] = useState(false);
     const [disabledOtpResendTimeRemaining, setDisabledOtpResendTimeRemaining] =
         useState(0);
@@ -23,8 +23,6 @@ const useResetPass = () => {
     };
 
     const submitResetPassFormDetails = async (event) => {
-        // TODO Reset Pass submit
-        // setOtpSent(true);
         event.preventDefault();
         if (!inputs.otp) {
             return toast.error("Please enter OTP");
@@ -33,18 +31,24 @@ const useResetPass = () => {
             return toast.error("Wrong OTP");
         }
         try {
-            const res = await axios.patch(USER_SERVICE_URL + "/reset-password/submit-otp", {
-                email: inputs.email,
-                password: inputs.password,
-                otp: inputs.otp
-            });
-            toast.success(res?.data?.message || "Password updated successfully")
+            const res = await axios.patch(
+                USER_SERVICE_URL + "/reset-password/submit-otp",
+                {
+                    email: inputs.email,
+                    password: inputs.password,
+                    otp: inputs.otp
+                }
+            );
+            toast.success(
+                res?.data?.message || "Password updated successfully"
+            );
         } catch (error) {
-            console.log(error);
-            return toast.error(error?.response?.data?.message || "Something went wrong");
+            console.error(error);
+            return toast.error(
+                error?.response?.data?.message || "Something went wrong"
+            );
         }
-        // TODO 
-        // navigate("/login");
+        navigate("/auth/login");
     };
 
     useEffect(() => {
@@ -69,12 +73,7 @@ const useResetPass = () => {
 
     const requestOTP = async (event) => {
         event.preventDefault();
-        // TODO Reset Pass submit
-        if (disabledOtpResend) {
-            return toast.error(
-                `Can't resend now, Please wait ${disabledOtpResendTimeRemaining} more seconds`
-            );
-        }
+
         if (!isValidEmail(inputs.email)) {
             return toast.error("Email is not valid");
         }
@@ -85,21 +84,57 @@ const useResetPass = () => {
         if (passwordErr) {
             return toast.error(passwordErr);
         }
-        // TODO Handle Submit OTP function
         try {
-            const res = await axios.patch(USER_SERVICE_URL + "/reset-password/request-otp", {
-                email: inputs.email,
-                password: inputs.password
-            });
-            toast.success(res?.data?.message || "OTP requested successfully")
+            const res = await axios.patch(
+                USER_SERVICE_URL + "/reset-password/request-otp",
+                {
+                    email: inputs.email,
+                    password: inputs.password
+                }
+            );
+            toast.success(res?.data?.message || "OTP requested successfully");
         } catch (error) {
-            console.log(error);
-            return toast.error(error?.response?.data?.message || "Requesting OTP failed!");
+            console.error(error);
+            return toast.error(
+                error?.response?.data?.message || "Requesting OTP failed!"
+            );
         }
 
         setDisabledOtpResendTimeRemaining(60);
         setDisabledOtpResend(true);
-        setisOTPRequested(true);
+        setIsOTPRequested(true);
+    };
+
+    const resendOTP = async (event) => {
+        event.preventDefault();
+        if (!isValidEmail(inputs.email)) {
+            return toast.error("Email is not valid");
+        }
+        if (inputs.password !== inputs.confirmPassword) {
+            return toast.error("Passwords don't match");
+        }
+        const passwordErr = isValidPassword(inputs.password);
+        if (passwordErr) {
+            return toast.error(passwordErr);
+        }
+        try {
+            const res = await axios.patch(
+                USER_SERVICE_URL + "/reset-password/resend-otp",
+                {
+                    email: inputs.email,
+                    password: inputs.password
+                }
+            );
+            toast.success(res?.data?.message || "OTP resent successfully");
+        } catch (error) {
+            console.error(error);
+            return toast.error(
+                error?.response?.data?.message || "Requesting OTP failed!"
+            );
+        }
+
+        setDisabledOtpResendTimeRemaining(60);
+        setDisabledOtpResend(true);
     };
 
     return {
@@ -108,9 +143,10 @@ const useResetPass = () => {
         submitResetPassFormDetails,
         requestOTP,
         isOTPRequested,
-        setisOTPRequested,
+        setIsOTPRequested,
         disabledOtpResendTimeRemaining,
-        disabledOtpResend
+        disabledOtpResend,
+        resendOTP
     };
 };
 
