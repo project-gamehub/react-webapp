@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import GameCardContainer from "../components/gamePageComponents/GameCardsContainer";
 
 import useLogout from "../utils/useLogout";
