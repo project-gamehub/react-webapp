@@ -9,8 +9,6 @@ const Home = () => {
     return (
         <>
             <GameCardContainer />
-            <Link to={"/auth/login"}>Login</Link>
-            <button onClick={logout}> Logout </button>
         </>
     );
 };

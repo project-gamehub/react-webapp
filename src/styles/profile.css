@@ -4,89 +4,83 @@
     align-items: center;
 }
 
-.pfcontainer {
+.profile-card {
+    margin: 30px;
+    border-radius: 25px;
+    height: 70vh;
+    width: 70vw;
+    background: #1e1f20;
+    padding: 25px;
+    display: flex;
     position: relative;
-    border-radius: 15px;
-    box-shadow: rgba(255, 0, 34, 0.5) 0px 0px 25px;
-    height: 75vh;
-    background-color: #121212;
 }
 
-.topbarpf {
-    justify-content: center;
-    padding: 7px;
-    font-size: 24px;
-    display: flex;
-    border-radius: 15px 15px 0 0;
-    box-shadow: 0px 8px 17px rgba(255, 0, 34, 0.25);
-}
-
-.details {
-    margin: 25px 10px;
-    padding-inline: 20px;
-}
-
-.details > div {
-    display: flex;
-}
-
-.data-label-container {
-    margin-block: 10px;
-    align-items: center;
-}
-
-.profile-label {
-    width: 100px;
-}
-
-.profile-data {
-    height: 35px;
-    min-width: 15vw;
-    border-radius: 15px;
-    background-color: #343434;
-    position: relative;
-    padding-left: 10px;
-    display: flex;
-    align-items: center;
-}
-
-.profile-data span {
-    cursor: pointer;
-    font-size: 25px !important;
-    padding: 5px;
-    position: absolute;
-    right: 5px;
-}
-
-.profile-data span:hover {
-    background-color: #121212;
+.pfp-container {
+    background: red;
+    height: 125px;
+    width: 125px;
     border-radius: 50%;
+    overflow: hidden;
 }
 
-/* Sign Out Button  */
+.pfp-img {
+    height: 100%;
+}
 
-#SignOutButtonContainer {
-    position: absolute;
+.details-container {
+    margin-top: 10px;
+}
+
+.detail {
+    margin-left: 25px;
     display: flex;
-    justify-content: center;
-    bottom: 30px;
-    width: 100%;
+    font-size: x-large;
+
+    & div {
+        margin-left: 10px;
+    }
 }
 
-#SignOutButton {
-    all: unset;
-    border-radius: 15px;
-    box-shadow: rgba(255, 0, 34, 0.5) 0px 0px 17px;
-    padding: 10px 15px;
-    font-size: large;
+.google-ico-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
     cursor: pointer;
 }
 
-#SignOutButton:hover {
-    box-shadow: rgba(255, 0, 34, 0.5) 0px 0px 25px;
+.signed-in-with-google {
+    height: 25px;
 }
 
-#SignOutButton:active {
-    background-color: black;
-    transform: translateY(4px);
+.note-container {
+    position: absolute;
+    top: 30px;
+    left: 17px;
+    width: 250px;
+    font-size: large;
+    background: #131314;
+    padding: 10px;
+    border-radius: 0 10px 10px 10px;
+}
+
+.logout-btn-container {
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.logout-btn {
+    font-size: larger;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background: #131313;
+    border: 0;
+    cursor: pointer;
+    &:hover {
+        background: #303033;
+    }
 }
