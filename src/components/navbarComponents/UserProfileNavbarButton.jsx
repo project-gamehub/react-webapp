@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Shimmer from "../Shimmer";
@@ -7,19 +8,34 @@ const UserProfileNavbarButton = () => {
         (state) => state.userDataSlice
     );
 
+    const [avatarUrl, setAvatarUrl] = useState(null);
+    const [avatarError, setAvatarError] = useState(false);
+
+    useEffect(() => {
+        if (userProfileDetails?.avatar) {
+            setAvatarUrl(userProfileDetails.avatar);
+        }
+    }, [userProfileDetails]);
+
+    const handleImageError = () => {
+        setAvatarError(true); // fallback to icon when image fails
+    };
+
     return (
         <div className="profile-container">
             {isLogin ? (
                 <NavLink className="navbar-link" to="/profile">
-                    {userDataLoading || !userProfileDetails?.avatar ? (
-                        <span className="material-symbols-rounded">person</span>
-                    ) : (
-                        // TODO - Handle this after implementing media
+                    {userDataLoading ? (
+                        <Shimmer />
+                    ) : avatarUrl && !avatarError ? (
                         <img
                             className="navbar-profile-pic"
-                            src={userProfileDetails?.avatar}
+                            src={avatarUrl}
                             alt="User Profile Pic"
+                            onError={handleImageError} // Fallback in case of error
                         />
+                    ) : (
+                        <span className="material-symbols-rounded">person</span>
                     )}
                     <div className="nav-label">
                         {userDataLoading ? (

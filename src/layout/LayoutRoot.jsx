@@ -1,4 +1,3 @@
-import Footer from "../components/Footer";
 import Navbar from "../components/navbarComponents/Navbar";
 import { Outlet, useSearchParams } from "react-router-dom";
 
@@ -42,7 +41,6 @@ const LayoutRoot = () => {
         <>
             <Navbar />
             <Outlet />
-            <Footer />
         </>
     );
 };

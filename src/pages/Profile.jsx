@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/profile.css";
 import { useSelector } from "react-redux";
 import useLogout from "../utils/useLogout";
@@ -7,8 +7,22 @@ const Profile = () => {
     const userData = useSelector((state) => state.userDataSlice);
 
     const [displayNote, setDisplayNote] = useState(false);
+    const [avatarUrl, setAvatarUrl] = useState(null);
+    const [avatarError, setAvatarError] = useState(false);
 
     const logout = useLogout();
+
+    // Set avatar URL initially from the store and update on changes
+    useEffect(() => {
+        if (userData?.userProfileDetails?.avatar) {
+            setAvatarUrl(userData.userProfileDetails.avatar);
+        }
+    }, [userData]);
+
+    // Fallback function if the avatar fails to load
+    const handleImageError = () => {
+        setAvatarError(true);
+    };
 
     return (
         <div>
@@ -18,10 +32,12 @@ const Profile = () => {
                         <img
                             className="pfp-img"
                             src={
-                                userData?.userProfileDetails?.avatar ||
-                                "https://static-00.iconduck.com/assets.00/user-circle-icon-2048x2048-lmkqor95.png"
+                                avatarError || !avatarUrl
+                                    ? "https://static-00.iconduck.com/assets.00/user-circle-icon-2048x2048-lmkqor95.png"
+                                    : avatarUrl
                             }
                             alt="User's Profile Pic"
+                            onError={handleImageError} // Handles image load error
                         />
                     </div>
                     <div className="details-container">

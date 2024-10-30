@@ -18,6 +18,10 @@ const Navbar = () => {
                         <span className="material-symbols-rounded">home</span>
                         <div className="nav-label">Home</div>
                     </NavLink>
+                    <NavLink className="navbar-link" to="/chat">
+                        <span className="material-symbols-rounded">chat</span>
+                        <div className="nav-label">Chat</div>
+                    </NavLink>
                     <NavLink className="navbar-link" to="/reels">
                         <span className="material-symbols-rounded">movie</span>
                         <div className="nav-label">Reels</div>

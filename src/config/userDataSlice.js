@@ -26,6 +26,7 @@ export const fetchUserData = createAsyncThunk(
             headers
         });
         const data = response?.data?.data;
+
         return data;
     }
 );

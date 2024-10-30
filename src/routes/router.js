@@ -14,6 +14,7 @@ import Auth from "../pages/Auth";
 import GamePage from "../pages/GamePage";
 
 import Root from "../layout/LayoutRoot";
+import Chat from "../pages/Chat";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
                 <Route path="about" element={<About />} />
                 <Route path="explore" element={<Explore />} />
                 <Route path="profile" element={<Profile />} />
+                <Route path="chat" element={<Chat />} />
                 <Route path="auth/:purpose" element={<Auth />} />
                 <Route path="game/:gameslug" element={<GamePage />} />
             </Route>
