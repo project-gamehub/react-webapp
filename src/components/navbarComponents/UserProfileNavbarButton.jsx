@@ -26,7 +26,9 @@ const UserProfileNavbarButton = () => {
             {isLogin ? (
                 <NavLink className="navbar-link" to="/profile">
                     {userDataLoading ? (
-                        <Shimmer />
+                        <div className="navbar-profile-pic">
+                            <Shimmer />
+                        </div>
                     ) : avatarUrl && !avatarError ? (
                         <img
                             className="navbar-profile-pic"

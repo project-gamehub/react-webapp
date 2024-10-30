@@ -1,6 +1,7 @@
 export const SERVER_URL = "http://localhost:8000";
 export const GAMES_SERVICE_URL = "http://localhost:3002";
 export const USER_SERVICE_URL = "http://localhost:3000";
+export const CHAT_SERVICE_URL = "http://localhost:3005";
 
 export const LOGO_URL = "https://i.postimg.cc/SQVJXt7K/logo.png";
 

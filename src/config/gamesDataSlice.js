@@ -10,8 +10,8 @@ const initialState = {
 
 export const fetchGamesData = createAsyncThunk(
     "fetchGamesData",
-    async (dispatch, getState) => {
-        const gamesData = getState.getState()?.gamesDataSlice?.gamesData;
+    async (_, { getState }) => {
+        const gamesData = getState()?.gamesDataSlice?.gamesData;
         if (gamesData) {
             return gamesData;
         } else {
