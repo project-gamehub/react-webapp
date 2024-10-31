@@ -10,13 +10,22 @@ const Conversation = () => {
 
     return (
         <div className="conversation-section">
-            <ConversationUserDetails userId={otherUserId} />
-            <div className="conversation-message-section">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
-                nihil voluptate tempora quae ad, debitis eote. Esse hic quos
-                doloremque nescut.
-            </div>
-            <ConversationTextbox userId={otherUserId} />
+            {!otherUserId ? (
+                <div className="conversation-section-landing">
+                    <span className="material-symbols-rounded">chat</span>
+                    <div>Chat with your friends</div>
+                </div>
+            ) : (
+                <>
+                    <ConversationUserDetails userId={otherUserId} />
+                    <div className="conversation-message-section">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Iusto nihil voluptate tempora quae ad, debitis eote.
+                        Esse hic quos doloremque nescut.
+                    </div>
+                    <ConversationTextbox userId={otherUserId} />
+                </>
+            )}
         </div>
     );
 };

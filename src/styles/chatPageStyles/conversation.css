@@ -8,6 +8,18 @@
     position: relative;
 }
 
+.conversation-section-landing {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    & span {
+        font-size: 50px;
+    }
+}
+
 .conversation-user-details {
     border-bottom: 1px solid rgb(118, 118, 118);
     height: 60px;
