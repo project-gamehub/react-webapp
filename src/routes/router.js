@@ -24,7 +24,10 @@ const router = createBrowserRouter(
                 <Route path="about" element={<About />} />
                 <Route path="explore" element={<Explore />} />
                 <Route path="profile" element={<Profile />} />
-                <Route path="chat/*" element={<Chat />} />
+                <Route path="chat">
+                    <Route index element={<Chat />} />
+                    <Route path=":otherUserId" element={<Chat />} />
+                </Route>
                 <Route path="auth/:purpose" element={<Auth />} />
                 <Route path="game/:gameslug" element={<GamePage />} />
             </Route>

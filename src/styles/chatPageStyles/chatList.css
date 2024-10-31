@@ -1,8 +1,7 @@
 .chat-list-wrapper {
-    width: 27vw;
+    width: 30vw;
     display: flex;
     flex-direction: column;
-    margin-right: 10px;
     height: 100%;
 }
 

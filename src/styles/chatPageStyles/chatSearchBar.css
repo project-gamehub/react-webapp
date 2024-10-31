@@ -1,4 +1,5 @@
 .chat-search-bar-container {
+    width: 95%;
     padding-bottom: 5px;
     display: flex;
     align-items: center;

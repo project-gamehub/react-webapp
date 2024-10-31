@@ -12,6 +12,7 @@ const ChatList = () => {
     );
     const dispatch = useDispatch();
 
+    // TODO - Implement Pagination
     useEffect(() => {
         if (!chats) {
             dispatch(fetchChats());

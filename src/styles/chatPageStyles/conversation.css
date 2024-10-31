@@ -1,0 +1,70 @@
+.conversation-section {
+    background: #131314;
+    width: 100%;
+    border-radius: 35px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.conversation-user-details {
+    border-bottom: 1px solid rgb(118, 118, 118);
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.conversation-user-avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: greenyellow;
+    margin-inline: 25px 10px;
+}
+
+.conversation-message-section {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.conversation-textbox {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(118, 118, 118);
+    margin: 5px 20px 15px 20px;
+    border-radius: 20px;
+    justify-content: space-around;
+    transition: border-color 0.25s ease;
+
+    &:focus-within {
+        border-color: rgb(225, 225, 225);
+    }
+
+    & input {
+        all: unset;
+        width: 100%;
+        margin: 0px 10px 0px 20px;
+    }
+
+    & button {
+        all: unset;
+        display: flex;
+        align-items: center;
+        margin: 0px 15px 0px 10px;
+        cursor: pointer;
+
+        &:hover {
+            & span {
+                color: rgb(225, 225, 225);
+            }
+        }
+
+        & span {
+            color: rgb(146, 146, 146);
+            font-weight: 300;
+            font-size: 28px;
+        }
+    }
+}
