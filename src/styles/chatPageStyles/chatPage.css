@@ -1,0 +1,8 @@
+.chat-page {
+    display: flex;
+    background: #1e1f20;
+    height: 75vh;
+    margin: 20px;
+    border-radius: 35px;
+    padding: 20px;
+}

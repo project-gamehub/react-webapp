@@ -6,20 +6,20 @@
 }
 
 body {
-    background-color: #131314 !important;
+    background: #131314 !important;
 }
 
 ::-webkit-scrollbar {
     width: 2px;
-    background-color: #343434;
+    background: #343434;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgb(98, 0, 13);
+    background: rgb(98, 0, 13);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(140, 4, 22);
+    background: rgb(140, 4, 22);
 }
 
 .loading-anim {

@@ -1,26 +1,51 @@
-// src/components/ChatList.js
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { fetchChats } from '../features/chat/chatSlice';
 import { fetchChats } from "../../config/chatSlice";
-import { Link } from "react-router-dom";
+import "../../styles/chatPageStyles/chatList.css";
+import "../../styles/chatPageStyles/chatSearchBar.css";
+import ChatSearchBar from "./ChatSearchBar";
+import ChatTile from "./ChatTile";
 
 const ChatList = () => {
+    const { chats, chatsDataLoading, chatsDataError } = useSelector(
+        (state) => state.chatsDataSlice
+    );
     const dispatch = useDispatch();
-    // const { chats } = useSelector((state) => state.chats);
-
-    // console.log(chats);
 
     useEffect(() => {
-        // if (status === "idle") {
-        dispatch(fetchChats());
-        // }
-    }, [dispatch]);
+        if (!chats) {
+            dispatch(fetchChats());
+        }
+    }, [dispatch, chats]);
+
+    if (chatsDataError) {
+        return (
+            <div className="chat-list-container">
+                <div>Error Fetching Chats Data</div>;
+            </div>
+        );
+    }
 
     return (
-        <div>
-            <h2>Chat List</h2>
-            <Link to={"65ff7f353105082f8d3b4449"}>Go </Link>
+        <div className="chat-list-wrapper">
+            <ChatSearchBar />
+            <div className="chat-list">
+                {chatsDataLoading ? (
+                    // TODO - Implement Shimmer here
+                    <>Loading chats</>
+                ) : (
+                    <>
+                        {chats.map((chat) => {
+                            return (
+                                <ChatTile
+                                    chatData={chat}
+                                    key={chat?.otherUserId}
+                                />
+                            );
+                        })}
+                    </>
+                )}
+            </div>
         </div>
     );
 };

@@ -1,9 +1,9 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchGamesData } from "../../config/gamesDataSlice";
 import GameCard from "./GameCard";
 import GameCardLoader from "./GameCardLoader";
 import "../../styles/gamePageStyles/gameCardContainer.css";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchGamesData } from "../../config/gamesDataSlice";
 
 const GameCardsContainer = () => {
     const { gamesData, gamesDataError, gamesDataLoading } = useSelector(

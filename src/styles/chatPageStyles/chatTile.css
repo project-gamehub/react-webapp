@@ -1,0 +1,48 @@
+.chat-tile-navlink {
+    all: unset;
+
+    &.active {
+        .chat-tile {
+            background: #131314;
+        }
+    }
+}
+
+.chat-tile {
+    margin: 5px 0px;
+    height: 50px;
+    border-radius: 40px 0px 0px 40px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.chat-tile:hover {
+    background: #303032;
+}
+
+.chat-tile-avatar {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    background: rgb(111, 255, 0);
+}
+
+.chat-tile-detils-container {
+    margin-left: 5px;
+}
+
+.chat-tile-username-container {
+    font-weight: 500;
+    font-size: large;
+}
+
+.chat-tile-content-container {
+    font-weight: 300;
+    font-size: small;
+}
+
+.chat-tile-time-container {
+    color: rgb(169, 169, 169);
+}

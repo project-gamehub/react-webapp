@@ -1,0 +1,11 @@
+.chat-list-wrapper {
+    width: 27vw;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    height: 100%;
+}
+
+.chat-list {
+    overflow-y: auto;
+}
