@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import "../../styles/chatPageStyles/conversation.css";
 import ConversationUserDetails from "./ConversationUserDetails";
 import ConversationTextbox from "./ConversationTextbox";
+import ConversationMessagesSection from "./ConversationMessagesSection";
 
 const Conversation = () => {
     const { otherUserId } = useParams();
@@ -18,11 +19,7 @@ const Conversation = () => {
             ) : (
                 <>
                     <ConversationUserDetails userId={otherUserId} />
-                    <div className="conversation-message-section">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Iusto nihil voluptate tempora quae ad, debitis eote.
-                        Esse hic quos doloremque nescut.
-                    </div>
+                    <ConversationMessagesSection userId={otherUserId} />
                     <ConversationTextbox userId={otherUserId} />
                 </>
             )}

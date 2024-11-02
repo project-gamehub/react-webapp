@@ -4,9 +4,12 @@ import { CHAT_SERVICE_URL } from "../utils/constant";
 
 const initialState = {
     chats: null,
-    conversation: {},
     chatsDataLoading: true,
-    chatsDataError: null
+    chatsDataError: null,
+
+    conversation: {},
+    conversationDataLoading: true,
+    conversationDataError: null
 };
 
 export const fetchChats = createAsyncThunk(
@@ -27,6 +30,7 @@ export const fetchChats = createAsyncThunk(
             const response = await axios.get(CHAT_SERVICE_URL + "/get-chats", {
                 headers
             });
+
             return response?.data?.chats;
         } catch (error) {
             throw new Error(error?.response?.data?.message || error.message);
@@ -36,13 +40,32 @@ export const fetchChats = createAsyncThunk(
 
 export const fetchConversation = createAsyncThunk(
     "fetchConversation",
-    async ({ otherUserId }, { getState }) => {
-        const response = await axios.get(
-            CHAT_SERVICE_URL + "/get-conversation/" + otherUserId
-        );
-        // {}
-        return {};
-        // return response.data;
+    async (otherUserId, { getState }) => {
+        const conversationData = getState()?.chatsDataSlice?.conversation;
+        if (conversationData?.otherUserId) {
+            return conversationData;
+        }
+
+        const accessToken = getState().userDataSlice.accessToken;
+        if (!accessToken) {
+            throw new Error("User not logged in");
+        }
+        const headers = {
+            "access-token": accessToken
+        };
+
+        try {
+            const response = await axios.get(
+                CHAT_SERVICE_URL + "/get-conversation/" + otherUserId,
+                {
+                    headers
+                }
+            );
+
+            return response?.data?.messages;
+        } catch (error) {
+            throw new Error(error?.response?.data?.message || error.message);
+        }
     }
 );
 
@@ -73,29 +96,25 @@ const chatSlice = createSlice({
             .addCase(fetchChats.pending, (state) => {
                 state.chatsDataLoading = true;
                 state.chatsDataError = null;
+            })
+            .addCase(fetchConversation.fulfilled, (state, action) => {
+                const otherUserId = action.meta.arg;
+                state.conversation[otherUserId] = action.payload;
+                // console.log(state.conversation[otherUserId]);
+
+                state.conversationDataLoading = false;
+                state.conversationDataError = null;
+            })
+            .addCase(fetchConversation.rejected, (state, action) => {
+                state.conversationDataLoading = false;
+                state.conversationDataError =
+                    action.error?.response?.data?.message ||
+                    action.error.message;
+            })
+            .addCase(fetchConversation.pending, (state) => {
+                state.conversationDataLoading = true;
+                state.conversationDataError = null;
             });
-        // .addCase(fetchConversation.fulfilled, (state, action) => {
-        //     state.conversation = action.payload;
-        //     state.status = 'succeeded';
-        // })
-        // .addCase(sendMessage.fulfilled, (state, action) => {
-        //     state.conversation.push(action.meta.arg); // Append sent message to conversation
-        // })
-        // .addMatcher(
-        //     (action) => action.type.endsWith('/pending'),
-        //     (state) => {
-        //         state.status = 'loading';
-        //         state.chatsDataLoading = true;
-        //     }
-        // )
-        // .addMatcher(
-        //     (action) => action.type.endsWith('/rejected'),
-        //     (state, action) => {
-        //         state.status = 'failed';
-        //         state.error = action.error.message;
-        //         state.chatsDataLoading = false;
-        //     }
-        // );
     }
 });
 

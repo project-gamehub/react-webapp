@@ -26,10 +26,8 @@ const ChatTile = ({ chatData }) => {
             .catch((e) => {
                 toast.error(e?.response?.data?.message || e.message);
             });
-    }, []);
-    {
-        /* TODO- Get Avatar from userId */
-    }
+    }, [chatData?.otherUserId]);
+    //  TODO- Get Avatar from userId
 
     return (
         <NavLink

@@ -1,4 +1,5 @@
 import React from "react";
+import "../../styles/chatPageStyles/chatSearchBar.css";
 
 const ChatSearchBar = () => {
     return (

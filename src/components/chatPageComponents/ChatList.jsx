@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchChats } from "../../config/chatSlice";
 import "../../styles/chatPageStyles/chatList.css";
-import "../../styles/chatPageStyles/chatSearchBar.css";
 import ChatSearchBar from "./ChatSearchBar";
 import ChatTile from "./ChatTile";
 
@@ -11,6 +10,10 @@ const ChatList = () => {
         (state) => state.chatsDataSlice
     );
     const dispatch = useDispatch();
+
+    const currentUserId = useSelector(
+        (state) => state.userDataSlice?.userProfileDetails?._id
+    );
 
     // TODO - Implement Pagination
     useEffect(() => {
@@ -22,7 +25,7 @@ const ChatList = () => {
     if (chatsDataError) {
         return (
             <div className="chat-list-container">
-                <div>Error Fetching Chats Data</div>;
+                <div>Error Fetching Chats Data</div>
             </div>
         );
     }
@@ -31,16 +34,28 @@ const ChatList = () => {
         <div className="chat-list-wrapper">
             <ChatSearchBar />
             <div className="chat-list">
-                {chatsDataLoading ? (
+                {chatsDataLoading || !currentUserId ? (
                     // TODO - Implement Shimmer here
                     <>Loading chats</>
                 ) : (
                     <>
                         {chats.map((chat) => {
+                            let otherUserId;
+                            if (chat.user1Id === currentUserId) {
+                                otherUserId = chat.user2Id;
+                            } else {
+                                otherUserId = chat.user1Id;
+                            }
+                            const chatData = {
+                                lastMessage: chat.lastMessage,
+                                lastMessageTimestamp: chat.lastMessageTimestamp,
+                                otherUserId
+                            };
+
                             return (
                                 <ChatTile
-                                    chatData={chat}
-                                    key={chat?.otherUserId}
+                                    chatData={chatData}
+                                    key={otherUserId}
                                 />
                             );
                         })}

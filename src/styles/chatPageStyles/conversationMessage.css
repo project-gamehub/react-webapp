@@ -1,0 +1,50 @@
+.conversation-message-section {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100%;
+    overflow-y: auto;
+    padding: 0 25px;
+}
+
+.message-bubble {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-block: 5px;
+}
+
+.self-message {
+    align-items: flex-start;
+
+    .message-details-container {
+        background: black;
+        border: 1px solid #1e1f20;
+        border-radius: 15px 15px 15px 0;
+    }
+}
+
+.message-details-container {
+    background: #1e1f20;
+    max-width: 60%;
+    padding: 3px 10px 0 10px;
+    border-radius: 15px 15px 0 15px;
+}
+
+.message-content {
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    padding-right: 15px;
+}
+
+.message-time-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-left: 10px;
+}
+
+.message-time {
+    color: rgb(169, 169, 169);
+    font-size: 0.8rem;
+}
