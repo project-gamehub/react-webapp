@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchConversation } from "../../config/chatSlice";
 import "../../styles/chatPageStyles/conversationMessage.css";
 import MessageBubble from "./MessageBubble";
+import isOthersMessage from "./customHooks/isOthersMessage";
 
-const ConversationMessagesSection = ({ userId }) => {
+const ConversationMessagesSection = ({ otherUserId }) => {
     const { conversation, conversationDataLoading, conversationDataError } =
         useSelector((state) => {
             return state.chatsDataSlice;
@@ -12,14 +13,14 @@ const ConversationMessagesSection = ({ userId }) => {
 
     const dispatch = useDispatch();
 
-    const currentConversationMessages = conversation[userId];
+    const currentConversationMessages = conversation[otherUserId];
 
     // TODO - Implement Pagination
     useEffect(() => {
         if (!currentConversationMessages) {
-            dispatch(fetchConversation(userId));
+            dispatch(fetchConversation(otherUserId));
         }
-    }, [dispatch, userId, currentConversationMessages]);
+    }, [dispatch, otherUserId, currentConversationMessages]);
 
     if (conversationDataError) {
         return <div>Error Fetching Messages</div>;
@@ -28,26 +29,25 @@ const ConversationMessagesSection = ({ userId }) => {
         return <div>Loading Messages</div>;
     }
 
-    const isMyMessage = (senderId) => {
-        if (senderId === userId) {
-            return false;
-        }
-        return true;
-    };
-
     return (
         <div className="conversation-message-section">
             {currentConversationMessages &&
-                [...currentConversationMessages].reverse().map((message) => {
-                    return (
-                        <MessageBubble
-                            key={message._id}
-                            selfMessage={isMyMessage(message.senderId)}
-                            content={message.content}
-                            timestamp={message.timestamp}
-                        />
-                    );
-                })}
+                [...currentConversationMessages]
+                    .reverse()
+                    .map((message, idx) => {
+                        return (
+                            <MessageBubble
+                                key={message._id || idx}
+                                othersMessage={isOthersMessage(
+                                    message.senderId,
+                                    otherUserId
+                                )}
+                                content={message.content}
+                                timestamp={message.timestamp}
+                                sending={message.sending}
+                            />
+                        );
+                    })}
         </div>
     );
 };

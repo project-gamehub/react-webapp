@@ -7,7 +7,6 @@ import ConversationMessagesSection from "./ConversationMessagesSection";
 
 const Conversation = () => {
     const { otherUserId } = useParams();
-    // TODO - If no otherUserId is present, show nothing
 
     return (
         <div className="conversation-section">
@@ -19,7 +18,7 @@ const Conversation = () => {
             ) : (
                 <>
                     <ConversationUserDetails userId={otherUserId} />
-                    <ConversationMessagesSection userId={otherUserId} />
+                    <ConversationMessagesSection otherUserId={otherUserId} />
                     <ConversationTextbox userId={otherUserId} />
                 </>
             )}

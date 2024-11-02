@@ -13,7 +13,7 @@
     margin-block: 5px;
 }
 
-.self-message {
+.others-message {
     align-items: flex-start;
 
     .message-details-container {
@@ -47,4 +47,16 @@
 .message-time {
     color: rgb(169, 169, 169);
     font-size: 0.8rem;
+}
+
+.message-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & span {
+        color: rgb(169, 169, 169);
+        font-size: 1.2rem;
+        margin-left: 2px;
+    }
 }

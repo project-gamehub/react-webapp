@@ -1,34 +1,12 @@
 import React from "react";
+import formatTimestampToIST from "./customHooks/formatTimestampToIST";
+import MessageStatus from "./MessageStatus";
 
-function formatTimestampToIST(utcTimestamp) {
-    const date = new Date(utcTimestamp);
-    const options = {
-        timeZone: "Asia/Kolkata",
-        hour: "numeric",
-        minute: "numeric",
-        hour12: true
-    };
-    const timeInIST = date.toLocaleTimeString("en-IN", options);
-
-    const today = new Date();
-    const isToday = today.toDateString() === date.toDateString();
-
-    if (isToday) {
-        return timeInIST;
-    } else {
-        const dateOptions = { day: "numeric", month: "short" };
-        const dateInIST = date.toLocaleDateString("en-IN", dateOptions);
-        return `${timeInIST}, ${dateInIST}`;
-    }
-}
-
-const MessageBubble = ({ selfMessage, content, timestamp }) => {
-    console.log(timestamp);
-
+const MessageBubble = ({ othersMessage, content, timestamp, sending }) => {
     return (
         <div
             className={
-                selfMessage ? "message-bubble self-message" : "message-bubble"
+                "message-bubble" + (othersMessage ? " others-message" : "")
             }
         >
             <div className="message-details-container">
@@ -37,6 +15,7 @@ const MessageBubble = ({ selfMessage, content, timestamp }) => {
                     <div className="message-time">
                         {formatTimestampToIST(timestamp)}
                     </div>
+                    {!othersMessage && <MessageStatus sending={sending} />}
                 </div>
             </div>
         </div>

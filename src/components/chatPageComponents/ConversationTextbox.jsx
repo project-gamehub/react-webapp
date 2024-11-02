@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { sendMessage } from "../../config/chatSlice";
 
 const ConversationTextbox = ({ userId }) => {
     const [message, setMessage] = useState("");
+    const dispatch = useDispatch();
 
     const handleMessageSend = () => {
-        // TODO - Write send message logic
-        console.log("Message sent", message);
-        setMessage("");
+        if (message.trim()) {
+            dispatch(
+                sendMessage({ messageContent: message, otherUserId: userId })
+            );
+            setMessage("");
+        }
     };
 
     const handleChangeMessageContent = (e) => {
