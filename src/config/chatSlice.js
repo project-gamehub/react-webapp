@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { CHAT_SERVICE_URL } from "../utils/constant";
+import socket from "../utils/getSocket";
 
 const initialState = {
     chats: null,
@@ -61,7 +62,6 @@ export const fetchConversation = createAsyncThunk(
                     headers
                 }
             );
-
             return response?.data?.messages;
         } catch (error) {
             throw new Error(error?.response?.data?.message || error.message);
@@ -71,38 +71,43 @@ export const fetchConversation = createAsyncThunk(
 
 export const sendMessage = createAsyncThunk(
     "sendMessage",
-    async (
-        // messageContent and userId as parameters
-        { messageContent, otherUserId },
-        { getState, dispatch }
-    ) => {
+    async ({ messageContent, otherUserId }, { getState, dispatch }) => {
         const accessToken = getState().userDataSlice.accessToken;
         if (!accessToken) {
             throw new Error("User not logged in");
         }
 
-        const headers = {
-            "access-token": accessToken
-        };
         const timestamp = new Date().toISOString();
-        // Push the message to the conversation[userId] array along with { "content": "", "timestamp": currentTime, "sending": "true"}
+
         dispatch(
             addMessageToConversation({
                 otherUserId,
                 message: { content: messageContent, timestamp, sending: "true" }
             })
         );
-        // Send messge using "ChatServiceURL/send-message/:userId" with access token as sent in above functions and messageContent in body
-        // If the message sent is successfull, change the "sending": "false"
-        // Else change the "sending": "error"
-        try {
-            const response = await axios.post(
-                `${CHAT_SERVICE_URL}/send-message/${otherUserId}`,
-                { messageContent },
-                { headers }
-            );
 
-            // Update message to "sending": "false" if successfully sent
+        try {
+            const emitMessage = new Promise((resolve, reject) => {
+                socket.emit(
+                    "send-message",
+                    { messageContent, otherUserId, accessToken },
+                    (response) => {
+                        if (response && response.error) {
+                            reject(
+                                new Error(
+                                    response.message || "Failed to send message"
+                                )
+                            );
+                        } else {
+                            resolve();
+                        }
+                    }
+                );
+            });
+
+            await emitMessage;
+
+            // TODO - Also update chats array after successfully sending
             dispatch(
                 updateMessageStatus({
                     otherUserId,
@@ -110,9 +115,8 @@ export const sendMessage = createAsyncThunk(
                     status: "false"
                 })
             );
-            return response.data;
         } catch (error) {
-            // Update message to "sending": "error" if there was an error
+            // TODO - If error is encountered, understand the error and if possible, retry sending the message instead of updating status to error
             dispatch(
                 updateMessageStatus({
                     otherUserId,
@@ -120,7 +124,6 @@ export const sendMessage = createAsyncThunk(
                     status: "error"
                 })
             );
-            throw new Error(error.response?.data?.message || error.message);
         }
     }
 );
@@ -147,6 +150,18 @@ const chatSlice = createSlice({
                     message.sending = status;
                 }
             }
+        },
+        receiveMessage: (state, action) => {
+            const { senderId, messageContent, timestamp } = action.payload;
+            if (!state.conversation[senderId]) {
+                state.conversation[senderId] = [];
+            }
+            state.conversation[senderId].push({
+                senderId,
+                content: messageContent,
+                timestamp,
+                sending: "false"
+            });
         }
     },
     extraReducers: (builder) => {
@@ -185,6 +200,6 @@ const chatSlice = createSlice({
     }
 });
 
-export const { addMessageToConversation, updateMessageStatus } =
+export const { addMessageToConversation, updateMessageStatus, receiveMessage } =
     chatSlice.actions;
 export default chatSlice.reducer;
