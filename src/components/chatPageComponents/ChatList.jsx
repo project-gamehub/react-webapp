@@ -30,6 +30,14 @@ const ChatList = () => {
         );
     }
 
+    const sortedChats = chats
+        ? [...chats].sort(
+              (a, b) =>
+                  new Date(b.lastMessageTimestamp) -
+                  new Date(a.lastMessageTimestamp)
+          )
+        : [];
+
     return (
         <div className="chat-list-wrapper">
             <ChatSearchBar />
@@ -39,7 +47,7 @@ const ChatList = () => {
                     <>Loading chats</>
                 ) : (
                     <>
-                        {chats.map((chat) => {
+                        {sortedChats.map((chat) => {
                             let otherUserId;
                             if (
                                 !chat.user1Id ||
