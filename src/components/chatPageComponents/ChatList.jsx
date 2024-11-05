@@ -41,7 +41,10 @@ const ChatList = () => {
                     <>
                         {chats.map((chat) => {
                             let otherUserId;
-                            if (chat.user1Id === currentUserId) {
+                            if (
+                                !chat.user1Id ||
+                                chat.user1Id === currentUserId
+                            ) {
                                 otherUserId = chat.user2Id;
                             } else {
                                 otherUserId = chat.user1Id;

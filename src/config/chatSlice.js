@@ -107,12 +107,18 @@ export const sendMessage = createAsyncThunk(
 
             await emitMessage;
 
-            // TODO - Also update chats array after successfully sending
             dispatch(
                 updateMessageStatus({
                     otherUserId,
                     timestamp,
                     status: "false"
+                })
+            );
+            dispatch(
+                updateChatSummary({
+                    otherUserId,
+                    lastMessage: messageContent,
+                    lastMessageTimestamp: timestamp
                 })
             );
         } catch (error) {
@@ -162,6 +168,40 @@ const chatSlice = createSlice({
                 timestamp,
                 sending: "false"
             });
+
+            const chatIndex = state.chats.findIndex(
+                (chat) => chat.user1Id === senderId || chat.user2Id === senderId
+            );
+
+            if (chatIndex !== -1) {
+                state.chats[chatIndex].lastMessage = messageContent;
+                state.chats[chatIndex].lastMessageTimestamp = timestamp;
+            } else {
+                state.chats.push({
+                    user2Id: senderId,
+                    lastMessage: messageContent,
+                    lastMessageTimestamp: timestamp
+                });
+            }
+        },
+        updateChatSummary: (state, action) => {
+            const { otherUserId, lastMessage, lastMessageTimestamp } =
+                action.payload;
+            const chat = state.chats?.find(
+                (chat) =>
+                    chat.user1Id === otherUserId || chat.user2Id === otherUserId
+            );
+
+            if (chat) {
+                chat.lastMessage = lastMessage;
+                chat.lastMessageTimestamp = lastMessageTimestamp;
+            } else {
+                state.chats.push({
+                    user2Id: otherUserId,
+                    lastMessage,
+                    lastMessageTimestamp
+                });
+            }
         }
     },
     extraReducers: (builder) => {
@@ -200,6 +240,10 @@ const chatSlice = createSlice({
     }
 });
 
-export const { addMessageToConversation, updateMessageStatus, receiveMessage } =
-    chatSlice.actions;
+export const {
+    addMessageToConversation,
+    updateMessageStatus,
+    receiveMessage,
+    updateChatSummary
+} = chatSlice.actions;
 export default chatSlice.reducer;
