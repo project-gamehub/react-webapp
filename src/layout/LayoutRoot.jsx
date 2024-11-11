@@ -8,6 +8,7 @@ import getCookie from "../utils/authFunctionsAndHooks/handleCookies/getCookie";
 import handleAccessToken from "../utils/handleAccessToken";
 import deleteCookie from "../utils/authFunctionsAndHooks/handleCookies/deleteCookie";
 import { toast } from "react-toastify";
+import useChatRoom from "../components/chatPageComponents/useChatRoom";
 
 const LayoutRoot = () => {
     const { accessToken, isLogin } = useSelector(
@@ -36,6 +37,8 @@ const LayoutRoot = () => {
             }
         }
     }, []);
+
+    useChatRoom();
 
     return (
         <>
