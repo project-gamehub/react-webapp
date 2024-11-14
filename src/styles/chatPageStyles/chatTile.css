@@ -22,11 +22,17 @@
     background: #303032;
 }
 
-.chat-tile-avatar {
+.chat-tile-avatar-container {
     border-radius: 50%;
     height: 50px;
     width: 50px;
+    /* TODO - Add shimmer instead of green bg */
     background: rgb(111, 255, 0);
+    overflow: hidden;
+}
+
+.chat-tile-avatar {
+    height: 100%;
 }
 
 .chat-tile-detils-container {

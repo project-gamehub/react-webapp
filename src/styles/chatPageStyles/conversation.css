@@ -27,12 +27,18 @@
     align-items: center;
 }
 
-.conversation-user-avatar {
+.conversation-user-avatar-container {
     height: 40px;
     width: 40px;
     border-radius: 50%;
+    /* TODO - Add shimmer instead of green bg */
     background: greenyellow;
     margin-inline: 25px 10px;
+    overflow: hidden;
+}
+
+.conversation-user-avatar {
+    height: 100%;
 }
 
 .conversation-message-section {

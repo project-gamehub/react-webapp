@@ -32,41 +32,53 @@ export const fetchUsernameFromId = createAsyncThunk(
     }
 );
 
-// export const fetchAvatarURLFromId = createAsyncThunk(
-//     "fetchAvatarURLFromId",
-//     async (userId, { getState }) => {
-//         const state = getState().otherUsersData;
+export const fetchAvatarURLFromId = createAsyncThunk(
+    "fetchAvatarURLFromId",
+    async (userId, { getState }) => {
+        const otherUsersData = getState().otherUsersDataSlice.otherUsersData;
 
-//         // Check if avatar URL is already available for this user
-//         if (state.otherUsersData[userId]?.avatarURL) {
-//             return { userId, data: { avatarURL: state.otherUsersData[userId].avatarURL } };
-//         }
+        if (otherUsersData[userId]?.avatarURL) {
+            return {
+                userId,
+                data: { avatarURL: otherUsersData[userId].avatarURL }
+            };
+        }
 
-//         // TODO- Correct route
-//         // const response = await axios.get(`${USER_SERVICE_URL}/get-avatar/${userId}`);
-//         return { userId, data: { avatarURL: response.data.avatarURL } };
-//     }
-// );
+        try {
+            const response = await axios.get(
+                `${USER_SERVICE_URL}/get-avatar-url/${userId}`
+            );
+
+            return {
+                userId,
+                data: { avatarURL: response?.data?.data?.avatar }
+            };
+        } catch (error) {
+            console.log(error);
+        }
+    }
+);
 
 const otherUsersDataSlice = createSlice({
     name: "otherUsersData",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchUsernameFromId.fulfilled, (state, action) => {
-            const { userId, data } = action.payload;
-            state.otherUsersData[userId] = {
-                ...state.otherUsersData[userId],
-                ...data
-            };
-        });
-        // .addCase(fetchAvatarURLFromId.fulfilled, (state, action) => {
-        //     const { userId, data } = action.payload;
-        //     state.otherUsersData[userId] = {
-        //         ...state.otherUsersData[userId],
-        //         ...data,
-        //     };
-        // });
+        builder
+            .addCase(fetchUsernameFromId.fulfilled, (state, action) => {
+                const { userId, data } = action.payload;
+                state.otherUsersData[userId] = {
+                    ...state.otherUsersData[userId],
+                    ...data
+                };
+            })
+            .addCase(fetchAvatarURLFromId.fulfilled, (state, action) => {
+                const { userId, data } = action.payload;
+                state.otherUsersData[userId] = {
+                    ...state.otherUsersData[userId],
+                    ...data
+                };
+            });
     }
 });
 
