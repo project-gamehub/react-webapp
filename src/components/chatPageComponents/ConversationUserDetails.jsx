@@ -1,20 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { USER_SERVICE_URL } from "../../utils/constant";
-import axios from "axios";
-import { toast } from "react-toastify";
+import useUsername from "../../utils/useUsername";
 
 const ConversationUserDetails = ({ userId }) => {
-    const [username, setUsername] = useState(undefined);
-    useEffect(() => {
-        axios
-            .get(USER_SERVICE_URL + "/get-username-by-id/" + userId)
-            .then((res) => {
-                setUsername(res?.data?.data?.username);
-            })
-            .catch((e) => {
-                toast.error(e?.response?.data?.message || e.message);
-            });
-    }, [userId]);
+    const username = useUsername(userId);
 
     return (
         <div className="conversation-user-details">

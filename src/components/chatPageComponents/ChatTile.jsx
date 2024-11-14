@@ -3,31 +3,13 @@ import "../../styles/chatPageStyles/chatTile.css";
 import trimString from "./customHooks/trimString";
 import useISTFormat from "./customHooks/useISTFormat";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
-import { USER_SERVICE_URL } from "../../utils/constant";
-import { toast } from "react-toastify";
+import useUsername from "../../utils/useUsername";
 
 const ChatTile = ({ chatData }) => {
     const trimmedLastMessage = trimString(chatData?.lastMessage);
     const formattedTime = useISTFormat(chatData?.lastMessageTimestamp);
 
-    // TODO - Make it reusable by defining it in seperate custom hook
-    const [username, setUsername] = useState(undefined);
-    useEffect(() => {
-        axios
-            .get(
-                USER_SERVICE_URL +
-                    "/get-username-by-id/" +
-                    chatData?.otherUserId
-            )
-            .then((res) => {
-                setUsername(res?.data?.data?.username);
-            })
-            .catch((e) => {
-                toast.error(e?.response?.data?.message || e.message);
-            });
-    }, [chatData?.otherUserId]);
-    //  TODO- Get Avatar from userId
+    const username = useUsername(chatData?.otherUserId);
 
     return (
         <NavLink

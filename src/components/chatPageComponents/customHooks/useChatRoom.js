@@ -1,8 +1,8 @@
 // src/hooks/useChatRoom.js
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import socket from "../../utils/getSocket";
-import { receiveMessage } from "../../config/chatSlice";
+import socket from "../../../utils/getSocket";
+import { receiveMessage } from "../../../config/chatSlice";
 
 const useChatRoom = () => {
     const accessToken = useSelector((state) => state.userDataSlice.accessToken);
@@ -26,7 +26,7 @@ const useChatRoom = () => {
                 receiveMessage({
                     senderId: data.senderId,
                     messageContent: data.messageContent,
-                    timestamp: data.timestamp,
+                    timestamp: data.timestamp
                 })
             );
         });
