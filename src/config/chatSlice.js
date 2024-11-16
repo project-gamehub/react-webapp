@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { CHAT_SERVICE_URL } from "../utils/constant";
-import socket from "../utils/getSocket";
+import socket from "../utils/getChatSocket";
 
 const initialState = {
     chats: null,

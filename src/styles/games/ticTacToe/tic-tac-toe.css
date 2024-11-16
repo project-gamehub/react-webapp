@@ -1,0 +1,107 @@
+.tic-tac-toe {
+    text-align: center;
+}
+
+.board {
+    display: grid;
+    grid-template-rows: repeat(3, 100px);
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.square {
+    all: unset;
+    width: 100px;
+    height: 100px;
+    font-size: 64px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 100px;
+    background: #1e1f20;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.row {
+    display: flex;
+}
+
+.tic-tac-toe-action-btn {
+    all: unset;
+    cursor: pointer;
+    background: #1e1f20;
+    height: 50px;
+    width: 200px;
+    margin: 20px;
+    border-radius: 30px;
+    font-size: large;
+
+    &:hover {
+        background: #424547;
+    }
+}
+
+.tic-tac-toe-start-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.tic-tac-toe-join-game-interface {
+    height: 250px;
+    background: #1e1f20;
+    width: 250px;
+    position: absolute;
+    top: 10px;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.close-tic-tac-toe-join-game-interface-container {
+    display: flex;
+    justify-content: end;
+}
+
+.close-tic-tac-toe-join-game-interface {
+    /* margin: 5px 10px; */
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 50%;
+
+    &:hover {
+        background: #000;
+    }
+}
+
+.tic-tac-toe-join-game-input-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+.tic-tac-toe-join-game-input {
+    all: unset;
+    background: #000;
+    padding: 5px;
+    font-size: larger;
+    border-radius: 15px;
+}
+
+.tic-tac-toe-join-game-button {
+    all: unset;
+    cursor: pointer;
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 15px;
+    margin-top: 10px;
+    font-size: large;
+    height: 40px;
+
+    &:hover {
+        background: #101111;
+    }
+}
+
+.tic-tac-toe-heading {
+    margin-top: 10px;
+}

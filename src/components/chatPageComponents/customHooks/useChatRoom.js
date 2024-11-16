@@ -1,7 +1,7 @@
 // src/hooks/useChatRoom.js
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import socket from "../../../utils/getSocket";
+import socket from "../../../utils/getChatSocket";
 import { receiveMessage } from "../../../config/chatSlice";
 
 const useChatRoom = () => {
@@ -17,7 +17,7 @@ const useChatRoom = () => {
         socket.emit("join-room", { accessToken }, (response) => {
             if (response.error) {
                 console.error("Error joining room:", response.message);
-                // You could add retry logic here if needed
+                // TODO- retry if failed to join
             }
         });
 
