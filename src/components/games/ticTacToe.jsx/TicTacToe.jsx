@@ -6,6 +6,7 @@ import Board from "./Board";
 import StartPage from "./StartPage";
 import PlayerUsernames from "./PlayerUsernames";
 import ShowWinner from "./ShowWinner";
+import WaitingLobby from "./WaitingLobby";
 
 const TicTacToe = () => {
     const accessToken = useSelector((state) => state.userDataSlice.accessToken);
@@ -26,6 +27,15 @@ const TicTacToe = () => {
     const [gameStarted, setGameStarted] = useState(false);
     const [gameCreated, setGameCreated] = useState(false);
     const [winner, setWinner] = useState("");
+    const [currentUserTurn, setCurrentUserTurn] = useState(false);
+
+    useEffect(() => {
+        if (playingTurn === opponentUserId) {
+            setCurrentUserTurn(false);
+        } else {
+            setCurrentUserTurn(true);
+        }
+    }, [opponentUserId, playingTurn]);
 
     useEffect(() => {
         // Listen for game start
@@ -73,18 +83,24 @@ const TicTacToe = () => {
 
     return (
         <div className="tic-tac-toe">
+            <h2 className="tic-tac-toe-heading">Tic Tac Toe</h2>
             {!gameStarted ? (
-                <StartPage
-                    accessToken={accessToken}
-                    setGameId={setGameId}
-                    gameId={gameId}
-                    setGameCreated={setGameCreated}
-                />
-            ) : gameCreated ? (
-                <>Game Created</>
+                gameCreated ? (
+                    <WaitingLobby
+                        gameId={gameId}
+                        setGameCreated={setGameCreated}
+                        accessToken={accessToken}
+                    />
+                ) : (
+                    <StartPage
+                        accessToken={accessToken}
+                        setGameId={setGameId}
+                        gameId={gameId}
+                        setGameCreated={setGameCreated}
+                    />
+                )
             ) : (
                 <div>
-                    <h2>Tic Tac Toe - Game ID: {gameId}</h2>
                     <PlayerUsernames opponentId={opponentUserId} />
                     <Board
                         board={board}
@@ -92,11 +108,13 @@ const TicTacToe = () => {
                         currentPlayer={playingTurn}
                         currentUserId={selfUserId}
                         accessToken={accessToken}
+                        currentUserTurn={currentUserTurn}
+                        winner={winner}
                     />
-                    {playingTurn === opponentUserId ? (
-                        <>Its opponents turn</>
-                    ) : (
+                    {currentUserTurn ? (
                         <>Its your turn</>
+                    ) : (
+                        <>Its opponents turn</>
                     )}
                     <p>You are {selfUserRole}</p>
                 </div>

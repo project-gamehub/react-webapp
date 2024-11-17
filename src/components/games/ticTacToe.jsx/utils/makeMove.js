@@ -1,10 +1,14 @@
 import socket from "../../../../utils/getTicTacToeSocket";
 
-const makeMove = (index, board, gameId, currentPlayer, currentUserId, accessToken) => {
-    if (
-        board[index] !== null ||
-        currentPlayer !== currentUserId
-    ) {
+const makeMove = (
+    index,
+    board,
+    gameId,
+    currentPlayer,
+    currentUserId,
+    accessToken
+) => {
+    if (board[index] !== null || currentPlayer !== currentUserId) {
         return;
     }
 
@@ -15,4 +19,4 @@ const makeMove = (index, board, gameId, currentPlayer, currentUserId, accessToke
     });
 };
 
-export default makeMove
+export default makeMove;
