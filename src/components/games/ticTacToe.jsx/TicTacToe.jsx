@@ -9,6 +9,8 @@ import ShowWinner from "./ShowWinner";
 import WaitingLobby from "./WaitingLobby";
 import ShowRole from "./ShowRole";
 import requestRematch from "./utils/requestRematch";
+import { Link } from "react-router-dom";
+import { LOGO_URL } from "../../../utils/constant";
 
 const TicTacToe = () => {
     const accessToken = useSelector((state) => state.userDataSlice.accessToken);
@@ -96,7 +98,12 @@ const TicTacToe = () => {
 
     return (
         <div className="tic-tac-toe">
-            <h2 className="tic-tac-toe-heading">Tic Tac Toe</h2>
+            <div>
+                <Link className={"tic-tac-toe-go-home-container"} to="/">
+                    <img src={LOGO_URL} alt="Logo" className="logo" />
+                </Link>
+                <h2 className="tic-tac-toe-heading">Tic Tac Toe</h2>
+            </div>
             {!gameStarted ? (
                 gameCreated ? (
                     <WaitingLobby

@@ -1,5 +1,11 @@
 .tic-tac-toe {
     text-align: center;
+    margin-top: 20px;
+}
+
+.tic-tac-toe-go-home-container {
+    position: absolute;
+    left: 30px;
 }
 
 .board {

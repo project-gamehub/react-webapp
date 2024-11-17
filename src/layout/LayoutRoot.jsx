@@ -1,6 +1,5 @@
 import Navbar from "../components/navbarComponents/Navbar";
-import { Outlet, useSearchParams } from "react-router-dom";
-
+import { Outlet, useSearchParams, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData, updateUserAccessToken } from "../config/userDataSlice";
 import { useEffect } from "react";
@@ -15,6 +14,7 @@ const LayoutRoot = () => {
         (state) => state.userDataSlice
     );
     const dispatch = useDispatch();
+    const location = useLocation();
 
     useEffect(() => {
         dispatch(fetchUserData());
@@ -40,9 +40,11 @@ const LayoutRoot = () => {
 
     useChatRoom();
 
+    const hideNavbar = location.pathname.startsWith("/play/");
+
     return (
         <>
-            <Navbar />
+            {!hideNavbar && <Navbar />}
             <Outlet />
         </>
     );
