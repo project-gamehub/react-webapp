@@ -2,8 +2,6 @@ import { useSelector } from "react-redux";
 import useUsername from "../../../utils/useUsername";
 
 const PlayerUsernames = ({ opponentId }) => {
-    console.log("Opp id: ", opponentId);
-
     const selfUsername = useSelector(
         (state) => state.userDataSlice?.userProfileDetails?.username
     );

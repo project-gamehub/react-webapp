@@ -22,8 +22,12 @@ const Board = ({
 
     const winningPattern =
         winner && winner !== "Draw"
-            ? winPatterns.find((pattern) =>
-                  pattern.every((index) => board[index] === board[pattern[0]])
+            ? winPatterns.find(
+                  (pattern) =>
+                      board[pattern[0]] &&
+                      pattern.every(
+                          (index) => board[index] === board[pattern[0]]
+                      )
               )
             : null;
 

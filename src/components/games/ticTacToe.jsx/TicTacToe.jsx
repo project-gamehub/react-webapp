@@ -7,6 +7,8 @@ import StartPage from "./StartPage";
 import PlayerUsernames from "./PlayerUsernames";
 import ShowWinner from "./ShowWinner";
 import WaitingLobby from "./WaitingLobby";
+import ShowRole from "./ShowRole";
+import requestRematch from "./utils/requestRematch";
 
 const TicTacToe = () => {
     const accessToken = useSelector((state) => state.userDataSlice.accessToken);
@@ -21,13 +23,23 @@ const TicTacToe = () => {
 
     const [selfUserRole, setSelfUserRole] = useState("");
     const [opponentUserId, setOpponentUserId] = useState();
-    const [gameId, setGameId] = useState("");
     const [board, setBoard] = useState(Array(9).fill(null));
+    const [winner, setWinner] = useState("");
     const [playingTurn, setPlayingTurn] = useState("");
     const [gameStarted, setGameStarted] = useState(false);
+    const [gameId, setGameId] = useState("");
     const [gameCreated, setGameCreated] = useState(false);
-    const [winner, setWinner] = useState("");
     const [currentUserTurn, setCurrentUserTurn] = useState(false);
+    const [rematchRequested, setRematchRequested] = useState(false);
+
+    const goBack = () => {
+        setGameId("");
+        setCurrentUserTurn(false);
+        setRematchRequested(false);
+        setGameStarted(false);
+        setWinner("");
+        setGameCreated(false);
+    };
 
     useEffect(() => {
         if (playingTurn === opponentUserId) {
@@ -42,6 +54,7 @@ const TicTacToe = () => {
         socket.on("gameStart", ({ players }) => {
             setBoard(Array(9).fill(null));
             setWinner("");
+            setRematchRequested(false);
 
             if (players[0].userId === selfUserId) {
                 setSelfUserRole(players[0].role);
@@ -111,18 +124,46 @@ const TicTacToe = () => {
                         currentUserTurn={currentUserTurn}
                         winner={winner}
                     />
-                    {currentUserTurn ? (
-                        <>Its your turn</>
-                    ) : (
-                        <>Its opponents turn</>
+                    {!winner && (
+                        <ShowRole
+                            currentUserTurn={currentUserTurn}
+                            selfUserRole={selfUserRole}
+                        />
                     )}
-                    <p>You are {selfUserRole}</p>
                 </div>
             )}
-            {winner && winner === "Draw" ? (
-                <>It's a Draw!</>
-            ) : (
-                <ShowWinner winner={winner} />
+            {winner && (
+                <>
+                    {winner === "Draw" ? (
+                        <>It's a Draw!</>
+                    ) : (
+                        <ShowWinner winner={winner} />
+                    )}
+                    {rematchRequested ? (
+                        <div>Waiting for opponent to click on play again</div>
+                    ) : (
+                        <button
+                            className="tic-tac-toe-action-btn"
+                            onClick={() =>
+                                requestRematch(
+                                    accessToken,
+                                    gameId,
+                                    setRematchRequested
+                                )
+                            }
+                        >
+                            Play Again
+                        </button>
+                    )}
+                    {
+                        <button
+                            onClick={goBack}
+                            className="tic-tac-toe-action-btn"
+                        >
+                            Go Back
+                        </button>
+                    }
+                </>
             )}
         </div>
     );
