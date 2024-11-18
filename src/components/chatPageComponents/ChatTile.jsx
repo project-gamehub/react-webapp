@@ -36,7 +36,6 @@ const ChatTile = ({ chatData }) => {
                     <div className="chat-tile-content-container">
                         {trimmedLastMessage}
                         <span className="chat-tile-time-container">
-                            {" "}
                             · {formattedTime}
                         </span>
                     </div>
