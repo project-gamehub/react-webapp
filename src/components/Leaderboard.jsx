@@ -3,7 +3,10 @@ import "../styles/leaderboard.css";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGamesData } from "../config/gamesDataSlice";
-import { fetchLeaderboardData } from "../config/leaderboardsDataSlice";
+import {
+    fetchcurrentUserLbStat,
+    fetchLeaderboardData
+} from "../config/leaderboardsDataSlice";
 import DisplayUsername from "./DisplayUsername";
 
 const Leaderboard = () => {
@@ -12,10 +15,12 @@ const Leaderboard = () => {
 
     const { gamesData } = useSelector((state) => state.gamesDataSlice);
 
-    const { leaderboardsData, leaderboardsDataLoading, leaderboardsDataError } =
+    const { leaderboardsData, leaderboardsDataLoading, currentUserLbStat } =
         useSelector((state) => state.leaderboardsDataSlice);
 
     const dispatch = useDispatch();
+
+    const [gameId, setGameId] = useState();
 
     useEffect(() => {
         if (!gamesData) {
@@ -23,18 +28,25 @@ const Leaderboard = () => {
         } else {
             const gameId = gamesData.find(
                 (gameData) => gameslug === gameData.gameSlug
-            );
-            dispatch(fetchLeaderboardData(gameId._id));
+            )._id;
+            setGameId(gameId);
+            dispatch(fetchLeaderboardData(gameId));
+            dispatch(fetchcurrentUserLbStat(gameId));
             if (leaderboardsData && !leaderboardsDataLoading) {
-                setLeaderboardData(leaderboardsData[gameId._id]);
+                setLeaderboardData(leaderboardsData[gameId]);
             }
         }
     }, [gameslug, gamesData, dispatch, leaderboardsData]);
+
+    // console.log(leaderboardData.description);
 
     return (
         <div className="leaderboard-container">
             <h2 className="leaderboard-defination">TOP 10 PLAYERS</h2>
 
+            {leaderboardData?.description && (
+                <p>{leaderboardData.description}</p>
+            )}
             <div className="leaderboard">
                 <table>
                     <thead>
@@ -71,14 +83,21 @@ const Leaderboard = () => {
                             </>
                         )}
                     </tbody>
-                    <tfoot>
-                        <tr className="current-users-score">
-                            {/* TODO- Make this dynamic after implementing user service */}
-                            <td> </td>
-                            <td>aaaaaa </td>
-                            <td> NULL </td>
-                        </tr>
-                    </tfoot>
+                    {currentUserLbStat[gameId] && (
+                        <tfoot>
+                            <tr className="current-users-score">
+                                <td> </td>
+                                <td>
+                                    <DisplayUsername
+                                        userId={
+                                            currentUserLbStat[gameId]?.userId
+                                        }
+                                    />
+                                </td>
+                                <td> {currentUserLbStat[gameId]?.score} </td>
+                            </tr>
+                        </tfoot>
+                    )}
                 </table>
             </div>
         </div>

@@ -5,8 +5,30 @@ import { GAMES_SERVICE_URL } from "../utils/constant";
 const initialState = {
     leaderboardsData: {},
     leaderboardsDataLoading: true,
-    leaderboardsDataError: null
+    leaderboardsDataError: null,
+    currentUserLbStat: {}
 };
+
+export const fetchcurrentUserLbStat = createAsyncThunk(
+    "fetchcurrentUserLbStat",
+    async (gameId, getState) => {
+        const currentUserLbStat =
+            getState.getState()?.leaderboardsDataSlice?.currentUserLbStat;
+        if (currentUserLbStat && currentUserLbStat[gameId]) {
+            return false;
+        }
+        const userId =
+            getState.getState().userDataSlice?.userProfileDetails?._id;
+
+        if (!userId) {
+            return false;
+        }
+        const response = await axios.get(
+            GAMES_SERVICE_URL + "/get-my-score/" + gameId + "?userId=" + userId
+        );
+        return { gameId, data: response?.data?.data };
+    }
+);
 
 export const fetchLeaderboardData = createAsyncThunk(
     "fetchLeaderboardData",
@@ -46,6 +68,15 @@ export const leaderboardsDataSlice = createSlice({
             .addCase(fetchLeaderboardData.rejected, (state, action) => {
                 state.leaderboardsDataLoading = false;
                 state.leaderboardsDataError = action.error.message;
+            })
+            .addCase(fetchcurrentUserLbStat.fulfilled, (state, action) => {
+                if (action.payload !== false) {
+                    const { gameId, data } = action.payload;
+                    state.currentUserLbStat = {
+                        ...state.currentUserLbStat,
+                        [gameId]: data
+                    };
+                }
             });
     }
 });

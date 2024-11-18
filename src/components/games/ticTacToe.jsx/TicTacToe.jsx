@@ -49,7 +49,7 @@ const TicTacToe = () => {
         } else {
             setCurrentUserTurn(true);
         }
-    }, [opponentUserId, playingTurn]);
+    }, [opponentUserId, playingTurn, selfUserRole]);
 
     useEffect(() => {
         // Listen for game start

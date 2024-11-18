@@ -5,9 +5,10 @@ import { NO_BANNER_FOUND_URL } from "../utils/constant";
 // Splide
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Carousel = ({ data }) => {
+    const { gameslug } = useParams();
     return (
         <div className="carasoul">
             <div className="tpover"></div>
@@ -15,7 +16,7 @@ const Carousel = ({ data }) => {
                 <h2 className="play-button"> Coming Soon </h2>
             ) : (
                 <button type="button" className="play-button">
-                    <Link className="play-button-link" to={data.gameLink}>
+                    <Link className="play-button-link" to={"/play/" + gameslug}>
                         Play Now
                     </Link>
                 </button>
