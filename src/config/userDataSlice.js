@@ -17,7 +17,7 @@ export const fetchUserData = createAsyncThunk(
     async (_, { getState }) => {
         const accessToken = getState().userDataSlice.accessToken;
         if (!accessToken) {
-            throw new Error("User not logged in");
+            return;
         }
         const headers = {
             "access-token": accessToken

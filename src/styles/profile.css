@@ -23,6 +23,15 @@
     overflow: hidden;
 }
 
+.pfp-edit-button {
+    margin-top: 8px;
+    text-align: center;
+
+    & span {
+        cursor: pointer;
+    }
+}
+
 .pfp-img {
     height: 100%;
 }
@@ -80,6 +89,7 @@
     background: #131313;
     border: 0;
     cursor: pointer;
+
     &:hover {
         background: #303033;
     }

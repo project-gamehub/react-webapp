@@ -9,14 +9,17 @@ import ShowWinner from "./ShowWinner";
 import WaitingLobby from "./WaitingLobby";
 import ShowRole from "./ShowRole";
 import requestRematch from "./utils/requestRematch";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LOGO_URL } from "../../../utils/constant";
+import { toast } from "react-toastify";
 
 const TicTacToe = () => {
     const accessToken = useSelector((state) => state.userDataSlice.accessToken);
+    const navigate = useNavigate();
     if (!accessToken) {
         // TODO - if user is not login in any page that requires login, redirect user to login page
-        throw new Error("User not logged in");
+        toast.error("Please login to play the game");
+        navigate("/auth/login");
     }
 
     const selfUserId = useSelector(

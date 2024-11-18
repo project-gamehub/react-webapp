@@ -19,6 +19,7 @@ import PlayGame from "../pages/PlayGame";
 const router = createBrowserRouter(
     createRoutesFromElements(
         <>
+            <Route path="auth/:purpose" element={<Auth />} />
             <Route path="/" element={<Root />}>
                 <Route index element={<Home />} />
                 <Route path="reels" element={<Reels />} />
@@ -29,7 +30,6 @@ const router = createBrowserRouter(
                     <Route index element={<Chat />} />
                     <Route path=":otherUserId" element={<Chat />} />
                 </Route>
-                <Route path="auth/:purpose" element={<Auth />} />
                 <Route path="game/:gameslug" element={<GamePage />} />
                 <Route path="play/:gameslug" element={<PlayGame />} />
             </Route>

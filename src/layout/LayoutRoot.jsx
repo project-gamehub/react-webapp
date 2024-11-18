@@ -21,6 +21,7 @@ const LayoutRoot = () => {
     }, [accessToken]);
 
     const params = useSearchParams()[0];
+
     useEffect(() => {
         if (!isLogin) {
             const token = getCookie("access-token");

@@ -1,11 +1,18 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Shimmer from "../Shimmer";
+import { useState } from "react";
 
 const UserProfileNavbarButton = () => {
     const { userProfileDetails, isLogin, userDataLoading } = useSelector(
         (state) => state.userDataSlice
     );
+
+    const [avatarError, setAvatarError] = useState(false);
+
+    const handleImageError = () => {
+        setAvatarError(true);
+    };
 
     return (
         <div className="profile-container">
@@ -15,11 +22,12 @@ const UserProfileNavbarButton = () => {
                         <div className="navbar-profile-pic">
                             <Shimmer />
                         </div>
-                    ) : userProfileDetails?.avatar ? (
+                    ) : !avatarError && userProfileDetails?.avatar ? (
                         <img
                             className="navbar-profile-pic"
                             src={userProfileDetails?.avatar}
                             alt="User Profile Pic"
+                            onError={handleImageError}
                         />
                     ) : (
                         <span className="material-symbols-rounded">person</span>

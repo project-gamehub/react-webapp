@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import socket from "../../../utils/getChatSocket";
 import { receiveMessage } from "../../../config/chatSlice";
+import { toast } from "react-toastify";
 
 const useChatRoom = () => {
     const accessToken = useSelector((state) => state.userDataSlice.accessToken);
@@ -10,8 +11,7 @@ const useChatRoom = () => {
 
     useEffect(() => {
         if (!accessToken) {
-            // TODO - if user is not login in any page that requires login, redirect user to login page
-            throw new Error("User not logged in");
+            toast.error("User not logged in");
         }
 
         socket.emit("join-room", { accessToken }, (response) => {
