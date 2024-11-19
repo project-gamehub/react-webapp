@@ -67,6 +67,7 @@ const userDataSlice = createSlice({
     }
 });
 
-export const { updateUserAccessToken, logout, updateUserAvatar } = userDataSlice.actions;
+export const { updateUserAccessToken, logout, updateUserAvatar } =
+    userDataSlice.actions;
 
 export default userDataSlice.reducer;

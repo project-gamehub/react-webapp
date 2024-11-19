@@ -50,7 +50,8 @@ const EditPfp = ({ setShowEditPfpInterface }) => {
                 }
             );
             toast.success("Image uploaded successfully!");
-            const imageUrl = response.data.imageUrl;
+            const imageUrl = response.data.data;
+
             dispatch(updateUserAvatar(imageUrl));
         } catch (error) {
             toast.error(

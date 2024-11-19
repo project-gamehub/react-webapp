@@ -26,8 +26,7 @@ export const fetchUsernameFromId = createAsyncThunk(
                 userId,
                 data: { username: response?.data?.data?.username }
             };
-        } catch (error) {
-        }
+        } catch (error) {}
     }
 );
 
@@ -52,8 +51,7 @@ export const fetchAvatarURLFromId = createAsyncThunk(
                 userId,
                 data: { avatarURL: response?.data?.data?.avatar }
             };
-        } catch (error) {
-        }
+        } catch (error) {}
     }
 );
 
