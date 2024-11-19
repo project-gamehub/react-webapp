@@ -4,6 +4,69 @@
     width: 500px;
     height: 350px;
     top: 0;
-    padding: 7px;
     border-radius: 30px;
+}
+
+.custom-file-input {
+    cursor: pointer;
+    margin: 10px 15px;
+    height: 60px;
+    border-radius: 30px;
+    border: 1px dashed rgb(118, 118, 118);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background: #151515;
+    }
+}
+
+.edit-input-note {
+    font-size: small;
+    color: rgb(197, 197, 197);
+}
+
+.display-preview-pfp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-edit-pfp-button {
+    all: unset;
+    cursor: pointer;
+    background: #1e1f20;
+    height: 40px;
+    width: 150px;
+    margin: 20px;
+    border-radius: 30px;
+    text-align: center;
+
+    &:hover {
+        background: #424547;
+    }
+}
+
+.edit-input-container {
+    & input {
+        display: none;
+    }
+}
+
+.close-edit-pfp-interface {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(118, 118, 118);
+}
+
+.close-edit-pfp-heading {
+    margin-left: 15px;
+}
+
+.edit-pfp-close-button {
+    margin-right: 10px;
 }

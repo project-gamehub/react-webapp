@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "../../styles/profilePageStyles/editPfp.css";
 import CloseEditPfpInterface from "./CloseEditPfpInterface";
 import { USER_SERVICE_URL } from "../../utils/constant";
@@ -11,9 +11,18 @@ const EditPfp = ({ setShowEditPfpInterface }) => {
     const [file, setFile] = useState(null);
     const [preview, setPreview] = useState("");
     const dispatch = useDispatch();
+    const fileInputRef = useRef(null);
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
+
+        const validTypes = ["image/png", "image/jpeg", "image/jpg"];
+        if (selectedFile && !validTypes.includes(selectedFile.type)) {
+            toast.error("Only .png, .jpg, and .jpeg files are allowed.");
+            setFile(null);
+            return;
+        }
+
         if (selectedFile && selectedFile.size > 2 * 1024 * 1024) {
             toast.error("File size exceeds 2 MB.");
             setFile(null);
@@ -60,26 +69,48 @@ const EditPfp = ({ setShowEditPfpInterface }) => {
         }
     };
 
+    const triggerFileInput = () => {
+        if (fileInputRef.current) {
+            fileInputRef.current.click();
+        }
+    };
+
     return (
         <div className="edit-pfp-interface">
             <CloseEditPfpInterface
                 setShowEditPfpInterface={setShowEditPfpInterface}
             />
             <div className="edit-input-container">
+                <div className="custom-file-input" onClick={triggerFileInput}>
+                    {preview ? (
+                        <div>Select another image</div>
+                    ) : (
+                        <>
+                            <div>Click here to select an image</div>
+                            <div className="edit-input-note">(Max. 2mb)</div>
+                        </>
+                    )}
+                </div>
                 <input
                     type="file"
-                    accept="image/*"
+                    accept=".png,.jpg,.jpeg"
+                    ref={fileInputRef}
                     onChange={handleFileChange}
                 />
                 {preview && (
-                    <div className="pfp-container">
-                        <img src={preview} alt="Preview" />
+                    <div className="display-preview-pfp">
+                        <div className="pfp-container">
+                            <img src={preview} alt="Preview" />
+                        </div>
+                        <button
+                            className="upload-edit-pfp-button"
+                            onClick={handleUploadClick}
+                        >
+                            Upload
+                        </button>
                     </div>
                 )}
-                <div>Upload the new image</div>
-                <div>(Max. 2mb)</div>
             </div>
-            <button onClick={handleUploadClick}>Upload</button>
         </div>
     );
 };
