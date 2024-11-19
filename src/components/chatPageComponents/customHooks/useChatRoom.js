@@ -16,7 +16,6 @@ const useChatRoom = () => {
 
         socket.emit("join-room", { accessToken }, (response) => {
             if (response.error) {
-                console.error("Error joining room:", response.message);
                 // TODO- retry if failed to join
             }
         });

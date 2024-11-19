@@ -3,31 +3,31 @@ import { useState } from "react";
 import "../../styles/profilePageStyles/editPfp.css";
 import CloseEditPfpInterface from "./CloseEditPfpInterface";
 import { USER_SERVICE_URL } from "../../utils/constant";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { updateUserAvatar } from "../../config/userDataSlice";
 
 const EditPfp = ({ setShowEditPfpInterface }) => {
     const [file, setFile] = useState(null);
     const [preview, setPreview] = useState("");
-    const [message, setMessage] = useState("");
+    const dispatch = useDispatch();
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
         if (selectedFile && selectedFile.size > 2 * 1024 * 1024) {
-            setMessage("File size exceeds 2 MB.");
+            toast.error("File size exceeds 2 MB.");
             setFile(null);
             return;
         }
         setFile(selectedFile);
         setPreview(URL.createObjectURL(selectedFile));
-        setMessage("");
     };
 
     const accessToken = useSelector((state) => state.userDataSlice.accessToken);
 
     const handleUploadClick = async (e) => {
         if (!file) {
-            setMessage("Please select a file.");
+            toast.error("Please select a file.");
             return;
         }
 
@@ -49,11 +49,13 @@ const EditPfp = ({ setShowEditPfpInterface }) => {
                     }
                 }
             );
-            setMessage("Image uploaded successfully!");
-            console.log("Image URL:", response.data.imageUrl);
+            toast.success("Image uploaded successfully!");
+            const imageUrl = response.data.imageUrl;
+            dispatch(updateUserAvatar(imageUrl));
         } catch (error) {
-            console.error(error);
-            setMessage("Image upload failed.");
+            toast.error(
+                error?.response?.data?.message || "Image upload failed"
+            );
         }
     };
 
@@ -77,7 +79,6 @@ const EditPfp = ({ setShowEditPfpInterface }) => {
                 <div>(Max. 2mb)</div>
             </div>
             <button onClick={handleUploadClick}>Upload</button>
-            {message && <p>{message}</p>}
         </div>
     );
 };

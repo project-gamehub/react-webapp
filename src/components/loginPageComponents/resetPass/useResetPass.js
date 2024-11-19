@@ -43,7 +43,6 @@ const useResetPass = () => {
                 res?.data?.message || "Password updated successfully"
             );
         } catch (error) {
-            console.error(error);
             return toast.error(
                 error?.response?.data?.message || "Something went wrong"
             );
@@ -94,7 +93,6 @@ const useResetPass = () => {
             );
             toast.success(res?.data?.message || "OTP requested successfully");
         } catch (error) {
-            console.error(error);
             return toast.error(
                 error?.response?.data?.message || "Requesting OTP failed!"
             );
@@ -127,7 +125,6 @@ const useResetPass = () => {
             );
             toast.success(res?.data?.message || "OTP resent successfully");
         } catch (error) {
-            console.error(error);
             return toast.error(
                 error?.response?.data?.message || "Requesting OTP failed!"
             );

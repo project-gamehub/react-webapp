@@ -36,9 +36,13 @@ const Leaderboard = () => {
                 setLeaderboardData(leaderboardsData[gameId]);
             }
         }
-    }, [gameslug, gamesData, dispatch, leaderboardsData]);
-
-    // console.log(leaderboardData.description);
+    }, [
+        gameslug,
+        gamesData,
+        dispatch,
+        leaderboardsData,
+        leaderboardsDataLoading
+    ]);
 
     return (
         <div className="leaderboard-container">
