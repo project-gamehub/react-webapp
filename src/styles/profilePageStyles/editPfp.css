@@ -1,0 +1,9 @@
+.edit-pfp-interface {
+    background: black;
+    position: absolute;
+    width: 500px;
+    height: 350px;
+    top: 0;
+    padding: 7px;
+    border-radius: 30px;
+}

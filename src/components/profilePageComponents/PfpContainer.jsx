@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
+import EditPfp from "./EditPfp";
 
 const PfpContainer = () => {
     const avatarUrl = useSelector(
@@ -11,8 +12,10 @@ const PfpContainer = () => {
         setAvatarError(true);
     };
 
+    const [showEditPfpInterface, setShowEditPfpInterface] = useState(false);
+
     return (
-        <div>
+        <div className="pfp-container-component">
             <div className="pfp-container">
                 <img
                     className="pfp-img"
@@ -22,12 +25,21 @@ const PfpContainer = () => {
                             : avatarUrl
                     }
                     alt="User's Profile Pic"
-                    onError={handleImageError} // Handles image load error
+                    onError={handleImageError}
                 />
             </div>
-            <div className="pfp-edit-button">
-                <span className="material-symbols-rounded">edit</span>
+            <div className="pfp-edit-button pfp-button">
+                <span
+                    onClick={() => setShowEditPfpInterface(true)}
+                    className="material-symbols-rounded"
+                >
+                    edit
+                </span>
             </div>
+
+            {showEditPfpInterface && (
+                <EditPfp setShowEditPfpInterface={setShowEditPfpInterface} />
+            )}
         </div>
     );
 };
