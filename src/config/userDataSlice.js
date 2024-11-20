@@ -48,6 +48,11 @@ const userDataSlice = createSlice({
             if (state.userProfileDetails) {
                 state.userProfileDetails.avatar = action.payload;
             }
+        },
+        updateUsername: (state, action) => {
+            if (state.userProfileDetails) {
+                state.userProfileDetails.username = action.payload;
+            }
         }
     },
     extraReducers: (builder) => {
@@ -67,7 +72,11 @@ const userDataSlice = createSlice({
     }
 });
 
-export const { updateUserAccessToken, logout, updateUserAvatar } =
-    userDataSlice.actions;
+export const {
+    updateUserAccessToken,
+    logout,
+    updateUserAvatar,
+    updateUsername
+} = userDataSlice.actions;
 
 export default userDataSlice.reducer;

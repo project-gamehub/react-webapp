@@ -1,0 +1,38 @@
+.edit-username-action-buttons-container {
+    display: flex;
+    margin-left: 10px;
+}
+
+.edit-username-action-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+
+    & span {
+        font-size: 24px;
+        padding: 7px;
+    }
+}
+
+.edit-username-close-button:hover {
+    background: red;
+}
+
+.edit-username-open-button:hover {
+    background: rgb(0, 0, 0);
+}
+
+.edit-username-upload-button:hover {
+    background: green;
+}
+
+.edit-username-input {
+    all: unset;
+}
+
+.profile-page-username-input-container {
+    width: 200px;
+    background: #000;
+    padding-left: 5px;
+}

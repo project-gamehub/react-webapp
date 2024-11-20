@@ -57,11 +57,12 @@
 .detail {
     margin-left: 25px;
     display: flex;
+    align-items: center;
     font-size: x-large;
+}
 
-    & div {
-        margin-left: 10px;
-    }
+.user-details {
+    margin-left: 10px;
 }
 
 .google-ico-container {
