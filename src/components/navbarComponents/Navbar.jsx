@@ -22,14 +22,18 @@ const Navbar = () => {
                         <span className="material-symbols-rounded">chat</span>
                         <div className="nav-label">Chat</div>
                     </NavLink>
-                    <NavLink className="navbar-link" to="/reels">
+                    <NavLink className="navbar-link" to="/friends">
+                        <span className="material-symbols-rounded">group</span>
+                        <div className="nav-label">Friends</div>
+                    </NavLink>
+                    {/* <NavLink className="navbar-link" to="/reels">
                         <span className="material-symbols-rounded">movie</span>
                         <div className="nav-label">Reels</div>
                     </NavLink>
                     <NavLink className="navbar-link" to="/explore">
                         <span className="material-symbols-rounded">public</span>
                         <div className="nav-label">Near me</div>
-                    </NavLink>
+                    </NavLink> */}
                 </div>
                 <UserProfileNavbarButton />
             </div>

@@ -4,6 +4,7 @@ import userData from "./userDataSlice";
 import leaderboardsData from "./leaderboardsDataSlice";
 import chatsData from "./chatSlice";
 import otherUsersData from "./otherUserSlice";
+import friendsData from "./friendsDataSlice";
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
         userDataSlice: userData,
         leaderboardsDataSlice: leaderboardsData,
         chatsDataSlice: chatsData,
-        otherUsersDataSlice: otherUsersData
+        otherUsersDataSlice: otherUsersData,
+        friendsDataSlice: friendsData
     }
 });

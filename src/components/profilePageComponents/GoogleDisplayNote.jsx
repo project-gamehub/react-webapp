@@ -4,7 +4,7 @@ const GoogleDisplayNote = ({ isGoogleLogin }) => {
     const [displayNote, setDisplayNote] = useState(false);
     return (
         <div
-            className="google-ico-container"
+            className="google-ico-container user-details"
             onMouseEnter={() => {
                 setDisplayNote(true);
             }}
@@ -16,7 +16,7 @@ const GoogleDisplayNote = ({ isGoogleLogin }) => {
                 <img
                     className="signed-in-with-google"
                     src="https://cdn.iconscout.com/icon/free/png-256/free-google-1772223-1507807.png"
-                    alt=""
+                    alt="Google Icon"
                 />
             )}
 

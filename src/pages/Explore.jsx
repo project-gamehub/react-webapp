@@ -1,5 +1,7 @@
-const App = () => {
-    return <></>;
+import React from "react";
+
+const Explore = () => {
+    return <div>Coming Soon...</div>;
 };
 
-export default App;
+export default Explore;

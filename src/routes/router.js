@@ -15,6 +15,7 @@ import GamePage from "../pages/GamePage";
 import Root from "../layout/LayoutRoot";
 import Chat from "../pages/Chat";
 import PlayGame from "../pages/PlayGame";
+import Friends from "../pages/Friends";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
                 <Route path="about" element={<About />} />
                 <Route path="explore" element={<Explore />} />
                 <Route path="profile" element={<Profile />} />
+                <Route path="friends" element={<Friends />} />
                 <Route path="chat">
                     <Route index element={<Chat />} />
                     <Route path=":otherUserId" element={<Chat />} />
