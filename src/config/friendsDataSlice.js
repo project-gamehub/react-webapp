@@ -15,7 +15,7 @@ export const fetchFriendList = createAsyncThunk(
     "fetchFriendList",
     async (_, { getState }) => {
         const friendList = getState()?.friendsDataSlice?.friendList;
-        if (friendList !== null) {
+        if (friendList != null) {
             return friendList;
         }
 
@@ -26,6 +26,33 @@ export const fetchFriendList = createAsyncThunk(
 
         const response = await axios.get(
             FRIENDS_SERVICE_URL + "/get-my-friend-list",
+            {
+                headers: {
+                    "access-token": accessToken
+                }
+            }
+        );
+
+        return response?.data?.data;
+    }
+);
+
+export const fetchIncomingRequestList = createAsyncThunk(
+    "fetchIncomingRequestList",
+    async (_, { getState }) => {
+        const incomingRequestList =
+            getState()?.friendsDataSlice?.incomingRequestList;
+        if (incomingRequestList != null) {
+            return incomingRequestList;
+        }
+
+        const accessToken = getState().userDataSlice.accessToken;
+        if (!accessToken) {
+            throw new Error("User not logged in");
+        }
+
+        const response = await axios.get(
+            FRIENDS_SERVICE_URL + "/get-friend-request-list",
             {
                 headers: {
                     "access-token": accessToken
@@ -54,6 +81,19 @@ export const friendsDataSlice = createSlice({
             .addCase(fetchFriendList.rejected, (state, action) => {
                 state.friendListLoading = false;
                 state.friendListError = action.error.message;
+            })
+            .addCase(fetchIncomingRequestList.pending, (state) => {
+                state.incomingRequestListLoading = true;
+                state.incomingRequestListError = null;
+            })
+            .addCase(fetchIncomingRequestList.fulfilled, (state, action) => {
+                state.incomingRequestListLoading = false;
+                state.incomingRequestList = action.payload;
+                state.incomingRequestListError = null;
+            })
+            .addCase(fetchIncomingRequestList.rejected, (state, action) => {
+                state.incomingRequestListLoading = false;
+                state.incomingRequestListError = action.error.message;
             });
     }
 });

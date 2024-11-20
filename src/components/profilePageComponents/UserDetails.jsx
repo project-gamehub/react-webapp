@@ -68,7 +68,6 @@ const UserDetails = () => {
             toast.success("Username updated successfully");
             dispatch(updateUsername(currentUsername));
         } catch (error) {
-            console.log(error);
             toast.error(
                 error?.response?.data?.message || "Username update failed"
             );
