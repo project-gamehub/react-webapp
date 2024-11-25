@@ -3,7 +3,7 @@ import axios from "axios";
 import { USER_SERVICE_URL } from "../utils/constant";
 
 const initialState = {
-    otherUsersData: { Hello: "hi" }
+    otherUsersData: {}
 };
 
 export const fetchUsernameFromId = createAsyncThunk(

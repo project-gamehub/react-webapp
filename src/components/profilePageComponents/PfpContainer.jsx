@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import EditPfp from "./EditPfp";
-import { DEFAULT_PFP_URL } from "../../utils/constant";
 
 const PfpContainer = () => {
     const avatarUrl = useSelector(
@@ -17,15 +16,17 @@ const PfpContainer = () => {
 
     return (
         <div className="pfp-container-component">
-            <div className="pfp-container">
-                <img
-                    className="pfp-img"
-                    src={
-                        avatarError || !avatarUrl ? DEFAULT_PFP_URL : avatarUrl
-                    }
-                    alt="User's Profile Pic"
-                    onError={handleImageError}
-                />
+            <div className="pfp-container disp-flx">
+                {avatarUrl && !avatarError ? (
+                    <img
+                        className="pfp-img"
+                        src={avatarUrl}
+                        alt="User's Profile Pic"
+                        onError={handleImageError}
+                    />
+                ) : (
+                    <span className="material-symbols-rounded">person</span>
+                )}
             </div>
             <div className="pfp-edit-button pfp-button">
                 <span

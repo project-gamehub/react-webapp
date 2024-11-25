@@ -7,9 +7,6 @@ export const TICTACTOE_SERVICE_URL = "http://localhost:3006";
 
 export const LOGO_URL = "https://i.postimg.cc/SQVJXt7K/logo.png";
 
-export const DEFAULT_PFP_URL =
-    "https://static-00.iconduck.com/assets.00/user-circle-icon-2048x2048-lmkqor95.png";
-
 export const NO_BANNER_FOUND_URL =
     "https://image.pngaaa.com/13/1887013-middle.png";
 

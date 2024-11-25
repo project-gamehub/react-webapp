@@ -16,11 +16,16 @@
 }
 
 .pfp-container {
-    background: rgb(255, 255, 255);
+    border: 1px solid white;
     height: 125px;
     width: 125px;
     border-radius: 50%;
     overflow: hidden;
+
+    & span {
+        font-size: 96px;
+        font-weight: 200;
+    }
 }
 
 .pfp-container img {

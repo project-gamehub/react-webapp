@@ -32,3 +32,9 @@ body {
     border: 0;
     height: 300px;
 }
+
+.disp-flx {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

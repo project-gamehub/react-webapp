@@ -47,21 +47,20 @@
     all: unset;
 }
 
-.disp-flx {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .friend-page-avatar {
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    background: white;
+    border: 1px solid white;
 
     & img {
         height: 100%;
         width: 100%;
+    }
+
+    & span {
+        font-size: 36px;
+        font-weight: 300;
     }
 }
 
