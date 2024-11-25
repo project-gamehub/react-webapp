@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import EditPfp from "./EditPfp";
+import { DEFAULT_PFP_URL } from "../../utils/constant";
 
 const PfpContainer = () => {
     const avatarUrl = useSelector(
@@ -20,9 +21,7 @@ const PfpContainer = () => {
                 <img
                     className="pfp-img"
                     src={
-                        avatarError || !avatarUrl
-                            ? "https://static-00.iconduck.com/assets.00/user-circle-icon-2048x2048-lmkqor95.png"
-                            : avatarUrl
+                        avatarError || !avatarUrl ? DEFAULT_PFP_URL : avatarUrl
                     }
                     alt="User's Profile Pic"
                     onError={handleImageError}

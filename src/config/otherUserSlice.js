@@ -35,7 +35,7 @@ export const fetchAvatarURLFromId = createAsyncThunk(
     async (userId, { getState }) => {
         const otherUsersData = getState().otherUsersDataSlice.otherUsersData;
 
-        if (otherUsersData[userId]?.avatarURL) {
+        if (otherUsersData[userId]?.avatarURL !== undefined) {
             return {
                 userId,
                 data: { avatarURL: otherUsersData[userId].avatarURL }
@@ -49,7 +49,7 @@ export const fetchAvatarURLFromId = createAsyncThunk(
 
             return {
                 userId,
-                data: { avatarURL: response?.data?.data?.avatar }
+                data: { avatarURL: response?.data?.data?.avatar || null }
             };
         } catch (error) {}
     }

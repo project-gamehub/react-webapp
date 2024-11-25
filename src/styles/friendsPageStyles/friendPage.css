@@ -58,6 +58,11 @@
     width: 50px;
     border-radius: 50%;
     background: white;
+
+    & img {
+        height: 100%;
+        width: 100%;
+    }
 }
 
 .friend-page-username {
