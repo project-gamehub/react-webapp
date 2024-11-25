@@ -1,10 +1,9 @@
 const RejectRequestButton = ({ userId }) => {
-    const handleStopPropagation = (e) => {
-        e.stopPropagation();
-    };
+    const handleRejectRequest = () => {};
+
     return (
         <div
-            onClick={handleStopPropagation}
+            onClick={handleRejectRequest}
             className="friend-page-action-button friend-page-button-hover-red"
         >
             <span className="material-symbols-rounded">close</span>

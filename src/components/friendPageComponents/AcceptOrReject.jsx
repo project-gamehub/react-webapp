@@ -2,8 +2,14 @@ import AcceptRequestButton from "./AcceptRequestButton";
 import RejectRequestButton from "./RejectRequestButton";
 
 const AcceptOrReject = ({ userId }) => {
+    const handleStopPropagation = (e) => {
+        e.stopPropagation();
+    };
     return (
-        <div className="friend-page-msg-and-unfriend disp-flx">
+        <div
+            onClick={handleStopPropagation}
+            className="friend-page-msg-and-unfriend disp-flx"
+        >
             <AcceptRequestButton userId={userId} />
             <RejectRequestButton userId={userId} />
         </div>

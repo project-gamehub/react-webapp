@@ -60,13 +60,20 @@ export const fetchIncomingRequestList = createAsyncThunk(
             }
         );
 
-        return response?.data?.data;
+        return response?.data?.data?.reverse();
     }
 );
 
 export const friendsDataSlice = createSlice({
     name: "friendsData",
     initialState,
+    reducers: {
+        removeFriend: (state, action) => {
+            state.friendList = state.friendList.filter(
+                (friend) => friend !== action.payload
+            );
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchFriendList.pending, (state) => {
@@ -97,5 +104,7 @@ export const friendsDataSlice = createSlice({
             });
     }
 });
+
+export const { removeFriend } = friendsDataSlice.actions;
 
 export default friendsDataSlice.reducer;
