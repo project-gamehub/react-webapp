@@ -77,6 +77,12 @@ export const friendsDataSlice = createSlice({
             state.incomingRequestList = state.incomingRequestList.filter(
                 (requestId) => requestId !== action.payload
             );
+        },
+        addFriend: (state, action) => {
+            if (!state.friendList) {
+                state.friendList = [];
+            }
+            state.friendList.push(action.payload);
         }
     },
     extraReducers: (builder) => {
@@ -110,6 +116,7 @@ export const friendsDataSlice = createSlice({
     }
 });
 
-export const { removeFriend, removeIncomingRequest } = friendsDataSlice.actions;
+export const { removeFriend, removeIncomingRequest, addFriend } =
+    friendsDataSlice.actions;
 
 export default friendsDataSlice.reducer;
