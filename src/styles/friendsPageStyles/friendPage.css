@@ -1,0 +1,95 @@
+.friend-page {
+    display: flex;
+    height: 80vh;
+    margin: 20px;
+    justify-content: space-between;
+}
+
+.friend-page-list {
+    background: #1e1f20;
+    width: 100%;
+    margin: 10px;
+    border-radius: 20px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.friend-list-header {
+    text-align: center;
+    border-bottom: 1px solid rgb(118, 118, 118);
+    font-size: 24px;
+}
+
+.friend-page-list-container {
+    height: 71vh;
+    overflow: auto;
+    margin: 10px;
+}
+
+.friend-page-single-tile {
+    all: unset;
+    height: 65px;
+    background: #0f0f0f;
+    margin: 5px 0;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 25px;
+
+    &:hover {
+        background: #000;
+    }
+}
+
+.friend-page-chat-link {
+    all: unset;
+}
+
+.disp-flx {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.friend-page-avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: white;
+}
+
+.friend-page-username {
+    margin-left: 10px;
+}
+
+.friend-page-action-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    margin-inline: 5px;
+
+    & span {
+        font-size: 24px;
+        padding: 7px;
+    }
+}
+
+.friend-page-unfriend-interface-label {
+    cursor: default;
+}
+
+.friend-page-button-hover-red:hover {
+    background: red;
+}
+
+.friend-page-button-hover-blue:hover {
+    background: rgb(0, 0, 162);
+}
+
+.friend-page-button-hover-green:hover {
+    background: green;
+}

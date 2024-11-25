@@ -1,23 +1,23 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchIncomingRequestList } from "../../config/friendsDataSlice";
+import { useSelector } from "react-redux";
+import IncomingRequestListContainer from "./IncomingRequestListContainer";
+import "../../styles/friendsPageStyles/incomingFriendRequest.css";
 
 const IncomingFriendRequests = () => {
-    const {
-        incomingRequestList,
-        incomingRequestListError,
-        incomingRequestListLoading
-    } = useSelector((state) => state.friendsDataSlice);
+    const incomingRequestList = useSelector(
+        (state) => state.friendsDataSlice.incomingRequestList
+    );
 
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        if (incomingRequestList == null) {
-            dispatch(fetchIncomingRequestList());
-        }
-    }, [dispatch, incomingRequestList]);
-
-    return <div>IncomingFriendRequests</div>;
+    return (
+        <div className="friend-page-list">
+            <div className="friend-list-header">
+                Incoming Friend Requests{" "}
+                {incomingRequestList != null && (
+                    <span>({incomingRequestList.length})</span>
+                )}
+            </div>
+            <IncomingRequestListContainer />
+        </div>
+    );
 };
 
 export default IncomingFriendRequests;

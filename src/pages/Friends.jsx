@@ -1,24 +1,11 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchFriendList } from "../config/friendsDataSlice";
 import IncomingFriendRequests from "../components/friendPageComponents/IncomingFriendRequests";
+import FriendList from "../components/friendPageComponents/FriendList";
+import "../styles/friendsPageStyles/friendPage.css";
 
 const Friends = () => {
-    const { friendList, friendListError, friendListLoading } = useSelector(
-        (state) => state.friendsDataSlice
-    );
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        if (friendList == null) {
-            dispatch(fetchFriendList());
-        }
-    }, [dispatch, friendList]);
-
     return (
-        <div>
-            Friends
+        <div className="friend-page">
+            <FriendList />
             <IncomingFriendRequests />
         </div>
     );
