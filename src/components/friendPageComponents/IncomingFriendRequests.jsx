@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
 import IncomingRequestListContainer from "./IncomingRequestListContainer";
-import "../../styles/friendsPageStyles/incomingFriendRequest.css";
 
 const IncomingFriendRequests = () => {
+    // TODO - Create a socket to fetch incoming request realtime
+
     const incomingRequestList = useSelector(
         (state) => state.friendsDataSlice.incomingRequestList
     );

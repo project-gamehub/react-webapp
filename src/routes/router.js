@@ -16,6 +16,8 @@ import Root from "../layout/LayoutRoot";
 import Chat from "../pages/Chat";
 import PlayGame from "../pages/PlayGame";
 import Friends from "../pages/Friends";
+import NearMe from "../components/explorePageComponents/NearMe";
+import SearchUser from "../components/explorePageComponents/SearchUser";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -25,7 +27,10 @@ const router = createBrowserRouter(
                 <Route index element={<Home />} />
                 <Route path="reels" element={<Reels />} />
                 <Route path="about" element={<About />} />
-                <Route path="explore" element={<Explore />} />
+                <Route path="explore" element={<Explore />}>
+                    <Route path="near-me" element={<NearMe />} />
+                    <Route path="search-user" element={<SearchUser />} />
+                </Route>
                 <Route path="profile" element={<Profile />} />
                 <Route path="friends" element={<Friends />} />
                 <Route path="chat">

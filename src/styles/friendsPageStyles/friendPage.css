@@ -52,10 +52,12 @@
     width: 50px;
     border-radius: 50%;
     border: 1px solid white;
+    overflow: hidden;
 
     & img {
         height: 100%;
         width: 100%;
+        object-fit: cover;
     }
 
     & span {

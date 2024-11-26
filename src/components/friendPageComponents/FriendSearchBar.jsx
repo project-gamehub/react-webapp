@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchBarValue } from "../../config/friendsDataSlice";
-import { useEffect } from "react";
 
 const FriendSearchBar = () => {
     const dispatch = useDispatch();
@@ -11,12 +10,6 @@ const FriendSearchBar = () => {
     const handleChange = (event) => {
         dispatch(setSearchBarValue(event.target.value));
     };
-
-    useEffect(() => {
-        return () => {
-            dispatch(setSearchBarValue(""));
-        };
-    }, [dispatch]);
 
     return (
         <div className="disp-flx friend-search-bar-container">

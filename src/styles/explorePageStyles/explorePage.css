@@ -1,0 +1,36 @@
+.explore-page {
+    display: flex;
+    background: #1e1f20;
+    height: 75vh;
+    margin: 20px;
+    border-radius: 35px;
+    padding: 20px;
+}
+
+.explore-page-navbar {
+    width: 15vw;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.explore-page-navbar-link {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: #131314;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 15px;
+
+    &:hover {
+        background: #333335;
+    }
+
+    &.active {
+        background: #000000;
+    }
+}

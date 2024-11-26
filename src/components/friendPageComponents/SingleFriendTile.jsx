@@ -18,7 +18,7 @@ const SingleFriendTile = ({ userId }) => {
     );
 
     if (
-        searchBarValue == "" ||
+        searchBarValue === "" ||
         username.includes(searchBarValue.trim().toLowerCase())
     ) {
         return (
