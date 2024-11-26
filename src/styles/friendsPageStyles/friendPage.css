@@ -23,7 +23,7 @@
 .friend-page-list-container {
     height: 71vh;
     overflow: auto;
-    margin: 10px;
+    margin: 0 10px 10px 10px;
 }
 
 .friend-page-single-tile {

@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import FriendListContainer from "./FriendListContainer";
+import FriendSearchBar from "./FriendSearchBar";
 
 const FriendList = () => {
     const friendList = useSelector(
@@ -12,6 +13,7 @@ const FriendList = () => {
                 Friends{" "}
                 {friendList != null && <span>({friendList.length})</span>}
             </div>
+            <FriendSearchBar />
             <FriendListContainer />
         </div>
     );
