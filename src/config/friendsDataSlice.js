@@ -1,4 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+    createAsyncThunk,
+    createSelector,
+    createSlice
+} from "@reduxjs/toolkit";
 import { FRIENDS_SERVICE_URL } from "../utils/constant";
 import axios from "axios";
 
@@ -8,8 +12,25 @@ const initialState = {
     friendListError: false,
     incomingRequestList: null,
     incomingRequestListLoading: true,
-    incomingRequestListError: false
+    incomingRequestListError: false,
+    searchBarValue: ""
 };
+
+export const selectFilteredFriendList = createSelector(
+    [
+        (state) => state.friendsDataSlice.friendList,
+        (state) => state.friendsDataSlice.searchBarValue
+    ],
+    (friendList, searchBarValue) => {
+        if (!friendList) return [];
+        const trimmedValue = searchBarValue.trim().toLowerCase();
+        if (trimmedValue === "") return friendList;
+
+        return friendList.filter((friend) =>
+            friend.username.toLowerCase().includes(trimmedValue)
+        );
+    }
+);
 
 export const fetchFriendList = createAsyncThunk(
     "fetchFriendList",
@@ -83,6 +104,9 @@ export const friendsDataSlice = createSlice({
                 state.friendList = [];
             }
             state.friendList.push(action.payload);
+        },
+        setSearchBarValue: (state, action) => {
+            state.searchBarValue = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -116,7 +140,11 @@ export const friendsDataSlice = createSlice({
     }
 });
 
-export const { removeFriend, removeIncomingRequest, addFriend } =
-    friendsDataSlice.actions;
+export const {
+    removeFriend,
+    removeIncomingRequest,
+    addFriend,
+    setSearchBarValue
+} = friendsDataSlice.actions;
 
 export default friendsDataSlice.reducer;

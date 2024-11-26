@@ -1,4 +1,23 @@
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchBarValue } from "../../config/friendsDataSlice";
+import { useEffect } from "react";
+
 const FriendSearchBar = () => {
+    const dispatch = useDispatch();
+    const searchBarValue = useSelector(
+        (state) => state.friendsDataSlice.searchBarValue
+    );
+
+    const handleChange = (event) => {
+        dispatch(setSearchBarValue(event.target.value));
+    };
+
+    useEffect(() => {
+        return () => {
+            dispatch(setSearchBarValue(""));
+        };
+    }, [dispatch]);
+
     return (
         <div className="disp-flx friend-search-bar-container">
             <input
@@ -8,12 +27,9 @@ const FriendSearchBar = () => {
                 autoComplete="off"
                 autoCorrect="off"
                 spellCheck="false"
+                onChange={handleChange}
+                value={searchBarValue}
             />
-            <button className="friend-search-button-container disp-flx">
-                <span className="material-symbols-rounded friend-search-icon">
-                    search
-                </span>
-            </button>
         </div>
     );
 };
