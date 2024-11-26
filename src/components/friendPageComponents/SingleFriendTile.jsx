@@ -17,7 +17,10 @@ const SingleFriendTile = ({ userId }) => {
         (state) => state.friendsDataSlice.searchBarValue
     );
 
-    if (username.includes(searchBarValue.trim().toLowerCase())) {
+    if (
+        searchBarValue == "" ||
+        username.includes(searchBarValue.trim().toLowerCase())
+    ) {
         return (
             <div className="friend-page-single-tile" onClick={handleTileClick}>
                 <FriendPageAvatarAndUsername userId={userId} />
