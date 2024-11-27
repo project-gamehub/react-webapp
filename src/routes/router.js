@@ -18,6 +18,7 @@ import PlayGame from "../pages/PlayGame";
 import Friends from "../pages/Friends";
 import NearMe from "../components/explorePageComponents/NearMe";
 import SearchUser from "../components/explorePageComponents/SearchUser";
+import User from "../pages/User";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -39,6 +40,7 @@ const router = createBrowserRouter(
                 </Route>
                 <Route path="game/:gameslug" element={<GamePage />} />
                 <Route path="play/:gameslug" element={<PlayGame />} />
+                <Route path="user/:userId" element={<User />} />
             </Route>
         </>
     )

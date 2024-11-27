@@ -1,0 +1,43 @@
+.user-page-details-container {
+    margin-top: 10px;
+    height: fit-content;
+    font-size: x-large;
+}
+
+.user-page-components {
+    margin-left: 25px;
+    background: #131314;
+    border-radius: 20px;
+}
+
+.user-page-button {
+    all: unset;
+    cursor: pointer;
+    background: #1e1f20;
+    height: 50px;
+    width: 200px;
+    margin: 20px;
+    border-radius: 30px;
+    font-size: large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(118, 118, 118);
+
+    &:hover {
+        background: #424547;
+    }
+
+    & span {
+        margin-right: 5px;
+        font-weight: 200;
+    }
+}
+
+.cancel-outgoing-request-button {
+    display: flex;
+    flex-direction: column;
+    & span {
+        font-size: 12px;
+    }
+}

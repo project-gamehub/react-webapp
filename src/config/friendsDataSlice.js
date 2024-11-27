@@ -95,9 +95,11 @@ export const friendsDataSlice = createSlice({
             );
         },
         removeIncomingRequest: (state, action) => {
-            state.incomingRequestList = state.incomingRequestList.filter(
-                (requestId) => requestId !== action.payload
-            );
+            if (state.incomingRequestList) {
+                state.incomingRequestList = state.incomingRequestList.filter(
+                    (requestId) => requestId !== action.payload
+                );
+            }
         },
         addFriend: (state, action) => {
             if (!state.friendList) {
