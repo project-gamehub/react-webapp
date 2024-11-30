@@ -28,7 +28,7 @@ const Auth = () => {
         } else {
             navigate("/auth/login");
         }
-    }, [purpose]);
+    }, [purpose, navigate]);
 
     return (
         <div className="login-page-container">

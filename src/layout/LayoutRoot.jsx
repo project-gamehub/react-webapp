@@ -18,7 +18,7 @@ const LayoutRoot = () => {
 
     useEffect(() => {
         dispatch(fetchUserData());
-    }, [accessToken]);
+    }, [accessToken, dispatch]);
 
     const params = useSearchParams()[0];
 
@@ -37,7 +37,7 @@ const LayoutRoot = () => {
                 }
             }
         }
-    }, []);
+    }, [dispatch, isLogin, params]);
 
     useChatRoom();
 

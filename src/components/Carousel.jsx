@@ -30,13 +30,15 @@ const Carousel = ({ data }) => {
             >
                 {data.banners && data.banners.length > 0 ? (
                     data.banners.map((bannerLink, idx) => {
-                        <SplideSlide>
-                            <img
-                                className="banner"
-                                src={bannerLink}
-                                alt={`image ${idx}`}
-                            />
-                        </SplideSlide>;
+                        return (
+                            <SplideSlide>
+                                <img
+                                    className="banner"
+                                    src={bannerLink}
+                                    alt={`Banner ${idx}`}
+                                />
+                            </SplideSlide>
+                        );
                     })
                 ) : (
                     <SplideSlide>

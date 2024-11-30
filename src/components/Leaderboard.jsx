@@ -15,8 +15,9 @@ const Leaderboard = () => {
 
     const { gamesData } = useSelector((state) => state.gamesDataSlice);
 
-    const { leaderboardsData, leaderboardsDataLoading, currentUserLbStat } =
-        useSelector((state) => state.leaderboardsDataSlice);
+    const { leaderboardsData, currentUserLbStat } = useSelector(
+        (state) => state.leaderboardsDataSlice
+    );
 
     const dispatch = useDispatch();
 
@@ -32,17 +33,12 @@ const Leaderboard = () => {
             setGameId(gameId);
             dispatch(fetchLeaderboardData(gameId));
             dispatch(fetchcurrentUserLbStat(gameId));
-            if (leaderboardsData && !leaderboardsDataLoading) {
+
+            if (leaderboardsData && leaderboardsData[gameId]) {
                 setLeaderboardData(leaderboardsData[gameId]);
             }
         }
-    }, [
-        gameslug,
-        gamesData,
-        dispatch,
-        leaderboardsData,
-        leaderboardsDataLoading
-    ]);
+    }, [gameslug, gamesData, leaderboardsData, dispatch]);
 
     return (
         <div className="leaderboard-container">

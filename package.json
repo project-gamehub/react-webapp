@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.8",
     "@reduxjs/toolkit": "^2.0.1",
     "@splidejs/react-splide": "^0.7.12",
     "@splidejs/splide": "^4.1.4",
