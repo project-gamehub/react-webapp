@@ -4,4 +4,4 @@ const mapContainerStyle = {
     height: "100%"
 };
 
-export default mapContainerStyle
+export default mapContainerStyle;

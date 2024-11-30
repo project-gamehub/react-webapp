@@ -6,6 +6,7 @@ import chatsData from "./chatSlice";
 import otherUsersData from "./otherUserSlice";
 import friendsData from "./friendsDataSlice";
 import exploreSlice from "./exploreSlice";
+import mapDataSlice from "./mapDataSlice";
 
 export const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
         chatsDataSlice: chatsData,
         otherUsersDataSlice: otherUsersData,
         friendsDataSlice: friendsData,
-        exploreSlice: exploreSlice
+        exploreSlice: exploreSlice,
+        mapDataSlice: mapDataSlice
     }
 });

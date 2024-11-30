@@ -1,12 +1,12 @@
 const mapOptions = {
-    zoom: 14,
+    zoom: 16,
     mapId: "8816d33bab6210",
-    maxZoom: 17,
-    minZoom: 10,
+    maxZoom: 18,
+    minZoom: 14,
     colorScheme: "DARK",
     disableDefaultUI: true,
     fullscreenControl: true,
-    clickableIcons: false,
+    clickableIcons: false
 };
 
 export default mapOptions;
