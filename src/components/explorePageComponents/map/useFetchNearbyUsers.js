@@ -1,11 +1,16 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { updateMapData } from "../../../config/mapDataSlice";
+import {
+    updateExploredAreas,
+    updateMapData
+} from "../../../config/mapDataSlice";
 import { USER_SERVICE_URL } from "../../../utils/constant";
 
 const useFetchNearbyUsers = (mapBounds) => {
-    const [exploredAreas, setExploredAreas] = useState(new Set());
+    const exploredAreas = useSelector(
+        (state) => state.mapDataSlice.exploredAreas
+    );
     const dispatch = useDispatch();
     const accessToken = useSelector((state) => state.userDataSlice.accessToken);
 
@@ -14,7 +19,7 @@ const useFetchNearbyUsers = (mapBounds) => {
             const boundsKey = `${mapBounds.ne.lat()}_${mapBounds.ne.lng()}_${mapBounds.sw.lat()}_${mapBounds.sw.lng()}`;
 
             // Check if the bounds have already been explored
-            if (!exploredAreas.has(boundsKey) && accessToken) {
+            if (!exploredAreas[boundsKey] && accessToken) {
                 const points = {
                     ne: { lat: mapBounds.ne.lat(), lng: mapBounds.ne.lng() },
                     sw: { lat: mapBounds.sw.lat(), lng: mapBounds.sw.lng() }
@@ -32,9 +37,7 @@ const useFetchNearbyUsers = (mapBounds) => {
                             }
                         );
                         dispatch(updateMapData(response.data.users));
-                        setExploredAreas((prev) =>
-                            new Set(prev).add(boundsKey)
-                        );
+                        dispatch(updateExploredAreas(boundsKey));
                     } catch (error) {
                         console.error("Error fetching nearby users:", error);
                     }

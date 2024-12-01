@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
 import { MAPS_API_KEY } from "../../../utils/secrets";
 import createMarkerContent from "./createMarkerContent";
-import getInfoWindowContent from "./getInfoWindowContent";
+import getInfoWindowContent from "./getInfoWindowContent.js";
 
 const useAddMarker = (mapInstance) => {
     const addMarker = useCallback(
@@ -40,7 +40,7 @@ const useAddMarker = (mapInstance) => {
 
                 setTimeout(() => {
                     const button = document.querySelector(
-                        ".view-profile-button"
+                        ".map-info-window-view-profile-button"
                     );
                     if (button) {
                         button.addEventListener("click", () => {

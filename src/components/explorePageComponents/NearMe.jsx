@@ -23,7 +23,7 @@ const NearMe = () => {
             Object.values(mapData).forEach((user) => {
                 addMarker(
                     {
-                        lat: user.location.coordinates[1], // Assuming GeoJSON format [lng, lat]
+                        lat: user.location.coordinates[1],
                         lng: user.location.coordinates[0]
                     },
                     user,
