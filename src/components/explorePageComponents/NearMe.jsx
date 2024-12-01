@@ -5,6 +5,7 @@ import useInitializeMap from "./map/useInitializeMap";
 import useAddMarker from "./map/useAddMarker";
 import { useSelector } from "react-redux";
 import useFetchNearbyUsers from "./map/useFetchNearbyUsers";
+import { useNavigate } from "react-router-dom";
 
 const NearMe = () => {
     const { location, error } = useUserLocation();
@@ -14,6 +15,7 @@ const NearMe = () => {
     const mapData = useSelector((state) => state.mapDataSlice.data);
 
     useFetchNearbyUsers(mapBounds);
+    const navigate = useNavigate();
 
     // Add markers for users
     useEffect(() => {
@@ -24,11 +26,12 @@ const NearMe = () => {
                         lat: user.location.coordinates[1], // Assuming GeoJSON format [lng, lat]
                         lng: user.location.coordinates[0]
                     },
-                    user
+                    user,
+                    navigate
                 );
             });
         }
-    }, [mapInstance, mapData, addMarker]);
+    }, [mapInstance, mapData, addMarker, navigate]);
 
     if (error) {
         return (

@@ -38,7 +38,7 @@ const mapDataSlice = createSlice({
     reducers: {
         updateMapData: (state, action) => {
             action.payload.forEach((user) => {
-                state.data[user._id] = user; // Use user ID as the key
+                state.data[user._id] = user;
             });
         }
     }

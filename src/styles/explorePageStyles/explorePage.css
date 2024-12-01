@@ -34,3 +34,48 @@
         background: #000000;
     }
 }
+
+.map-info-window-img-container {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid black;
+}
+
+.map-info-window-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.map-info-window-view-profile-button {
+    all: unset;
+    cursor: pointer;
+    background: #1e1f20;
+    height: 35px;
+    width: 130px;
+    border-radius: 30px;
+    font-size: 16px;
+    text-align: center;
+
+    &:hover {
+        background: #424547;
+    }
+}
+
+.map-info-window-details-container {
+    margin-left: 7px;
+    text-align: center;
+    font-size: 18px;
+
+    & h4 {
+        color: #000;
+    }
+}
+
+.map-info-window-img-container span {
+    color: #000;
+    font-size: 36px;
+    font-weight: 200;
+}
