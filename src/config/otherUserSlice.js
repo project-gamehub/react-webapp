@@ -14,7 +14,7 @@ export const fetchUsernameFromId = createAsyncThunk(
         if (otherUsersData[userId]?.username) {
             return {
                 userId,
-                data: { username: otherUsersData[userId].username }
+                data: { username: otherUsersData[userId].username || null }
             };
         }
 
@@ -24,7 +24,7 @@ export const fetchUsernameFromId = createAsyncThunk(
             );
             return {
                 userId,
-                data: { username: response?.data?.data?.username }
+                data: { username: response?.data?.data?.username || null }
             };
         } catch (error) {}
     }
@@ -62,18 +62,22 @@ const otherUsersDataSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchUsernameFromId.fulfilled, (state, action) => {
-                const { userId, data } = action.payload;
-                state.otherUsersData[userId] = {
-                    ...state.otherUsersData[userId],
-                    ...data
-                };
+                if (action.payload) {
+                    const { userId, data } = action.payload;
+                    state.otherUsersData[userId] = {
+                        ...state.otherUsersData[userId],
+                        ...data
+                    };
+                }
             })
             .addCase(fetchAvatarURLFromId.fulfilled, (state, action) => {
-                const { userId, data } = action.payload;
-                state.otherUsersData[userId] = {
-                    ...state.otherUsersData[userId],
-                    ...data
-                };
+                if (action.payload) {
+                    const { userId, data } = action.payload;
+                    state.otherUsersData[userId] = {
+                        ...state.otherUsersData[userId],
+                        ...data
+                    };
+                }
             });
     }
 });
