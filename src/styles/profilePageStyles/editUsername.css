@@ -29,10 +29,24 @@
 
 .edit-username-input {
     all: unset;
+    width: 100%;
 }
 
 .profile-page-username-input-container {
     width: 200px;
     background: #000;
     padding-left: 5px;
+}
+
+@media (max-width: 600px) {
+    .profile-page-username-input-container {
+        width: 150px;
+    }
+
+    .edit-username-action-button {
+        & span {
+            font-size: 21px;
+            padding: 4px;
+        }
+    }
 }
