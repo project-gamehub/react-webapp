@@ -7,7 +7,7 @@ const Navbar = () => {
     return (
         <>
             <div className="navbar-container">
-                <div>
+                <div className="gamehub-logo-container">
                     <NavLink to="/">
                         <img src={LOGO_URL} alt="Logo" className="logo" />
                     </NavLink>

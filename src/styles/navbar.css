@@ -71,3 +71,72 @@
     object-fit: cover;
     overflow: hidden;
 }
+
+@media (max-width: 1200px) {
+    .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        position: relative;
+        border-bottom: 1px solid rgb(118, 118, 118);
+    }
+
+    .navbar-links-container {
+        position: relative;
+    }
+
+    .gamehub-logo-container {
+        margin-left: 10px;
+    }
+}
+
+@media (max-width: 765px) {
+    .navbar-container {
+        position: fixed;
+        z-index: 1;
+        bottom: 0px;
+        border-top: 1px solid rgb(118, 118, 118);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbar-links-container {
+        position: relative;
+    }
+
+    .gamehub-logo-container {
+        display: none;
+    }
+
+    .nav-label {
+        display: none;
+    }
+
+    .navbar-link {
+        height: unset;
+        min-width: unset;
+        border-radius: 25%;
+        margin: 5px 10px;
+        padding: 5px 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .navbar-link {
+        height: unset;
+        min-width: unset;
+        margin: 5px;
+        padding: 5px 5px;
+    }
+}
+
+@media (max-width: 300px) {
+    .navbar-link {
+        height: unset;
+        min-width: unset;
+        margin: 5px 3px;
+        padding: 5px 5px;
+    }
+}

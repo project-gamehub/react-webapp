@@ -11,8 +11,14 @@
 
 @media (max-width: 520px) {
     .game-cards-container {
+        margin: 0;
         padding: 0px;
-        margin: 0px;
         background: #00000000;
+    }
+}
+
+@media (max-width: 765px) {
+    .game-cards-container {
+        margin-bottom: 120px;
     }
 }
