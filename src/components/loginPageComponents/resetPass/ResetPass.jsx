@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "../../../styles/loginPageStyles/loginAndRegistrationForm.css";
 import useResetPass from "./useResetPass.js";
 
@@ -13,6 +14,10 @@ const ResetPass = () => {
         disabledOtpResend,
         resendOTP
     } = useResetPass();
+
+    useEffect(() => {
+        document.title = "Reset Pass - GameHub";
+    }, []);
 
     return (
         <>

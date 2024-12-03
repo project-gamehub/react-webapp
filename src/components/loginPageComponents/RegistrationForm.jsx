@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../styles/loginPageStyles/loginAndRegistrationForm.css";
 import useRegisterForm from "../../utils/authFunctionsAndHooks/handleForm/useRegisterForm";
 
 const RegistrationForm = () => {
+    useEffect(() => {
+        document.title = "Register - GameHub";
+    }, []);
+
     const [inputs, setInputs] = useState({});
 
     const handleChange = (event) => {

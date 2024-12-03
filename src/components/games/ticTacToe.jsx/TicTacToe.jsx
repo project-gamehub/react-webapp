@@ -14,6 +14,10 @@ import { LOGO_URL } from "../../../utils/constant";
 import { toast } from "react-toastify";
 
 const TicTacToe = () => {
+    useEffect(() => {
+        document.title = "Tic Tac Toe - GameHub";
+    }, []);
+
     const accessToken = useSelector((state) => state.userDataSlice.accessToken);
     const navigate = useNavigate();
     if (!accessToken) {
