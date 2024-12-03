@@ -2,7 +2,7 @@ import Navbar from "../components/navbarComponents/Navbar";
 import { Outlet, useSearchParams, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData, updateUserAccessToken } from "../config/userDataSlice";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import getCookie from "../utils/authFunctionsAndHooks/handleCookies/getCookie";
 import handleAccessToken from "../utils/handleAccessToken";
 import deleteCookie from "../utils/authFunctionsAndHooks/handleCookies/deleteCookie";
@@ -46,7 +46,9 @@ const LayoutRoot = () => {
     return (
         <>
             {!hideNavbar && <Navbar />}
-            <Outlet />
+            <Suspense fallback={<div>Loading...</div>}>
+                <Outlet />
+            </Suspense>
         </>
     );
 };

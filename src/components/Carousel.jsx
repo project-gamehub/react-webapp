@@ -31,7 +31,7 @@ const Carousel = ({ data }) => {
                 {data.banners && data.banners.length > 0 ? (
                     data.banners.map((bannerLink, idx) => {
                         return (
-                            <SplideSlide>
+                            <SplideSlide key={idx}>
                                 <img
                                     className="banner"
                                     src={bannerLink}

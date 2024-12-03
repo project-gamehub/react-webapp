@@ -1,3 +1,4 @@
+import React from "react";
 import {
     createBrowserRouter,
     createRoutesFromElements,
@@ -5,20 +6,24 @@ import {
 } from "react-router-dom";
 
 // Pages Import
-import Home from "../pages/Home";
-import About from "../pages/About";
-import Reels from "../pages/Reels";
-import Explore from "../pages/Explore";
-import Profile from "../pages/Profile";
-import Auth from "../pages/Auth";
-import GamePage from "../pages/GamePage";
-import Root from "../layout/LayoutRoot";
-import Chat from "../pages/Chat";
-import PlayGame from "../pages/PlayGame";
-import Friends from "../pages/Friends";
-import NearMe from "../components/explorePageComponents/NearMe";
-import SearchUser from "../components/explorePageComponents/SearchUser";
-import User from "../pages/User";
+const Home = React.lazy(() => import("../pages/Home"));
+const About = React.lazy(() => import("../pages/About"));
+const Reels = React.lazy(() => import("../pages/Reels"));
+const Explore = React.lazy(() => import("../pages/Explore"));
+const Profile = React.lazy(() => import("../pages/Profile"));
+const Auth = React.lazy(() => import("../pages/Auth"));
+const GamePage = React.lazy(() => import("../pages/GamePage"));
+const Root = React.lazy(() => import("../layout/LayoutRoot"));
+const Chat = React.lazy(() => import("../pages/Chat"));
+const PlayGame = React.lazy(() => import("../pages/PlayGame"));
+const Friends = React.lazy(() => import("../pages/Friends"));
+const NearMe = React.lazy(
+    () => import("../components/explorePageComponents/NearMe")
+);
+const SearchUser = React.lazy(
+    () => import("../components/explorePageComponents/SearchUser")
+);
+const User = React.lazy(() => import("../pages/User"));
 
 const router = createBrowserRouter(
     createRoutesFromElements(
