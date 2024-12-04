@@ -18,6 +18,7 @@
     text-align: center;
     border-bottom: 1px solid rgb(118, 118, 118);
     font-size: 24px;
+    padding-inline: 5px;
 }
 
 .friend-page-list-container {
@@ -98,4 +99,67 @@
 
 .friend-page-button-hover-green:hover {
     background: green;
+}
+
+.change-view-button {
+    display: none;
+}
+
+@media (max-width: 765px) {
+    .friend-page {
+        height: 88vh;
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+    }
+
+    .change-view-button {
+        all: unset;
+        cursor: pointer;
+        background: #131314;
+        margin-left: 10px;
+        height: 36px;
+        margin-block: 10px;
+        padding-inline: 25px;
+        border-radius: 30px;
+        font-size: medium;
+
+        &:hover {
+            background: #424547;
+        }
+    }
+
+    .friend-list-header {
+        font-size: medium;
+    }
+}
+
+@media (max-width: 400px) {
+    .change-view-button {
+        margin-block: 5px;
+        font-size: medium;
+    }
+
+    .friend-list-header {
+        font-size: medium;
+    }
+
+    .friend-page-avatar {
+        height: 40px;
+        width: 40px;
+
+        & span {
+            font-size: 32px;
+            font-weight: 200;
+        }
+    }
+
+    .friend-page-action-button {
+        margin-inline: 2px;
+
+        & span {
+            font-size: 24px;
+            padding: 7px;
+        }
+    }
 }

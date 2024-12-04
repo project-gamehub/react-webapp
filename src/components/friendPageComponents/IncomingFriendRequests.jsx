@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import IncomingRequestListContainer from "./IncomingRequestListContainer";
 
-const IncomingFriendRequests = () => {
+const IncomingFriendRequests = ({ setShowFriendList }) => {
     // TODO - Create a socket to fetch incoming request realtime
 
     const incomingRequestList = useSelector(
@@ -15,6 +15,12 @@ const IncomingFriendRequests = () => {
                 {incomingRequestList != null && (
                     <span>({incomingRequestList.length})</span>
                 )}
+                <button
+                    onClick={() => setShowFriendList(true)}
+                    className="change-view-button"
+                >
+                    View Friends
+                </button>
             </div>
             <IncomingRequestListContainer />
         </div>
