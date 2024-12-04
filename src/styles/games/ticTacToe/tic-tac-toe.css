@@ -110,3 +110,18 @@
 .tic-tac-toe-current-user-turn-board {
     border: 1px solid green;
 }
+
+@media (max-width: 550px) {
+    .tic-tac-toe-go-home-container {
+        position: unset;
+    }
+
+    .tic-tac-toe {
+        text-align: center;
+        margin-top: 0;
+    }
+
+    .tic-tac-toe-heading {
+        margin-top: 0;
+    }
+}
