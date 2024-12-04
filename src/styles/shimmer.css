@@ -15,3 +15,10 @@ div.shimmer {
         background: rgb(0, 0, 0);
     }
 }
+
+.suspense-fallback-container {
+    height: 81vh;
+    margin: 25px;
+    border-radius: 25px;
+    overflow: hidden;
+}
