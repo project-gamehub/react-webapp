@@ -18,12 +18,14 @@ const ChatTile = ({ chatData }) => {
         >
             <div className="chat-tile">
                 <div className="chat-tile-avatar-container">
-                    {userAvatarURL && (
+                    {userAvatarURL ? (
                         <img
                             src={userAvatarURL}
                             alt={`${chatData?.otherUserId}'s avatar`}
                             className="chat-tile-avatar"
                         />
+                    ) : (
+                        <span className="material-symbols-rounded">person</span>
                     )}
                 </div>
                 <div className="chat-tile-detils-container">
@@ -34,9 +36,12 @@ const ChatTile = ({ chatData }) => {
                               "Loading"}
                     </div>
                     <div className="chat-tile-content-container">
-                        {trimmedLastMessage}
+                        <span className="chat-tile-last-message-container">
+                            {chatData?.lastMessage}
+                        </span>
+                        {/* {trimmedLastMessage} */}
                         <span className="chat-tile-time-container">
-                            · {formattedTime}
+                            &nbsp; · {formattedTime}
                         </span>
                     </div>
                 </div>

@@ -8,3 +8,9 @@
 .chat-list {
     overflow-y: auto;
 }
+
+@media (max-width: 765px) {
+    .chat-list-wrapper {
+        width: 100%;
+    }
+}

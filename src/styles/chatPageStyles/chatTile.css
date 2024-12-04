@@ -16,6 +16,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    width: 90%;
 }
 
 .chat-tile:hover {
@@ -23,19 +24,27 @@
 }
 
 .chat-tile-avatar-container {
-    border-radius: 50%;
+    flex: 0 0 50px;
     height: 50px;
     width: 50px;
-    /* TODO - Add shimmer instead of green bg */
-    background: rgb(111, 255, 0);
+    border-radius: 50%;
+    border: 1px solid rgb(118, 118, 118);
     overflow: hidden;
-}
 
-.chat-tile-avatar {
-    height: 100%;
+    & img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    & span {
+        font-size: 36px;
+        font-weight: 300;
+    }
 }
 
 .chat-tile-detils-container {
+    width: 80%;
     margin-left: 5px;
 }
 
@@ -45,10 +54,37 @@
 }
 
 .chat-tile-content-container {
-    font-weight: 300;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    /* max-width: 300px; */
     font-size: small;
 }
 
+.chat-tile-last-message-container {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-grow: 1;
+    margin-right: 5px;
+}
+
 .chat-tile-time-container {
+    flex-shrink: 0;
     color: rgb(169, 169, 169);
+    white-space: nowrap;
+}
+
+@media (max-width: 765px) {
+    .chat-tile {
+        width: 95%;
+    }
+}
+
+@media (max-width: 350px) {
+    .chat-tile {
+        width: 90%;
+    }
 }

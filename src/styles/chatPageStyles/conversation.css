@@ -27,18 +27,38 @@
     align-items: center;
 }
 
+.conversation-user-details-link {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    margin-left: 15px;
+}
+
+.go-back-button {
+    cursor: pointer;
+    margin-left: 15px;
+}
+
 .conversation-user-avatar-container {
+    margin-inline: 0px 5px;
     height: 40px;
     width: 40px;
     border-radius: 50%;
-    /* TODO - Add shimmer instead of green bg */
-    background: greenyellow;
-    margin-inline: 25px 10px;
+    border: 1px solid rgb(118, 118, 118);
     overflow: hidden;
-}
 
-.conversation-user-avatar {
-    height: 100%;
+    & img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    & span {
+        font-size: 36px;
+        font-weight: 300;
+    }
 }
 
 .conversation-message-section {
@@ -84,5 +104,11 @@
             font-weight: 300;
             font-size: 28px;
         }
+    }
+}
+
+@media (min-width: 765px) {
+    .go-back-button {
+        display: none;
     }
 }

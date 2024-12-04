@@ -6,3 +6,9 @@
     border-radius: 35px;
     padding: 20px;
 }
+
+@media (max-width: 765px) {
+    .chat-page {
+        height: 81vh;
+    }
+}
