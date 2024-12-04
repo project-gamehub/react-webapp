@@ -46,6 +46,8 @@ const ChatList = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, [otherUserId]);
 
+    const [searchBarValue, setSearchBarValue] = useState("");
+
     if (!showChatList) {
         return <></>;
     }
@@ -68,7 +70,10 @@ const ChatList = () => {
 
     return (
         <div className="chat-list-wrapper">
-            <ChatSearchBar />
+            <ChatSearchBar
+                searchBarValue={searchBarValue}
+                setSearchBarValue={setSearchBarValue}
+            />
             <div className="chat-list">
                 {chatsDataLoading || !currentUserId ? (
                     // TODO - Implement Shimmer here
@@ -93,6 +98,7 @@ const ChatList = () => {
 
                             return (
                                 <ChatTile
+                                    searchBarValue={searchBarValue}
                                     chatData={chatData}
                                     key={otherUserId}
                                 />

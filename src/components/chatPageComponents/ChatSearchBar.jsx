@@ -1,6 +1,6 @@
 import "../../styles/chatPageStyles/chatSearchBar.css";
 
-const ChatSearchBar = () => {
+const ChatSearchBar = ({ searchBarValue, setSearchBarValue }) => {
     return (
         <div className="chat-search-bar-container">
             <input
@@ -10,12 +10,11 @@ const ChatSearchBar = () => {
                 autoComplete="off"
                 autoCorrect="off"
                 spellCheck="false"
+                value={searchBarValue}
+                onChange={(e) => {
+                    setSearchBarValue(e.target.value);
+                }}
             />
-            <button className="chat-search-button-container">
-                <span className="material-symbols-rounded chat-search-icon">
-                    search
-                </span>
-            </button>
         </div>
     );
 };
