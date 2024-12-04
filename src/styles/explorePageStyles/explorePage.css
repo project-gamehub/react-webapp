@@ -8,7 +8,7 @@
 }
 
 .explore-page-navbar {
-    width: 15vw;
+    width: fit-content;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -25,6 +25,7 @@
     padding: 10px 20px;
     font-size: 18px;
     border-radius: 15px;
+    text-wrap: nowrap;
 
     &:hover {
         background: #333335;
@@ -78,4 +79,27 @@
     color: #000;
     font-size: 36px;
     font-weight: 200;
+}
+
+@media (max-width: 765px) {
+    .explore-page {
+        height: 81vh;
+    }
+}
+
+@media (max-width: 600px) {
+    .explore-page {
+        flex-direction: column;
+        height: 85vh;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .explore-page-navbar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        height: unset;
+        margin-right: 0px;
+    }
 }

@@ -1,5 +1,6 @@
 .search-user-page {
-    width: 45vw;
+    width: 100%;
+    max-width: 600px;
     background: #131314;
     padding: 10px;
     border-radius: 25px;
@@ -56,5 +57,11 @@
         height: 100%;
         width: 100%;
         object-fit: cover;
+    }
+}
+
+@media (max-width: 600px) {
+    .search-user-page {
+        width: unset;
     }
 }
