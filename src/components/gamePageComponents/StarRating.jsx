@@ -18,19 +18,17 @@ const StarRating = ({ gameId }) => {
     }, [accessToken, gameId, dispatch]);
 
     return (
-        <div>
-            <div className="rating-wrapper">
-                <div className="ratings">
-                    <h2 className="current-rating">
-                        Rating: {ratingData?.averageRating || "N/A"}
-                    </h2>
-                    <h3>
-                        <Stars gameId={gameId} />
-                    </h3>
-                </div>
-                <div className="total-ratings">
-                    (Total {ratingData?.totalRatings || 0} ratings)
-                </div>
+        <div className="rating-wrapper">
+            <div className="ratings">
+                <h2 className="current-rating">
+                    Rating: {ratingData?.averageRating || "N/A"}
+                </h2>
+                <h3>
+                    <Stars gameId={gameId} />
+                </h3>
+            </div>
+            <div className="total-ratings">
+                (Total {ratingData?.totalRatings || 0} ratings)
             </div>
         </div>
     );

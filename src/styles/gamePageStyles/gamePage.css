@@ -1,4 +1,10 @@
 .game-page-container {
     display: flex;
-    margin: 40px;
+    width: 100%;
+}
+
+@media (max-width: 1000px) {
+    .game-page-container {
+        flex-direction: column;
+    }
 }

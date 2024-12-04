@@ -14,10 +14,10 @@
     border: 1px solid rgba(118, 118, 118);
     transition:
         box-shadow 0.7s ease,
-        background-color 0.7s ease;
+        background 0.7s ease;
 
     &:hover {
-        background-color: #383838;
+        background: #383838;
 
         & img {
             height: 110%;

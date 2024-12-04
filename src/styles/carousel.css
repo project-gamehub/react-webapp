@@ -1,6 +1,6 @@
 .banner {
-    height: 500px;
-    width: 1000px;
+    width: 100%;
+    aspect-ratio: 2 / 1;
     object-fit: cover;
 }
 
@@ -31,10 +31,6 @@
     padding-inline: 10px;
 }
 
-.carasoul {
-    position: relative;
-}
-
 .carasoul button {
     cursor: pointer;
     transition: box-shadow 0.3s ease;
@@ -48,4 +44,38 @@
 .splide__arrow:focus {
     outline: 3px solid rgba(255, 0, 34, 0.5) !important;
     transition: outline 0.3s ease;
+}
+
+@media (max-width: 750px) {
+    .play-button {
+        right: 3%;
+        font-size: 1.5rem;
+        border-radius: 10px;
+        font-weight: 400;
+    }
+}
+
+@media (max-width: 600px) {
+    .tpover {
+        height: 15px;
+    }
+
+    .splide__pagination__page {
+        height: 4px !important;
+        width: 4px !important;
+    }
+
+    .splide__arrow {
+        height: 16px !important;
+        width: 16px !important;
+
+        & svg {
+            height: 0.6em !important;
+            width: 0.6em !important;
+        }
+    }
+
+    .play-button {
+        display: none;
+    }
 }

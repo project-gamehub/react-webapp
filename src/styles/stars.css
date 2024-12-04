@@ -11,6 +11,14 @@
 }
 
 .selectedRating {
-    /* filter: drop-shadow(rgb(255, 255,0,0.3) 0 0px 20px); */
+    filter: drop-shadow(rgb(255, 255, 0, 0.3) 0 0px 20px);
     font-variation-settings: "FILL" 1;
+}
+
+@media (max-width: 600px) {
+    .ratings span {
+        color: yellow;
+        font-size: 12px !important;
+        cursor: pointer;
+    }
 }
