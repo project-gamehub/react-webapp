@@ -1,3 +1,14 @@
+.user-page-profile-card {
+    margin: 30px;
+    border-radius: 25px;
+    height: 70vh;
+    width: 70vw;
+    background: #1e1f20;
+    padding: 25px;
+    display: flex;
+    position: relative;
+}
+
 .user-page-details-container {
     margin-top: 10px;
     height: fit-content;
@@ -37,7 +48,73 @@
 .cancel-outgoing-request-button {
     display: flex;
     flex-direction: column;
+
     & span {
         font-size: 12px;
+    }
+}
+
+.user-page-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 900px) {
+    .user-page-profile-card {
+        margin: 15px 10px;
+        height: 70vh;
+        width: 85vw;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 765px) {
+    .user-page-profile-card {
+        margin: 0;
+        height: unset;
+        width: 100vw;
+        padding: 0;
+        background: none;
+        flex-direction: column;
+        margin-top: 15px;
+    }
+
+    .user-page-pfp-container-component {
+        display: flex;
+        justify-content: center;
+    }
+
+    .user-page-components {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .user-page-profile-card {
+        margin: 0;
+        height: unset;
+        width: 100vw;
+        padding: 0;
+        background: none;
+        flex-direction: column;
+        margin-top: 15px;
+    }
+
+    .user-page-pfp-container-component {
+        display: flex;
+        justify-content: center;
+    }
+
+    .user-page-components {
+        margin-left: 0;
+    }
+
+    .user-page-buttons-container {
+        flex-direction: column;
+    }
+
+    .user-page-button {
+        margin: 15px;
     }
 }

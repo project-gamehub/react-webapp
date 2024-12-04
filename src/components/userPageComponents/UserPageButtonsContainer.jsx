@@ -5,7 +5,7 @@ import FriendReqStatusButton from "./FriendReqStatusButton";
 const UserPageButtonsContainer = () => {
     const userId = useParams().userId;
     return (
-        <div className="user-page-buttons-container disp-flx">
+        <div className="user-page-buttons-container">
             <NavLink className={"user-page-button"} to={"/chat/" + userId}>
                 <span className="material-symbols-rounded">chat</span> Send
                 Message

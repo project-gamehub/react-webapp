@@ -6,8 +6,8 @@ import "../styles/userPageStyles/userPage.css";
 
 const User = () => {
     return (
-        <div className="profile-card-container">
-            <div className="profile-card">
+        <div className="disp-flx">
+            <div className="user-page-profile-card">
                 <UserPagePfpContainer />
                 <div className="user-page-components">
                     <UserPageUserDetails />

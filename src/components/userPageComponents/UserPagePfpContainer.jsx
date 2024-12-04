@@ -13,7 +13,7 @@ const UserPagePfpContainer = () => {
     };
 
     return (
-        <div className="pfp-container-component">
+        <div className="user-page-pfp-container-component">
             <div className="pfp-container disp-flx">
                 {avatarUrl && !avatarError ? (
                     <img
