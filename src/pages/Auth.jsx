@@ -6,6 +6,9 @@ import RegistrationForm from "../components/loginPageComponents/RegistrationForm
 import LoginForm from "../components/loginPageComponents/LoginForm";
 import ResetPass from "../components/loginPageComponents/resetPass/ResetPass";
 import { useNavigate, useParams } from "react-router-dom";
+import ToggleLoginRegisterButton from "../components/loginPageComponents/ToggleLoginRegisterButton";
+import BreakingLineContainer from "../components/loginPageComponents/BreakingLineContainer";
+import ForgotPassButtonContainer from "../components/loginPageComponents/ForgotPassButtonContainer";
 
 // TODO find for {" "} and replace with nothing
 
@@ -50,58 +53,17 @@ const Auth = () => {
                         <>
                             {showResetPassword ? <ResetPass /> : <LoginForm />}
 
-                            <div className="forgot-pass-btn-container">
-                                <button
-                                    className="forgot-pass-btn"
-                                    type="button"
-                                    onClick={() => {
-                                        if (showResetPassword) {
-                                            navigate("/auth/login");
-                                        } else {
-                                            navigate("/auth/reset-pass");
-                                        }
-                                    }}
-                                >
-                                    {showResetPassword ? (
-                                        <>Back to login</>
-                                    ) : (
-                                        <>Forgot Password?</>
-                                    )}
-                                </button>
-                            </div>
+                            <ForgotPassButtonContainer
+                                showResetPassword={showResetPassword}
+                            />
                         </>
                     )}
 
-                    <div className="line-container">
-                        <div className="line"></div>
-                        <div className="or-text">OR</div>
-                        <div className="line"></div>
-                    </div>
-
+                    <BreakingLineContainer />
                     <GoogleLoginComponent />
-                    <button
-                        type="button"
-                        className="toggle-login-register-btn"
-                        onClick={() => {
-                            if (wantsToRegister) {
-                                navigate("/auth/login");
-                            } else {
-                                navigate("/auth/register");
-                            }
-                        }}
-                    >
-                        {wantsToRegister ? (
-                            <>
-                                Already have an account?&nbsp;
-                                <span>Click to Login</span>
-                            </>
-                        ) : (
-                            <>
-                                Don't have an account?&nbsp;
-                                <span>Click to Register</span>
-                            </>
-                        )}
-                    </button>
+                    <ToggleLoginRegisterButton
+                        wantsToRegister={wantsToRegister}
+                    />
                 </div>
             </div>
         </div>

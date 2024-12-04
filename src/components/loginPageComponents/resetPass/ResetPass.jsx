@@ -1,6 +1,14 @@
 import { useEffect } from "react";
 import "../../../styles/loginPageStyles/loginAndRegistrationForm.css";
 import useResetPass from "./useResetPass.js";
+import ChangeEmailText from "./ChangeEmailText.jsx";
+import OTPInputFieldContainer from "./OTPInputFieldContainer.jsx";
+import EmailInput from "./EmailInput.jsx";
+import ResetPassInput from "./ResetPassInput.jsx";
+import ConfirmResetPassInput from "./ConfirmResetPassInput.jsx";
+import RequestOTPButton from "./RequestOTPButton.jsx";
+import ResendOTPButton from "./ResendOTPButton.jsx";
+import ResetPassSubmitButton from "./ResetPassSubmitButton.jsx";
 
 const ResetPass = () => {
     const {
@@ -29,113 +37,38 @@ const ResetPass = () => {
             >
                 {!isOTPRequested ? (
                     <>
-                        <div className="input-container">
-                            <div className="label-icon-container">
-                                <span className="material-symbols-rounded label-icon">
-                                    person
-                                </span>
-                            </div>
-                            <input
-                                placeholder="Email"
-                                className="input-field"
-                                type="email"
-                                name="email"
-                                value={inputs.email || ""}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="input-container">
-                            <div className="label-icon-container">
-                                <span className="material-symbols-rounded label-icon">
-                                    lock
-                                </span>
-                            </div>
-                            <input
-                                placeholder="New Password"
-                                className="input-field"
-                                type="password"
-                                name="password"
-                                value={inputs.password || ""}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        {/* TODO - Add show/Hide password feature */}
-                        <div className="input-container">
-                            <div className="label-icon-container">
-                                <span className="material-symbols-rounded label-icon">
-                                    lock
-                                </span>
-                            </div>
-                            <input
-                                placeholder="Confirm New Password"
-                                className="input-field"
-                                type="password"
-                                name="confirmPassword"
-                                value={inputs.confirmPassword || ""}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <button
-                            className="submit-btn"
-                            onClick={requestOTP}
-                            type="button"
-                        >
-                            Request OTP
-                        </button>
+                        <EmailInput
+                            handleChange={handleChange}
+                            email={inputs.email || ""}
+                        />
+                        <ResetPassInput
+                            handleChange={handleChange}
+                            password={inputs.password || ""}
+                        />
+                        <ConfirmResetPassInput
+                            handleChange={handleChange}
+                            confirmPassword={inputs.confirmPassword || ""}
+                        />
+                        <RequestOTPButton requestOTP={requestOTP} />
                     </>
                 ) : (
                     <>
-                        <span className="change-email-text">
-                            OTP sent successfully to&nbsp;
-                            <span className="email-and-change-button-container">
-                                <u>{inputs.email}</u>
-                                &nbsp;
-                                <button
-                                    className="change-email-button"
-                                    type="button"
-                                    onClick={() => {
-                                        setIsOTPRequested(false);
-                                    }}
-                                >
-                                    <span className="material-symbols-rounded">
-                                        edit
-                                    </span>
-                                </button>
-                            </span>
-                        </span>
-                        <div className="input-container four-dig-otp-field">
-                            <div className="label-icon-container">
-                                <span className="material-symbols-rounded label-icon">
-                                    key
-                                </span>
-                            </div>
-                            <input
-                                placeholder="4 Digit OTP"
-                                className="input-field"
-                                type="number"
-                                name="otp"
-                                value={inputs.otp || ""}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="resend-otp-button-container">
-                            <button
-                                disabled={disabledOtpResend}
-                                className="resend-otp-btn"
-                                type="button"
-                                onClick={resendOTP}
-                            >
-                                Resend OTP&nbsp;
-                                {disabledOtpResend ? (
-                                    `(${disabledOtpResendTimeRemaining} seconds)`
-                                ) : (
-                                    <></>
-                                )}
-                            </button>
-                        </div>
-                        <button className="submit-btn" type="submit">
-                            Reset Password
-                        </button>
+                        <ChangeEmailText
+                            setIsOTPRequested={setIsOTPRequested}
+                            email={inputs.email}
+                        />
+                        <OTPInputFieldContainer
+                            handleChange={handleChange}
+                            otp={inputs.otp || ""}
+                        />
+                        <ResendOTPButton
+                            disabledOtpResend={disabledOtpResend}
+                            resendOTP={resendOTP}
+                            disabledOtpResendTimeRemaining={
+                                disabledOtpResendTimeRemaining
+                            }
+                        />
+                        <ResetPassSubmitButton />
                     </>
                 )}
             </form>
