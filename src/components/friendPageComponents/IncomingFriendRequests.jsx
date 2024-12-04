@@ -11,7 +11,7 @@ const IncomingFriendRequests = ({ setShowFriendList }) => {
     return (
         <div className="friend-page-list">
             <div className="friend-list-header">
-                Incoming Friend Requests{" "}
+                Incoming Friend Requests&nbsp;
                 {incomingRequestList != null && (
                     <span>({incomingRequestList.length})</span>
                 )}

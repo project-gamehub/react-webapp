@@ -65,7 +65,7 @@
 .line-container {
     display: flex;
     align-items: center;
-    width: 60%;
+    width: 80%;
     margin-block: 3px 5px;
 }
 
@@ -93,5 +93,46 @@
 
     &:hover {
         color: rgb(196, 196, 196);
+    }
+}
+
+@media (max-width: 1000px) {
+    .login-components-container {
+        width: 95vw;
+    }
+}
+
+@media (max-width: 800px) {
+    .components-container {
+        width: 70%;
+    }
+
+    .abs-pos-right {
+        left: 30%;
+    }
+}
+
+@media (max-width: 550px) {
+    .components-container {
+        width: 80%;
+    }
+
+    .abs-pos-right {
+        left: 20%;
+    }
+
+    .login-components-container {
+        height: 85vh;
+    }
+}
+
+@media (max-width: 400px) {
+    .components-container {
+        width: 100%;
+        transition: unset;
+    }
+
+    .abs-pos-right {
+        left: 0%;
     }
 }

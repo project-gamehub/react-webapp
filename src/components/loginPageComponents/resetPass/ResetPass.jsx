@@ -85,22 +85,24 @@ const ResetPass = () => {
                     </>
                 ) : (
                     <>
-                        <div className="change-email-container">
-                            <span className="change-email-text">
-                                OTP sent successfully to <u>{inputs.email}</u>
+                        <span className="change-email-text">
+                            OTP sent successfully to&nbsp;
+                            <span className="email-and-change-button-container">
+                                <u>{inputs.email}</u>
+                                &nbsp;
+                                <button
+                                    className="change-email-button"
+                                    type="button"
+                                    onClick={() => {
+                                        setIsOTPRequested(false);
+                                    }}
+                                >
+                                    <span className="material-symbols-rounded">
+                                        edit
+                                    </span>
+                                </button>
                             </span>
-                            <button
-                                className="change-email-button"
-                                type="button"
-                                onClick={() => {
-                                    setIsOTPRequested(false);
-                                }}
-                            >
-                                <span className="material-symbols-rounded">
-                                    edit
-                                </span>
-                            </button>
-                        </div>
+                        </span>
                         <div className="input-container four-dig-otp-field">
                             <div className="label-icon-container">
                                 <span className="material-symbols-rounded label-icon">

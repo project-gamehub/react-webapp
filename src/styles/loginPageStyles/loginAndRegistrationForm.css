@@ -2,12 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
-    /* height: 68%; */
+    width: 100%;
 }
 
 .input-container {
-    width: 60%;
+    width: 80%;
     position: relative;
     display: flex;
     align-items: center;
@@ -45,7 +44,7 @@
 .submit-btn {
     border: none;
     background: rgb(255, 255, 255);
-    width: 60%;
+    width: 80%;
     height: 50px;
     /* margin-top: 20px; */
     font-size: larger;
@@ -82,11 +81,10 @@
     cursor: pointer;
 }
 
-.change-email-container {
-    margin-bottom: 5px;
+.email-and-change-button-container {
+    display: flex;
 }
 
-.change-email-container,
 .change-email-button,
 .resend-otp-button-container {
     display: flex;
@@ -123,5 +121,10 @@
 }
 
 .change-email-text {
-    width: max-content;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    word-break: break-word;
+    justify-content: center;
+    margin-bottom: 5px;
 }

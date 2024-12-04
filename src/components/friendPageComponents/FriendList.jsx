@@ -10,7 +10,7 @@ const FriendList = ({ setShowFriendList }) => {
     return (
         <div className="friend-page-list">
             <div className="friend-list-header">
-                Friends{" "}
+                Friends&nbsp;
                 {friendList != null && <span>({friendList.length})</span>}
                 <button
                     onClick={() => setShowFriendList(false)}
