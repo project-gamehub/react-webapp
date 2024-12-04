@@ -202,7 +202,8 @@ const chatSlice = createSlice({
                     lastMessageTimestamp
                 });
             }
-        }
+        },
+        resetState: () => initialState
     },
     extraReducers: (builder) => {
         builder
@@ -244,6 +245,7 @@ export const {
     addMessageToConversation,
     updateMessageStatus,
     receiveMessage,
-    updateChatSummary
+    updateChatSummary,
+    resetState
 } = chatSlice.actions;
 export default chatSlice.reducer;

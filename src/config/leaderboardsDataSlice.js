@@ -48,6 +48,11 @@ export const fetchLeaderboardData = createAsyncThunk(
 export const leaderboardsDataSlice = createSlice({
     name: "leaderboardsData",
     initialState,
+    reducers: {
+        clearCurrentUserLbStat: (state) => {
+            state.currentUserLbStat = {}; // Clear only the currentUserLbStat property
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchLeaderboardData.pending, (state) => {
@@ -80,5 +85,7 @@ export const leaderboardsDataSlice = createSlice({
             });
     }
 });
+
+export const { clearCurrentUserLbStat } = leaderboardsDataSlice.actions;
 
 export default leaderboardsDataSlice.reducer;

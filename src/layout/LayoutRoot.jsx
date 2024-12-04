@@ -7,7 +7,6 @@ import getCookie from "../utils/authFunctionsAndHooks/handleCookies/getCookie";
 import handleAccessToken from "../utils/handleAccessToken";
 import deleteCookie from "../utils/authFunctionsAndHooks/handleCookies/deleteCookie";
 import { toast } from "react-toastify";
-import useChatRoom from "../components/chatPageComponents/customHooks/useChatRoom";
 
 const LayoutRoot = () => {
     const { accessToken, isLogin } = useSelector(
@@ -39,9 +38,9 @@ const LayoutRoot = () => {
         }
     }, [dispatch, isLogin, params]);
 
-    useChatRoom();
-
-    const hideNavbar = location.pathname.startsWith("/play/");
+    const hideNavbar =
+        location.pathname.startsWith("/play/") ||
+        location.pathname.startsWith("/auth/");
 
     return (
         <>

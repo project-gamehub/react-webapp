@@ -109,7 +109,8 @@ export const friendsDataSlice = createSlice({
         },
         setSearchBarValue: (state, action) => {
             state.searchBarValue = action.payload;
-        }
+        },
+        resetState: () => initialState
     },
     extraReducers: (builder) => {
         builder
@@ -146,7 +147,8 @@ export const {
     removeFriend,
     removeIncomingRequest,
     addFriend,
-    setSearchBarValue
+    setSearchBarValue,
+    resetState
 } = friendsDataSlice.actions;
 
 export default friendsDataSlice.reducer;

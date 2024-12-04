@@ -28,8 +28,8 @@ const User = React.lazy(() => import("../pages/User"));
 const router = createBrowserRouter(
     createRoutesFromElements(
         <>
-            <Route path="auth/:purpose" element={<Auth />} />
             <Route path="/" element={<Root />}>
+                <Route path="auth/:purpose" element={<Auth />} />
                 <Route index element={<Home />} />
                 <Route path="reels" element={<Reels />} />
                 <Route path="about" element={<About />} />
