@@ -1,0 +1,5 @@
+.error-page {
+    height: 81vh;
+    flex-direction: column;
+    text-align: center;
+}

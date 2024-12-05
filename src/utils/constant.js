@@ -9,7 +9,6 @@ export const TICTACTOE_SERVICE_URL = `${API_GATEWAY_URL}/tic-tac-toe`;
 export const CHAT_SERVICE_SOCKET_URL = "http://localhost:3005";
 export const TICTACTOE_SOCKET_URL = "http://localhost:3006";
 
-export const SERVER_URL = "http://localhost:8000";
 export const LOGO_URL = "https://i.postimg.cc/SQVJXt7K/logo.png";
 
 export const NO_BANNER_FOUND_URL =
@@ -18,4 +17,4 @@ export const NO_BANNER_FOUND_URL =
 export const GOOGLE_CLIENT_ID =
     "99839884324-eps1tje234akps84633996ch9r5l7kne.apps.googleusercontent.com";
 
-export const LOGIN_PAGE_BANNER_URL = "../assets/login-banner.jpg";
+export const LOGIN_PAGE_BANNER_URL = "%PUBLIC_URL%/assets/login-banner.jpg";
