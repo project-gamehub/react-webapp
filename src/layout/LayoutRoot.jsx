@@ -8,6 +8,7 @@ import handleAccessToken from "../utils/handleAccessToken";
 import deleteCookie from "../utils/authFunctionsAndHooks/handleCookies/deleteCookie";
 import { toast } from "react-toastify";
 import Shimmer from "../components/Shimmer";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 const LayoutRoot = () => {
     const { accessToken, isLogin } = useSelector(
@@ -46,15 +47,17 @@ const LayoutRoot = () => {
     return (
         <>
             {!hideNavbar && <Navbar />}
-            <Suspense
-                fallback={
-                    <div className="suspense-fallback-container">
-                        <Shimmer />
-                    </div>
-                }
-            >
-                <Outlet />
-            </Suspense>
+            <ErrorBoundary>
+                <Suspense
+                    fallback={
+                        <div className="suspense-fallback-container">
+                            <Shimmer />
+                        </div>
+                    }
+                >
+                    <Outlet />
+                </Suspense>
+            </ErrorBoundary>
         </>
     );
 };

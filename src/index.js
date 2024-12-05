@@ -1,6 +1,6 @@
+import "./style.css";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import "./style.css";
 import { RouterProvider } from "react-router-dom";
 
 import router from "./routes/router.js";

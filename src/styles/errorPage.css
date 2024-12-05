@@ -3,3 +3,18 @@
     flex-direction: column;
     text-align: center;
 }
+
+.error-page-reload-btn {
+    all: unset;
+    cursor: pointer;
+    background: #1e1f20;
+    height: 50px;
+    width: 200px;
+    margin: 20px;
+    border-radius: 30px;
+    font-size: large;
+
+    &:hover {
+        background: #424547;
+    }
+}

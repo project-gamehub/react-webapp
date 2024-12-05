@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Component } from "react";
+import "../styles/errorPage.css";
 
-class ErrorBoundary extends React.Component {
+class ErrorBoundary extends Component {
     constructor(props) {
         super(props);
         this.state = { hasError: false, error: null };
@@ -23,22 +23,21 @@ class ErrorBoundary extends React.Component {
             return (
                 <div style={{ textAlign: "center", padding: "2rem" }}>
                     {isChunkLoadError ? (
-                        <>
-                            <h1>Oops! A part of the app failed to load.</h1>
-                            <p>Please refresh the page to try again.</p>
-                            <button onClick={() => window.location.reload()}>
-                                Refresh Page
-                            </button>
-                        </>
+                        <h1>Oops! A part of the app failed to load.</h1>
                     ) : (
                         <>
                             <h1>Something went wrong.</h1>
                             <p>
                                 We're working to fix it. Please try again later.
                             </p>
-                            <Link to={"/"}>Go to home page</Link>
                         </>
                     )}
+                    <button
+                        className="error-page-reload-btn"
+                        onClick={() => window.location.reload()}
+                    >
+                        Click to reload
+                    </button>
                 </div>
             );
         }
