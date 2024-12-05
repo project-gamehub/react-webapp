@@ -6,8 +6,8 @@ export const GAMES_SERVICE_URL = `${API_GATEWAY_URL}/games`;
 export const CHAT_SERVICE_URL = `${API_GATEWAY_URL}/chat`;
 export const TICTACTOE_SERVICE_URL = `${API_GATEWAY_URL}/tic-tac-toe`;
 
-export const CHAT_SERVICE_SOCKET_URL = "http://localhost:3005"
-export const TICTACTOE_SOCKET_URL = "http://localhost:3006"
+export const CHAT_SERVICE_SOCKET_URL = "http://localhost:3005";
+export const TICTACTOE_SOCKET_URL = "http://localhost:3006";
 
 export const SERVER_URL = "http://localhost:8000";
 export const LOGO_URL = "https://i.postimg.cc/SQVJXt7K/logo.png";
