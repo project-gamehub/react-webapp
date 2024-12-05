@@ -1,10 +1,15 @@
-export const SERVER_URL = "http://localhost:8000";
-export const USER_SERVICE_URL = "http://localhost:3000";
-export const FRIENDS_SERVICE_URL = "http://localhost:3001";
-export const GAMES_SERVICE_URL = "http://localhost:3002";
-export const CHAT_SERVICE_URL = "http://localhost:3005";
-export const TICTACTOE_SERVICE_URL = "http://localhost:3006";
+const API_GATEWAY_URL = "http://localhost:3007";
 
+export const USER_SERVICE_URL = `${API_GATEWAY_URL}/user`;
+export const FRIENDS_SERVICE_URL = `${API_GATEWAY_URL}/friend`;
+export const GAMES_SERVICE_URL = `${API_GATEWAY_URL}/games`;
+export const CHAT_SERVICE_URL = `${API_GATEWAY_URL}/chat`;
+export const TICTACTOE_SERVICE_URL = `${API_GATEWAY_URL}/tic-tac-toe`;
+
+export const CHAT_SERVICE_SOCKET_URL = "http://localhost:3005"
+export const TICTACTOE_SOCKET_URL = "http://localhost:3006"
+
+export const SERVER_URL = "http://localhost:8000";
 export const LOGO_URL = "https://i.postimg.cc/SQVJXt7K/logo.png";
 
 export const NO_BANNER_FOUND_URL =
