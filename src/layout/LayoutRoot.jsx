@@ -1,11 +1,14 @@
 import Navbar from "../components/navbarComponents/Navbar";
-import { Outlet, useSearchParams, useLocation } from "react-router-dom";
+import {
+    Outlet,
+    useSearchParams,
+    useLocation,
+    useNavigate
+} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData, updateUserAccessToken } from "../config/userDataSlice";
 import { Suspense, useEffect } from "react";
-import getCookie from "../utils/authFunctionsAndHooks/handleCookies/getCookie";
 import handleAccessToken from "../utils/handleAccessToken";
-import deleteCookie from "../utils/authFunctionsAndHooks/handleCookies/deleteCookie";
 import { toast } from "react-toastify";
 import Shimmer from "../components/Shimmer";
 import ErrorBoundary from "../components/ErrorBoundary";
@@ -23,13 +26,15 @@ const LayoutRoot = () => {
 
     const params = useSearchParams()[0];
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         if (!isLogin) {
-            const token = getCookie("access-token");
+            const token = params.get("access-token");
             if (token) {
                 handleAccessToken(token);
                 dispatch(updateUserAccessToken(token));
-                deleteCookie("access-token");
+                navigate("/");
                 toast.success("Logged in successfully");
             } else {
                 const isLoginFailed = params.get("login-failed");
@@ -38,7 +43,7 @@ const LayoutRoot = () => {
                 }
             }
         }
-    }, [dispatch, isLogin, params]);
+    }, [dispatch, isLogin, params, navigate]);
 
     const hideNavbar =
         location.pathname.startsWith("/play/") ||
