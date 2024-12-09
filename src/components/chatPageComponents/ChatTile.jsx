@@ -19,7 +19,7 @@ const ChatTile = ({ chatData, searchBarValue }) => {
                 className={"chat-tile-navlink"}
             >
                 <div className="chat-tile">
-                    <div className="chat-tile-avatar-container">
+                    <div className="chat-tile-avatar-container disp-flx">
                         {userAvatarURL ? (
                             <img
                                 src={userAvatarURL}

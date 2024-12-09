@@ -12,14 +12,20 @@ const useChatRoom = () => {
     const cleanupRef = useRef(false);
 
     useEffect(() => {
-        if (!accessToken || isChatRoomActive) {
+        if (!accessToken) {
             toast.error("User not logged in!");
+            return;
+        }
+
+        if (isChatRoomActive) {
+            return;
         }
 
         socket.emit("join-room", { accessToken }, (response) => {
             if (response.error) {
                 // TODO- retry if failed to join
             }
+            isChatRoomActive = true;
         });
 
         socket.on("receive-message", (data) => {
@@ -45,7 +51,7 @@ const useChatRoom = () => {
     const cancelChatRoom = () => {
         cleanupRef.current = true;
         socket.off("receive-message");
-        socket.emit("leave-room", { accessToken });
+        // socket.emit("leave-room", { accessToken });
         isChatRoomActive = false;
     };
 

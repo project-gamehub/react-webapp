@@ -22,7 +22,7 @@ const ConversationUserDetails = ({ userId }) => {
                     className="conversation-user-details-link"
                     to={"/user/" + userId}
                 >
-                    <div className="conversation-user-avatar-container">
+                    <div className="conversation-user-avatar-container disp-flx">
                         {userAvatarURL ? (
                             <img
                                 src={userAvatarURL}
