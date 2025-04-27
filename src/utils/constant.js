@@ -1,4 +1,4 @@
-const API_GATEWAY_URL = "https://game-hub.duckdns.org/backend/api";
+const API_GATEWAY_URL = "https://gamehub-api-gateway.fly.dev";
 
 export const USER_SERVICE_URL = `${API_GATEWAY_URL}/user`;
 export const FRIENDS_SERVICE_URL = `${API_GATEWAY_URL}/friend`;
@@ -6,8 +6,8 @@ export const GAMES_SERVICE_URL = `${API_GATEWAY_URL}/games`;
 export const CHAT_SERVICE_URL = `${API_GATEWAY_URL}/chat`;
 export const TICTACTOE_SERVICE_URL = `${API_GATEWAY_URL}/tic-tac-toe`;
 
-export const CHAT_SERVICE_SOCKET_URL = "https://game-hub.duckdns.org:3005";
-export const TICTACTOE_SOCKET_URL = "https://game-hub.duckdns.org:3006";
+export const CHAT_SERVICE_SOCKET_URL = "https://gamehub-chat-service.fly.dev";
+export const TICTACTOE_SOCKET_URL = "https://gamehub-tic-tac-toe.fly.dev";
 
 export const LOGO_URL = "https://i.postimg.cc/SQVJXt7K/logo.png";
 
